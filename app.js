@@ -3,8 +3,11 @@ const LOGO_PO="img/logo-pesantren-online.png";
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const ARX=/[؀-ۿݐ-ݿﭐ-﷿ﹰ-﻿]+(?:[\s،؛؟ـ()«»:]*[؀-ۿݐ-ݿﭐ-﷿ﹰ-﻿]+)*/g;
-const rich=s=>esc(s).replace(ARX,m=>`<span class="ar" dir="rtl">${m}</span>`);
-const para=s=>String(s||"").split(/\n{2,}/).map(p=>p.trim()).filter(Boolean).map(p=>`<p>${rich(p).replace(/\n/g,"<br>")}</p>`).join("");
+const rich=s=>esc(s).replace(ARX,m=>`<span class="ar" dir="rtl">${m}</span>`).replace(/﴿[^﴾]{1,600}﴾/g,m=>`<span class="ayat">${m}</span>`).replace(/«[^»]{1,600}»/g,m=>`<span class="kutip">${m}</span>`);
+const para=s=>String(s||"").split(/\n{2,}/).map(p=>p.trim()).filter(Boolean).map(p=>{const ls=p.split("\n");
+ if(ls.length>1&&ls.slice(1).every(l=>/^\d+[.)]\s/.test(l.trim()))){return `<p>${rich(ls[0])}</p><ol class="pts">${ls.slice(1).map(l=>`<li>${rich(l.trim().replace(/^\d+[.)]\s/,""))}</li>`).join("")}</ol>`}
+ if(ls.every(l=>/^\d+[.)]\s/.test(l.trim()))){return `<ol class="pts">${ls.map(l=>`<li>${rich(l.trim().replace(/^\d+[.)]\s/,""))}</li>`).join("")}</ol>`}
+ return `<p>${rich(p).replace(/\n/g,"<br>")}</p>`}).join("");
 const LS={get(k,d){try{const v=localStorage.getItem("mm_"+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem("mm_"+k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem("mm_"+k)}catch(e){}}};
 const clone=o=>JSON.parse(JSON.stringify(o));
 const uid=p=>p+"-"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
@@ -225,7 +228,7 @@ function viewMateri(){
  <section class="phead fade">
   ${p.arab?`<div class="arbig">${esc(p.arab)}</div>`:""}
   <h1>${esc(p.nama)}</h1>
-  ${p.deskripsi?`<p class="muted" style="margin:6px 0 0">${rich(p.deskripsi)}</p>`:""}
+  ${p.deskripsi?`<p class="muted just" style="margin:6px 0 0">${rich(p.deskripsi)}</p>`:""}
   <div class="stack small" style="margin-top:12px;gap:4px">
    ${p.kitab?`<div><span class="muted">Kitab:</span> ${rich(p.kitab)}</div>`:""}
    ${p.kitabPdf?`<div style="margin-top:8px"><a class="btn sm" href="${esc(p.kitabPdf)}" target="_blank" rel="noopener">${svg("file").replace('<svg','<svg width="16" height="16"')} Buka kitab (PDF)</a></div>`:""}
@@ -256,7 +259,7 @@ function viewMeet(){
   ${p.kitabPdf?`<a class="lcard" href="${esc(p.kitabPdf)}${m.hal&&parseInt(m.hal)?"#page="+(parseInt(m.hal)+(+p.kitabOffset||0)):""}" target="_blank" rel="noopener"><span class="ic" style="background:var(--warn-bg);color:var(--orange)">${svg("book")}</span><span style="min-width:0">Buka kitab<small>${m.hal?"Hal. "+esc(String(m.hal).replace(/\s*\(.*\)/,"")):"PDF"}</small></span></a>`:""}
   ${(m.berkas||[]).map(b=>`<a class="lcard" href="${esc(b.url)}" target="_blank" rel="noopener"><span class="ic" style="background:var(--surface-2);color:var(--forest)">${svg("file")}</span><span style="min-width:0">${esc(b.nama)}<small>Berkas materi</small></span></a>`).join("")}
  </section>
- ${m.ringkasan?`<section class="card"><div class="eyebrow" style="margin-bottom:10px">Ringkasan materi</div><div class="prose">${para(m.ringkasan)}</div></section>`:""}
+ ${m.ringkasan?`<section class="card ringkas"><div class="eyebrow" style="margin-bottom:12px">Ringkasan materi</div><div class="prose">${para(m.ringkasan)}</div></section>`:""}
  <section class="grid2">
   <button class="btn" data-act="mur-start" data-v="${p.id}:${m.id}" ${(m.kartu||[]).length?"":"disabled"}>${svg("cards").replace('<svg','<svg width="18" height="18"')} Murojaah bab ini</button>
   <button class="btn" data-act="quiz-bab" data-p="${p.id}" data-m="${m.id}" ${(m.soal||[]).length?"":"disabled"}>${svg("quiz").replace('<svg','<svg width="18" height="18"')} Latihan bab ini</button>
