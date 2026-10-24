@@ -1,0 +1,99 @@
+{
+  "versi": 1,
+  "diperbarui": "2026-10-24",
+  "pengumuman": [
+    {
+      "id": "p1",
+      "judul": "Selamat datang di Majelis Mudzakarah",
+      "isi": "Semua materi kajian, murojaah, dan latihan soal kini terkumpul di satu tempat. Simpan halaman ini di layar utama HP antum agar mudah dibuka kembali.",
+      "tanggal": "2026-10-24"
+    }
+  ],
+  "jadwal": [
+    {
+      "id": "j1",
+      "judul": "Kajian Ushul Fiqh — Pertemuan 4",
+      "program": "ushul-fiqh",
+      "waktu": "2026-10-28T19:30",
+      "tempat": "Rumah Dakwah Malang & siaran online",
+      "link": ""
+    }
+  ],
+  "program": [
+    {
+      "id": "ushul-fiqh",
+      "nama": "Ushul Fiqh",
+      "arab": "أصول الفقه",
+      "kitab": "Contoh: Al-Ushul min 'Ilmil Ushul — Syaikh Muhammad bin Shalih Al-'Utsaimin",
+      "pengajar": "Ustadz pengampu (silakan diisi)",
+      "deskripsi": "Mempelajari kaidah-kaidah yang menjadi jalan untuk memahami dan menggali hukum syar'i dari dalil-dalilnya.",
+      "warna": "#6A9E2F",
+      "pertemuan": [
+        {
+          "id": "uf-1",
+          "judul": "Pengertian Ushul Fiqh",
+          "arab": "تعريف أصول الفقه",
+          "youtube": "",
+          "drive": "",
+          "berkas": [],
+          "ringkasan": "Secara bahasa, ushul (أصول) adalah bentuk jamak dari ashl, yaitu sesuatu yang di atasnya dibangun hal lain. Fiqh (الفقه) secara bahasa berarti pemahaman (الفهم).\n\nSecara istilah, fiqh adalah mengetahui hukum-hukum syar'i yang bersifat amaliyah dengan dalil-dalilnya yang terperinci (معرفة الأحكام الشرعية العملية بأدلتها التفصيلية).\n\nUshul fiqh sebagai sebuah ilmu adalah ilmu yang membahas dalil-dalil fiqh yang bersifat global (ijmali), cara mengambil faedah hukum darinya, dan keadaan orang yang mengambil faedah tersebut, yaitu mujtahid.\n\nJadi ada tiga pokok bahasan ushul fiqh: (1) dalil-dalil yang global seperti kaidah 'perintah menunjukkan wajib', (2) cara mengambil hukum dari dalil, seperti membawa yang mutlak kepada yang muqayyad, dan (3) syarat dan keadaan seorang mujtahid.\n\nFaedah mempelajarinya: mampu menggali hukum syar'i dari dalilnya di atas landasan yang benar.",
+          "transkrip": "",
+          "kartu": [
+            { "id": "k-uf1-1", "depan": "أصول — arti secara bahasa", "belakang": "Jamak dari ashl (أصل): sesuatu yang di atasnya dibangun hal lain." },
+            { "id": "k-uf1-2", "depan": "الفقه — arti secara bahasa", "belakang": "Al-fahm (الفهم), yaitu pemahaman." },
+            { "id": "k-uf1-3", "depan": "Definisi fiqh secara istilah", "belakang": "معرفة الأحكام الشرعية العملية بأدلتها التفصيلية — mengetahui hukum syar'i yang amaliyah dengan dalil-dalilnya yang terperinci." },
+            { "id": "k-uf1-4", "depan": "Tiga pokok bahasan ushul fiqh", "belakang": "1) Dalil fiqh yang global (ijmali), 2) cara mengambil faedah hukum darinya, 3) keadaan orang yang mengambil faedah (mujtahid)." }
+          ],
+          "soal": [
+            { "id": "s-uf1-1", "tipe": "pg", "tanya": "Secara bahasa, kata الفقه bermakna…", "opsi": ["Pemahaman", "Pondasi", "Hukum", "Dalil"], "jawab": 0, "bahas": "Fiqh secara bahasa adalah al-fahm (الفهم), yaitu pemahaman." },
+            { "id": "s-uf1-2", "tipe": "pg", "tanya": "Dalil yang menjadi pembahasan ushul fiqh adalah dalil yang bersifat…", "opsi": ["Terperinci (tafshili)", "Global (ijmali)", "Lemah (dha'if)", "Akal semata"], "jawab": 1, "bahas": "Ushul fiqh membahas dalil-dalil global, seperti kaidah 'perintah menunjukkan wajib'. Dalil terperinci adalah wilayah ilmu fiqh." },
+            { "id": "s-uf1-3", "tipe": "bs", "tanya": "Pembahasan tentang syarat seorang mujtahid termasuk bagian dari ushul fiqh.", "jawab": true, "bahas": "Benar. Keadaan orang yang mengambil faedah hukum (mujtahid) adalah salah satu dari tiga pokok bahasan ushul fiqh." }
+          ]
+        },
+        {
+          "id": "uf-2",
+          "judul": "Hukum Taklifi",
+          "arab": "الأحكام التكليفية",
+          "youtube": "",
+          "drive": "",
+          "berkas": [],
+          "ringkasan": "Hukum taklifi ada lima: wajib, mandub (sunnah), mubah, makruh, dan haram.\n\n1. Wajib (الواجب): apa yang diperintahkan syariat secara mengharuskan. Pelakunya diberi pahala bila melakukannya dalam rangka taat, dan yang meninggalkannya berhak mendapat hukuman.\n\n2. Mandub/Sunnah (المندوب): apa yang diperintahkan syariat tidak secara mengharuskan. Pelakunya diberi pahala bila dalam rangka taat, dan yang meninggalkannya tidak dihukum.\n\n3. Mubah (المباح): apa yang tidak berkaitan dengan perintah maupun larangan secara dzatnya. Asalnya tidak berpahala dan tidak berdosa.\n\n4. Makruh (المكروه): apa yang dilarang syariat tidak secara mengharuskan untuk ditinggalkan. Yang meninggalkannya dalam rangka taat diberi pahala, dan pelakunya tidak dihukum.\n\n5. Haram (المحرم): apa yang dilarang syariat secara mengharuskan untuk ditinggalkan. Yang meninggalkannya dalam rangka taat diberi pahala, dan pelakunya berhak mendapat hukuman.",
+          "transkrip": "",
+          "kartu": [
+            { "id": "k-uf2-1", "depan": "الواجب", "belakang": "Wajib: yang diperintahkan syariat secara mengharuskan. Pelaku diberi pahala (bila dalam rangka taat), peninggalnya berhak dihukum." },
+            { "id": "k-uf2-2", "depan": "المندوب", "belakang": "Mandub/sunnah: yang diperintahkan tidak secara mengharuskan. Pelaku diberi pahala, peninggalnya tidak dihukum." },
+            { "id": "k-uf2-3", "depan": "المباح", "belakang": "Mubah: yang tidak berkaitan dengan perintah maupun larangan secara dzatnya." },
+            { "id": "k-uf2-4", "depan": "المكروه", "belakang": "Makruh: yang dilarang tidak secara mengharuskan. Peninggalnya (dalam rangka taat) diberi pahala, pelakunya tidak dihukum." },
+            { "id": "k-uf2-5", "depan": "المحرم", "belakang": "Haram: yang dilarang secara mengharuskan. Peninggalnya (dalam rangka taat) diberi pahala, pelakunya berhak dihukum." }
+          ],
+          "soal": [
+            { "id": "s-uf2-1", "tipe": "pg", "tanya": "Ada berapa macam hukum taklifi?", "opsi": ["Tiga", "Empat", "Lima", "Enam"], "jawab": 2, "bahas": "Lima: wajib, mandub, mubah, makruh, dan haram." },
+            { "id": "s-uf2-2", "tipe": "pg", "tanya": "Perkara yang diperintahkan syariat tidak secara mengharuskan disebut…", "opsi": ["Wajib", "Mandub", "Mubah", "Makruh"], "jawab": 1, "bahas": "Mandub (sunnah): diperintahkan, tetapi tidak secara mengharuskan." },
+            { "id": "s-uf2-3", "tipe": "bs", "tanya": "Orang yang meninggalkan perkara makruh dalam rangka taat kepada Allah mendapat pahala.", "jawab": true, "bahas": "Benar. Meninggalkan makruh karena taat diberi pahala, sedangkan pelakunya tidak dihukum." },
+            { "id": "s-uf2-4", "tipe": "pg", "tanya": "Perkara yang tidak berkaitan dengan perintah maupun larangan secara dzatnya adalah…", "opsi": ["Haram", "Mubah", "Wajib", "Mandub"], "jawab": 1, "bahas": "Itulah definisi mubah (المباح)." }
+          ]
+        },
+        {
+          "id": "uf-3",
+          "judul": "Al-Amr wan Nahy (Perintah dan Larangan)",
+          "arab": "الأمر والنهي",
+          "youtube": "",
+          "drive": "",
+          "berkas": [],
+          "ringkasan": "Al-Amr (الأمر) adalah ucapan yang mengandung tuntutan untuk melakukan sesuatu dari pihak yang lebih tinggi.\n\nBentuk-bentuk (shighah) perintah: (1) fi'il amr, seperti أقيموا الصلاة; (2) fi'il mudhari' yang disertai lam amr, seperti فليؤمنوا بي; (3) isim fi'il amr, seperti حي على الصلاة; (4) masdar pengganti fi'il amr, seperti فضرب الرقاب.\n\nKaidah: الأصل في الأمر الوجوب — hukum asal perintah adalah wajib, kecuali ada dalil yang memalingkannya. Di antara dalilnya: فليحذر الذين يخالفون عن أمره (An-Nur: 63).\n\nAn-Nahy (النهي) adalah ucapan yang mengandung tuntutan untuk menahan diri dari sesuatu dari pihak yang lebih tinggi, dengan bentuk fi'il mudhari' yang disertai la nahiyah, seperti ولا تقربوا الزنى.\n\nKaidah: الأصل في النهي التحريم — hukum asal larangan adalah haram, kecuali ada dalil yang memalingkannya. Dalilnya: وما نهاكم عنه فانتهوا (Al-Hasyr: 7).",
+          "transkrip": "",
+          "kartu": [
+            { "id": "k-uf3-1", "depan": "الأصل في الأمر الوجوب", "belakang": "Hukum asal perintah adalah wajib, kecuali ada dalil yang memalingkannya. Dalil: فليحذر الذين يخالفون عن أمره (An-Nur: 63)." },
+            { "id": "k-uf3-2", "depan": "الأصل في النهي التحريم", "belakang": "Hukum asal larangan adalah haram, kecuali ada dalil yang memalingkannya. Dalil: وما نهاكم عنه فانتهوا (Al-Hasyr: 7)." },
+            { "id": "k-uf3-3", "depan": "Empat bentuk (shighah) perintah", "belakang": "Fi'il amr; mudhari' + lam amr; isim fi'il amr; masdar pengganti fi'il amr." }
+          ],
+          "soal": [
+            { "id": "s-uf3-1", "tipe": "pg", "tanya": "Kaidah الأصل في الأمر الوجوب bermakna…", "opsi": ["Hukum asal perintah adalah sunnah", "Hukum asal perintah adalah wajib", "Perintah selalu mubah", "Perintah hanya berlaku bagi ulama"], "jawab": 1, "bahas": "Hukum asal perintah adalah wajib, kecuali ada dalil yang memalingkannya." },
+            { "id": "s-uf3-2", "tipe": "pg", "tanya": "حي على الصلاة adalah contoh perintah dengan bentuk…", "opsi": ["Fi'il amr", "Mudhari' + lam amr", "Isim fi'il amr", "Masdar"], "jawab": 2, "bahas": "حيّ adalah isim fi'il amr yang bermakna 'marilah'." },
+            { "id": "s-uf3-3", "tipe": "bs", "tanya": "Hukum asal larangan adalah makruh.", "jawab": false, "bahas": "Salah. Hukum asal larangan adalah haram (الأصل في النهي التحريم), kecuali ada dalil yang memalingkannya." }
+          ]
+        }
+      ]
+    }
+  ]
+}
