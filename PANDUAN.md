@@ -1,4 +1,4 @@
-# Panduan Memasang Majelis Mudzakarah Rumah Dakwah Malang
+# Panduan Memasang Majelis Mudzakaroh Rumah Dakwah Malang
 
 Hasil akhirnya adalah sebuah website (misalnya `mudzakarah-rdm.vercel.app`) yang bisa dibuka siapa saja dari HP, tanpa akun Claude. Website ini juga bisa dipasang seperti aplikasi di layar utama HP.
 

@@ -62,7 +62,7 @@ async function kirimJawab(id){const q=LIVE.tanya.find(x=>x.id===id);const teks=(
 
 /* ---------- masuk ---------- */
 function viewMasuk(){
- return `<section class="greet fade" style="text-align:center"><img src="${LOGO_PO}" alt="Pesantren Online Rumah Dakwah Malang" style="width:110px;height:110px;margin:0 auto 6px;display:block"><div class="salam" dir="rtl">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div><h1>Ahlan wa sahlan di Majelis Mudzakarah</h1><div class="dates">Tempat belajar, murojaah, dan latihan soal peserta kajian Rumah Dakwah Malang.</div></section>
+ return `<section class="greet fade" style="text-align:center"><span class="hero-logo"><img src="img/logo-majelis.png" alt="Majelis Mudzakaroh Rumah Dakwah Malang"></span><div class="salam" dir="rtl">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div><h1>Ahlan wa sahlan di Majelis Mudzakaroh</h1><div class="dates">Tempat belajar, murojaah, dan latihan soal peserta kajian Rumah Dakwah Malang.</div></section>
  ${S.adminLogin?`<form class="card stack" data-form="admin"><b>Masuk sebagai pengelola</b><div class="field"><label for="ad-email">Email</label><input id="ad-email" type="email" autocomplete="username" required></div><div class="field"><label for="ad-pass">Kata sandi</label><input id="ad-pass" type="password" autocomplete="current-password" required></div><button class="btn pri block" type="submit">Masuk</button><button class="btn ghost block" type="button" data-act="adm-toggle">Kembali ke masuk peserta</button></form>`
  :`<form class="card stack" data-form="masuk"><b>Masuk sebagai peserta</b><div class="field"><label for="ms-nama">Nama lengkap</label><input id="ms-nama" required maxlength="60" autocomplete="name" placeholder="Contoh: Ahmad Fauzan" value="${esc(LS.get("nama",""))}"></div><div class="field"><label for="ms-wa">Nomor WhatsApp</label><input id="ms-wa" required inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" value="${esc(LS.get("wa",""))}"></div><button class="btn pri block" type="submit">Masuk</button><div class="small muted">Nomor WA hanya dilihat pengelola untuk rekap kehadiran dan nilai.</div></form>
  <button class="btn ghost block" data-act="adm-toggle">Saya pengelola majelis</button>`}
@@ -96,9 +96,9 @@ async function makeCert(p){
  g.fillStyle="#FBFCF7";g.fillRect(0,0,W,H);
  g.fillStyle="#0C3A24";g.fillRect(0,0,W,190);
  g.save();g.globalAlpha=.08;g.strokeStyle="#fff";g.lineWidth=2;for(let x=28;x<W;x+=56)for(let y=28;y<190;y+=56){g.strokeRect(x-12,y-12,24,24);g.save();g.translate(x,y);g.rotate(Math.PI/4);g.strokeRect(-12,-12,24,24);g.restore()}g.restore();
- const full=await loadImg(document.querySelector(".top img.logo").src), po=await loadImg(LOGO_PO);
+ const full=await loadImg("img/logo-rumah-dakwah.png"), em=await loadImg("img/logo-emblem.png"), po=await loadImg(LOGO_PO);
  const lh=110,lw=full.width*lh/full.height;g.drawImage(full,80,40,lw,lh);
- g.fillStyle="#F5C400";g.font=`700 22px ${J}`;g.textAlign="right";g.fillText("MAJELIS MUDZAKARAH",W-80,90);g.fillStyle="#CFE3BE";g.font=`500 20px ${J}`;g.fillText("Pesantren Online Rumah Dakwah Malang",W-80,124);
+ g.fillStyle="#F5C400";g.font=`700 22px ${J}`;g.textAlign="right";g.fillText("MAJELIS MUDZAKAROH",W-80,90);g.fillStyle="#CFE3BE";g.font=`500 20px ${J}`;g.fillText("Pesantren Online Rumah Dakwah Malang",W-80,124);
  g.strokeStyle="#6A9E2F";g.lineWidth=4;g.strokeRect(40,220,W-80,H-260);g.strokeStyle="#F5C400";g.lineWidth=1.5;g.strokeRect(54,234,W-108,H-288);
  g.textAlign="center";g.fillStyle="#006F3C";g.font=`700 76px ${A}`;g.fillText("شَهَادَةُ إِتْمَامٍ",W/2,340);
  g.fillStyle="#13261A";g.font=`800 30px ${J}`;g.fillText("S E R T I F I K A T   P E N Y E L E S A I A N",W/2,395);
@@ -112,7 +112,7 @@ async function makeCert(p){
  g.fillStyle="#5A6B5D";g.font=`500 24px ${J}`;g.fillText(`${(p.pertemuan||[]).length} pertemuan${p.kitab?" · "+p.kitab.replace(/^Contoh:\s*/,""):""}`.slice(0,110),W/2,860);
  g.textAlign="left";g.fillStyle="#13261A";g.font=`700 24px ${J}`;g.fillText("Malang, "+tgl,120,980);g.fillStyle="#5A6B5D";g.font=`500 22px ${J}`;g.fillText(hj?hj:"",120,1014);
  if(avg!=null){g.fillText("Rata-rata nilai latihan: "+avg+"%",120,1046)}
- g.drawImage(po,W/2-75,925,150,150);
+ g.fillStyle="#fff";g.beginPath();g.arc(W/2-90,1000,72,0,7);g.fill();g.drawImage(em,W/2-90-52,1000-52,104,104*em.height/em.width);g.drawImage(po,W/2+20,935,130,130);
  g.textAlign="right";g.fillStyle="#13261A";g.font=`700 24px ${J}`;g.fillText(p.pengajar&&!/silakan/i.test(p.pengajar)?p.pengajar:"Pengampu kajian",W-120,1014);g.strokeStyle="#13261A";g.lineWidth=1.5;g.beginPath();g.moveTo(W-420,980);g.lineTo(W-120,980);g.stroke();g.fillStyle="#5A6B5D";g.font=`500 20px ${J}`;g.fillText("Pengajar",W-120,1046);
  return c;
 }
@@ -156,7 +156,7 @@ const svg=(k,s="currentColor")=>`<svg viewBox="0 0 24 24" fill="none" stroke="${
 /* ---------- nav ---------- */
 const TABS=[["beranda","Beranda","home"],["materi","Materi","book"],["murojaah","Murojaah","cards"],["latihan","Latihan","quiz"],["profil","Profil","user"]];
 function renderNav(){$(".nav").hidden=S.tab==="masuk";const due=DATA?dueCards().length:0;$("#nav").innerHTML=TABS.map(([k,l,i])=>`<button data-act="tab" data-v="${k}" class="${S.tab===k?"on":""}" aria-current="${S.tab===k?"page":"false"}"><span class="dot" ${k==="murojaah"&&due?`data-n="${due>99?"99+":due}"`:""}>${svg(i)}</span>${l}</button>`).join("");
- $("#toptag").innerHTML=isAdmin&&S.tab!=="kelola"?`<button class="kelola-btn" data-act="tab" data-v="kelola">Kelola</button>`:`Majelis<b>Mudzakarah</b>`}
+ $("#toptag").innerHTML=isAdmin&&S.tab!=="kelola"?`<button class="kelola-btn" data-act="tab" data-v="kelola">Kelola</button>`:`<img class="rd" src="img/logo-rumah-dakwah.png" alt="Rumah Dakwah Malang">`}
 
 /* ---------- beranda ---------- */
 function salamWaktu(){const h=new Date().getHours();return h<11?"Selamat pagi":h<15?"Selamat siang":h<18?"Selamat sore":"Selamat malam"}
@@ -439,7 +439,7 @@ async function aiGen(kind){
  const fmt=kind==="soal"
   ?`Buat 8 soal latihan. Campurkan sekitar 6 pilihan ganda dan 2 benar/salah. Kembalikan HANYA JSON array dengan bentuk: [{"tipe":"pg","tanya":"...","opsi":["...","...","...","..."],"jawab":0,"bahas":"..."},{"tipe":"bs","tanya":"...","jawab":true,"bahas":"..."}]. "jawab" untuk pg adalah indeks 0-3 opsi yang benar; acak posisi jawaban benar. "bahas" menjelaskan singkat mengapa jawaban itu benar.`
   :`Buat 6 kartu hafalan (flashcard) berisi istilah, definisi, atau kaidah penting. Kembalikan HANYA JSON array: [{"depan":"istilah atau kaidah (boleh teks Arab)","belakang":"makna dan penjelasan singkat dalam bahasa Indonesia"}].`;
- const prompt=`Kamu membantu ustadz menyusun bahan belajar untuk peserta kajian "${p.nama}" di Majelis Mudzakarah Rumah Dakwah Malang.\nGunakan HANYA isi materi${yt?" (video kajian terlampir dan teks di bawah)":" di bawah"}. Jangan menambahkan dalil, nukilan, atau pendapat yang tidak ada di materi. Tulis dalam bahasa Indonesia yang jelas; teks Arab boleh dipakai bila ada di materi.\n${fmt}\n\nJUDUL: ${m.judul}\n\nMATERI:\n${src.slice(0,24000)||"(lihat video)"}`;
+ const prompt=`Kamu membantu ustadz menyusun bahan belajar untuk peserta kajian "${p.nama}" di Majelis Mudzakaroh Rumah Dakwah Malang.\nGunakan HANYA isi materi${yt?" (video kajian terlampir dan teks di bawah)":" di bawah"}. Jangan menambahkan dalil, nukilan, atau pendapat yang tidak ada di materi. Tulis dalam bahasa Indonesia yang jelas; teks Arab boleh dipakai bila ada di materi.\n${fmt}\n\nJUDUL: ${m.judul}\n\nMATERI:\n${src.slice(0,24000)||"(lihat video)"}`;
  try{
   const out=await gemini(prompt,yt);
   const arr=Array.isArray(out)?out:(out&&(out.soal||out.kartu||out.items))||[];
@@ -589,7 +589,7 @@ function viewProfil(){
  <section class="card" style="display:flex;gap:16px;align-items:center"><img src="${LOGO_PO}" alt="" style="width:72px;height:72px;flex:none"><div style="flex:1;min-width:0"><div class="eyebrow">${isAdmin?"Pengelola":"Peserta"}${PROFIL&&PROFIL.wa?" · "+esc(PROFIL.wa):""}</div><form class="row" data-form="nama" style="margin-top:6px;flex-wrap:nowrap"><input id="in-nama2" class="search" value="${esc(nama)}" placeholder="Nama antum" aria-label="Nama"><button class="btn sm pri" type="submit">Simpan</button></form></div></section>
  <section class="stats"><div class="stat"><b>${streak()}</b><span>hari beruntun</span></div><div class="stat"><b>${Object.keys(srs()).length}</b><span>kartu dipelajari</span></div><div class="stat"><b>${hist.length}</b><span>latihan dikerjakan</span></div><div class="stat"><b>${avg==null?"–":avg+"%"}</b><span>rata-rata</span></div></section>
  <section class="stack"><div class="sec-h"><h2>Progres per program</h2></div>${progs().map(progCard).join("")}</section>
- <section class="card flat stack"><b>Pasang aplikasi di HP</b>${S.installEvt?`<button class="btn gold" data-act="install">Pasang Majelis Mudzakarah</button>`:""}<div class="small muted"><b>Android (Chrome):</b> ketuk menu ⋮ lalu “Instal aplikasi” atau “Tambahkan ke layar utama”.<br><b>iPhone (Safari):</b> ketuk tombol Bagikan lalu “Tambahkan ke Layar Utama”.</div></section>
+ <section class="card flat stack"><b>Pasang aplikasi di HP</b>${S.installEvt?`<button class="btn gold" data-act="install">Pasang Majelis Mudzakaroh</button>`:""}<div class="small muted"><b>Android (Chrome):</b> ketuk menu ⋮ lalu “Instal aplikasi” atau “Tambahkan ke layar utama”.<br><b>iPhone (Safari):</b> ketuk tombol Bagikan lalu “Tambahkan ke Layar Utama”.</div></section>
  <section class="card flat stack"><b>Tentang data antum</b><div class="small muted">${SB&&ME?"Ringkasan progres antum (poin, materi selesai, nilai rata-rata) tercatat di majelis agar ustadz bisa memantau. Detail hafalan dan catatan pribadi tetap di HP ini.":"Progres, nilai, catatan, dan hafalan tersimpan di HP ini."}</div><div class="row"><button class="btn sm danger" data-act="reset">Hapus progres di HP ini</button>${SB&&ME?`<button class="btn sm" data-act="keluar">Keluar</button>`:""}</div></section>
  ${isAdmin?`<button class="btn gold block" data-act="tab" data-v="kelola">Buka mode pengelola</button>`:""}
  ${doa()}`;
