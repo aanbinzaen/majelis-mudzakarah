@@ -235,8 +235,8 @@ function viewMeet(){
   <h1>${rich(m.judul)}</h1>
  </section>
  <section class="linkrow">
-  <a class="lcard ${m.youtube?"":"off"}" href="${esc(m.youtube||"#")}" target="_blank" rel="noopener"><span class="ic" style="background:#FDE3E0;color:#C4302B">${svg("yt")}</span><span style="min-width:0">Tonton video<small>${m.youtube?"YouTube":"Belum ada tautan"}</small></span></a>
-  <a class="lcard ${m.drive?"":"off"}" href="${esc(m.drive||"#")}" target="_blank" rel="noopener"><span class="ic" style="background:#E3EEFB;color:#1E64C8">${svg("drive")}</span><span style="min-width:0">Buka materi<small>${m.drive?"Google Drive":"Belum ada tautan"}</small></span></a>
+  ${m.youtube?`<a class="lcard" href="${esc(m.youtube)}" target="_blank" rel="noopener"><span class="ic" style="background:#FDE3E0;color:#C4302B">${svg("yt")}</span><span style="min-width:0">Tonton video<small>YouTube</small></span></a>`:""}
+  ${m.drive?`<a class="lcard" href="${esc(m.drive)}" target="_blank" rel="noopener"><span class="ic" style="background:#E3EEFB;color:#1E64C8">${svg("drive")}</span><span style="min-width:0">Buka materi<small>Google Drive</small></span></a>`:""}
   ${p.kitabPdf?`<a class="lcard" href="${esc(p.kitabPdf)}${m.hal&&parseInt(m.hal)?"#page="+(parseInt(m.hal)+(+p.kitabOffset||0)):""}" target="_blank" rel="noopener"><span class="ic" style="background:var(--warn-bg);color:var(--orange)">${svg("book")}</span><span style="min-width:0">Buka kitab<small>${m.hal?"Hal. "+esc(String(m.hal).replace(/\s*\(.*\)/,"")):"PDF"}</small></span></a>`:""}
   ${(m.berkas||[]).map(b=>`<a class="lcard" href="${esc(b.url)}" target="_blank" rel="noopener"><span class="ic" style="background:var(--surface-2);color:var(--forest)">${svg("file")}</span><span style="min-width:0">${esc(b.nama)}<small>Berkas materi</small></span></a>`).join("")}
  </section>
