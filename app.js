@@ -62,7 +62,7 @@ async function kirimJawab(id){const q=LIVE.tanya.find(x=>x.id===id);const teks=(
 
 /* ---------- masuk ---------- */
 function viewMasuk(){
- return `<section class="greet fade" style="text-align:center"><span class="hero-logo"><img src="img/logo-majelis.png" alt="Majelis Mudzakaroh Rumah Dakwah Malang"></span><div class="salam" dir="rtl">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div><h1>Ahlan wa sahlan di Majelis Mudzakaroh</h1><div class="dates">Tempat belajar, murojaah, dan latihan soal peserta kajian Rumah Dakwah Malang.</div></section>
+ return `<section class="greet fade" style="text-align:center"><img class="hero-emblem" src="img/logo-emblem.png" alt="Logo Majelis Mudzakaroh"><div class="salam" dir="rtl">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div><h1>Ahlan wa sahlan di Majelis Mudzakaroh</h1><div class="dates">Tempat belajar, murojaah, dan latihan soal peserta kajian Rumah Dakwah Malang.</div></section>
  ${S.adminLogin?`<form class="card stack" data-form="admin"><b>Masuk sebagai pengelola</b><div class="field"><label for="ad-email">Email</label><input id="ad-email" type="email" autocomplete="username" required></div><div class="field"><label for="ad-pass">Kata sandi</label><input id="ad-pass" type="password" autocomplete="current-password" required></div><button class="btn pri block" type="submit">Masuk</button><button class="btn ghost block" type="button" data-act="adm-toggle">Kembali ke masuk peserta</button></form>`
  :`<form class="card stack" data-form="masuk"><b>Masuk sebagai peserta</b><div class="field"><label for="ms-nama">Nama lengkap</label><input id="ms-nama" required maxlength="60" autocomplete="name" placeholder="Contoh: Ahmad Fauzan" value="${esc(LS.get("nama",""))}"></div><div class="field"><label for="ms-wa">Nomor WhatsApp</label><input id="ms-wa" required inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" value="${esc(LS.get("wa",""))}"></div><button class="btn pri block" type="submit">Masuk</button><div class="small muted">Nomor WA hanya dilihat pengelola untuk rekap kehadiran dan nilai.</div></form>
  <button class="btn ghost block" data-act="adm-toggle">Saya pengelola majelis</button>`}
@@ -156,7 +156,7 @@ const svg=(k,s="currentColor")=>`<svg viewBox="0 0 24 24" fill="none" stroke="${
 /* ---------- nav ---------- */
 const TABS=[["beranda","Beranda","home"],["materi","Materi","book"],["murojaah","Murojaah","cards"],["latihan","Latihan","quiz"],["profil","Profil","user"]];
 function renderNav(){$(".nav").hidden=S.tab==="masuk";const due=DATA?dueCards().length:0;$("#nav").innerHTML=TABS.map(([k,l,i])=>`<button data-act="tab" data-v="${k}" class="${S.tab===k?"on":""}" aria-current="${S.tab===k?"page":"false"}"><span class="dot" ${k==="murojaah"&&due?`data-n="${due>99?"99+":due}"`:""}>${svg(i)}</span>${l}</button>`).join("");
- $("#toptag").innerHTML=isAdmin&&S.tab!=="kelola"?`<button class="kelola-btn" data-act="tab" data-v="kelola">Kelola</button>`:`<img class="rd" src="img/logo-rumah-dakwah.png" alt="Rumah Dakwah Malang">`}
+ $("#toptag").innerHTML=isAdmin&&S.tab!=="kelola"?`<button class="kelola-btn" data-act="tab" data-v="kelola">Kelola</button>`:``}
 
 /* ---------- beranda ---------- */
 function salamWaktu(){const h=new Date().getHours();return h<11?"Selamat pagi":h<15?"Selamat siang":h<18?"Selamat sore":"Selamat malam"}
@@ -192,7 +192,7 @@ function viewBeranda(){
  ${doa()}`;
 }
 function progCard(p){const d=progDone(p);return `<div class="card tap prog" data-act="prog" data-v="${p.id}" tabindex="0"><div class="badge" style="background:${esc(p.warna||"#6A9E2F")}">${esc((p.arab||p.nama).split(" ")[0])}</div><div class="t"><h3>${esc(p.nama)} ${p.arab?`<span class="ar" dir="rtl" style="color:var(--muted);font-weight:400">${esc(p.arab)}</span>`:""}</h3><div class="small muted">${d.t} pertemuan${p.pengajar?" · "+esc(p.pengajar):""}</div><div class="bar"><i style="width:${d.pct}%"></i></div></div></div>`}
-function doa(){return `<section class="doa"><div class="ar" dir="rtl">رَبِّ زِدْنِي عِلْمًا</div><div class="small muted">“Ya Rabbku, tambahkanlah kepadaku ilmu.” (Thaha: 114)</div><img src="${LOGO_PO}" alt="Pesantren Online Rumah Dakwah Malang"></section>`}
+function doa(){return `<section class="doa"><div class="ar" dir="rtl">رَبِّ زِدْنِي عِلْمًا</div><div class="small muted">“Ya Rabbku, tambahkanlah kepadaku ilmu.” (Thaha: 114)</div><div class="mitra"><img class="m-rd" src="img/logo-rumah-dakwah-gelap.png" alt="Rumah Dakwah Malang"><img class="m-po" src="${LOGO_PO}" alt="Pesantren Online Rumah Dakwah Malang"></div></section>`}
 
 /* ---------- materi ---------- */
 function viewMateri(){
@@ -501,7 +501,7 @@ function render(top){
  if(!DATA)return;
  const v={beranda:viewBeranda,materi:viewMateri,murojaah:viewMurojaah,latihan:viewLatihan,profil:viewProfil,kelola:viewKelola,masuk:viewMasuk}[S.tab]||viewBeranda;
  const ae=document.activeElement, aid=ae&&ae.id, pos=ae&&ae.selectionStart;
- $("#main").innerHTML=(offline?`<div class="card flat small" style="background:var(--warn-bg);border-color:var(--gold)">Sedang luring: menampilkan materi yang terakhir tersimpan.</div>`:"")+v();
+ $("#main").innerHTML=(S.dbErr&&isAdmin?`<div class="card flat small" style="background:var(--warn-bg);border-color:var(--gold)">Database belum siap: ${esc(S.dbErr)}. Pastikan supabase.sql sudah dijalankan.</div>`:"")+(offline?`<div class="card flat small" style="background:var(--warn-bg);border-color:var(--gold)">Sedang luring: menampilkan materi yang terakhir tersimpan.</div>`:"")+v();
  renderNav();
  if(top)window.scrollTo({top:0});
  if(aid){const el=document.getElementById(aid);if(el&&el.tagName!=="BUTTON"){el.focus();try{if(pos!=null)el.setSelectionRange(pos,pos)}catch(e){}}}
@@ -586,7 +586,7 @@ document.addEventListener("toggle",e=>{const d=e.target;if(d.matches&&d.matches(
 function viewProfil(){
  const nama=LS.get("nama",""), hist=LS.get("scores",[]), avg=avgScore();
  return `
- <section class="card" style="display:flex;gap:16px;align-items:center"><img src="${LOGO_PO}" alt="" style="width:72px;height:72px;flex:none"><div style="flex:1;min-width:0"><div class="eyebrow">${isAdmin?"Pengelola":"Peserta"}${PROFIL&&PROFIL.wa?" · "+esc(PROFIL.wa):""}</div><form class="row" data-form="nama" style="margin-top:6px;flex-wrap:nowrap"><input id="in-nama2" class="search" value="${esc(nama)}" placeholder="Nama antum" aria-label="Nama"><button class="btn sm pri" type="submit">Simpan</button></form></div></section>
+ <section class="card" style="display:flex;gap:16px;align-items:center"><img src="img/logo-emblem.png" alt="" style="width:64px;height:auto;flex:none"><div style="flex:1;min-width:0"><div class="eyebrow">${isAdmin?"Pengelola":"Peserta"}${PROFIL&&PROFIL.wa?" · "+esc(PROFIL.wa):""}</div><form class="row" data-form="nama" style="margin-top:6px;flex-wrap:nowrap"><input id="in-nama2" class="search" value="${esc(nama)}" placeholder="Nama antum" aria-label="Nama"><button class="btn sm pri" type="submit">Simpan</button></form></div></section>
  <section class="stats"><div class="stat"><b>${streak()}</b><span>hari beruntun</span></div><div class="stat"><b>${Object.keys(srs()).length}</b><span>kartu dipelajari</span></div><div class="stat"><b>${hist.length}</b><span>latihan dikerjakan</span></div><div class="stat"><b>${avg==null?"–":avg+"%"}</b><span>rata-rata</span></div></section>
  <section class="stack"><div class="sec-h"><h2>Progres per program</h2></div>${progs().map(progCard).join("")}</section>
  <section class="card flat stack"><b>Pasang aplikasi di HP</b>${S.installEvt?`<button class="btn gold" data-act="install">Pasang Majelis Mudzakaroh</button>`:""}<div class="small muted"><b>Android (Chrome):</b> ketuk menu ⋮ lalu “Instal aplikasi” atau “Tambahkan ke layar utama”.<br><b>iPhone (Safari):</b> ketuk tombol Bagikan lalu “Tambahkan ke Layar Utama”.</div></section>
@@ -601,7 +601,7 @@ if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceW
 (async function boot(){
  const h=(location.hash||"").slice(1);if(TABS.some(t=>t[0]===h)||h==="kelola")S.tab=h;
  try{
-  if(SB){const {data,error}=await SB.from("konten").select("data").eq("id",1).maybeSingle();if(error)throw error;DATA=data&&data.data}
+  if(SB){try{const {data,error}=await SB.from("konten").select("data").eq("id",1).maybeSingle();if(error)throw error;DATA=data&&data.data}catch(err){S.dbErr=(err&&err.message)||"tidak terhubung";console.warn("konten:",err)}}
   if(!DATA){const r=await fetch("data.json",{cache:"no-store"});if(!r.ok)throw 0;DATA=await r.json()}
   LS.set("cache",DATA);
  }catch(e){DATA=LS.get("cache",null);offline=!!DATA}
