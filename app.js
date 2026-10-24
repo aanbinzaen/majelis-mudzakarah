@@ -160,7 +160,23 @@ function renderNav(){$(".nav").hidden=S.tab==="masuk";const due=DATA?dueCards().
 
 /* ---------- beranda ---------- */
 function salamWaktu(){const h=new Date().getHours();return h<11?"Selamat pagi":h<15?"Selamat siang":h<18?"Selamat sore":"Selamat malam"}
-function hijri(){try{return new Intl.DateTimeFormat("id-ID-u-ca-islamic-umalqura",{day:"numeric",month:"long",year:"numeric"}).format(new Date())}catch(e){return""}}
+const BULAN_H=["Muharram","Shafar","Rabi'ul Awwal","Rabi'ul Akhir","Jumadil Ula","Jumadil Akhirah","Rajab","Sya'ban","Ramadhan","Syawwal","Dzulqa'dah","Dzulhijjah"];
+function hijriParts(dt){
+ try{const f=new Intl.DateTimeFormat("en-u-ca-islamic-umalqura",{day:"numeric",month:"numeric",year:"numeric"});
+  if(/islamic/.test(f.resolvedOptions().calendar)){const p={};f.formatToParts(dt).forEach(x=>p[x.type]=parseInt(x.value,10));if(p.day&&p.month&&p.year&&p.year>1300&&p.year<1600)return [p.day,p.month,p.year]}}catch(e){}
+ // Tabel Umm al-Qura (awal bulan Hijriah 1439/5 dst.; 1 = 30 hari, 0 = 29 hari)
+ const UQ="101010010101110101001010110110100101010110101010101010110101100101010111010010010111011001001011101010100101101101010010101101101010010101101110010011011011001001011011010100101011011010100101101011010010101011101001001011110100100101110110010010110110101001010110101011001010110101100101010111010100100111011010010011011101000101101101100101010";
+ const day=Math.floor(Date.UTC(dt.getFullYear(),dt.getMonth(),dt.getDate())/864e5);
+ let start=17549,hy=1439,hm=5;
+ if(day>=start){for(let k=0;k<UQ.length;k++){const len=UQ[k]==="1"?30:29;if(day<start+len)return [day-start+1,hm,hy];start+=len;hm++;if(hm>12){hm=1;hy++}}}
+ const y=dt.getFullYear(),m=dt.getMonth()+1,d=dt.getDate();
+ const jd=Math.floor((1461*(y+4800+Math.floor((m-14)/12)))/4)+Math.floor((367*(m-2-12*Math.floor((m-14)/12)))/12)-Math.floor((3*Math.floor((y+4900+Math.floor((m-14)/12))/100))/4)+d-32075;
+ let l=jd-1948440+10632;const n=Math.floor((l-1)/10631);l=l-10631*n+354;
+ const j=Math.floor((10985-l)/5316)*Math.floor((50*l)/17719)+Math.floor(l/5670)*Math.floor((43*l)/15238);
+ l=l-Math.floor((30-j)/15)*Math.floor((17719*j)/50)-Math.floor(j/16)*Math.floor((15238*j)/43)+29;
+ const tm=Math.floor((24*l)/709),td=l-Math.floor((709*tm)/24),ty=30*n+j-30;return [td,tm,ty];
+}
+function hijri(dt=new Date()){try{const [d,m,y]=hijriParts(dt);return `${d} ${BULAN_H[m-1]} ${y} H`}catch(e){return ""}}
 function fmtWaktu(iso){try{const d=new Date(iso);return d.toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long"})+" · "+d.toLocaleTimeString("id-ID",{hour:"2-digit",minute:"2-digit"})}catch(e){return iso}}
 function viewBeranda(){
  const nama=LS.get("nama",""), due=dueCards().length, avg=avgScore();
