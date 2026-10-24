@@ -192,7 +192,7 @@ function viewBeranda(){
  ${doa()}`;
 }
 function progCard(p){const d=progDone(p);return `<div class="card tap prog" data-act="prog" data-v="${p.id}" tabindex="0"><div class="badge" style="background:${esc(p.warna||"#6A9E2F")}">${esc((p.arab||p.nama).split(" ")[0])}</div><div class="t"><h3>${esc(p.nama)} ${p.arab?`<span class="ar" dir="rtl" style="color:var(--muted);font-weight:400">${esc(p.arab)}</span>`:""}</h3><div class="small muted">${d.t} pertemuan${p.pengajar?" · "+esc(p.pengajar):""}</div><div class="bar"><i style="width:${d.pct}%"></i></div></div></div>`}
-function doa(){return `<section class="doa"><div class="ar" dir="rtl">رَبِّ زِدْنِي عِلْمًا</div><div class="small muted">“Ya Rabbku, tambahkanlah kepadaku ilmu.” (Thaha: 114)</div><div class="mitra"><img class="m-rd" src="img/logo-rumah-dakwah-gelap.png" alt="Rumah Dakwah Malang"><img class="m-po" src="${LOGO_PO}" alt="Pesantren Online Rumah Dakwah Malang"></div></section>`}
+function doa(){return `<section class="doa"><div class="ar" dir="rtl">رَبِّ زِدْنِي عِلْمًا</div><div class="small muted">“Ya Rabbku, tambahkanlah kepadaku ilmu.” (Thaha: 114)</div><div class="mitra-cap">Diselenggarakan oleh</div><div class="mitra"><img class="m-rd" src="img/logo-rumah-dakwah-gelap.png" alt="Rumah Dakwah Malang"><span class="m-sep"></span><img class="m-po" src="${LOGO_PO}" alt="Pesantren Online Rumah Dakwah Malang"></div></section>`}
 
 /* ---------- materi ---------- */
 function viewMateri(){
