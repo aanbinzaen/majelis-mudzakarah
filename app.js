@@ -460,16 +460,16 @@ async function publishData(){
  const b=document.querySelector('[data-act="a-publish"]');if(b){b.disabled=true;b.textContent="Menerbitkan…"}
  const {error}=await SB.from("konten").upsert({id:1,data:out,updated_at:new Date().toISOString()});
  if(error)toast("Gagal menerbitkan: "+error.message+". Draf tetap tersimpan.");
- else{DATA=clone(out);EDIT=clone(out);dirty=false;LS.del("draft");LS.set("cache",DATA);S.draftOffer=null;toast("Diterbitkan. Peserta kini melihat versi terbaru.")}
+ else{DATA=clone(out);EDIT=clone(out);dirty=false;LS.del("draft");LS.set("cache",DATA);S.draftOffer=null;S.impMsg=null;toast("Diterbitkan. Peserta kini melihat versi terbaru.")}
  render();
 }
 function importData(txt){
- let inc;try{inc=JSON.parse(txt)}catch(e){toast("Isi bukan JSON yang valid");return}
+ let inc;try{inc=JSON.parse(String(txt||"").replace(/^\uFEFF/,""))}catch(e){S.impMsg={ok:false,t:"Berkas atau teks bukan JSON yang valid. Pastikan memilih berkas materi-qawaid-al-ushul.json."};toast("Isi bukan JSON yang valid");render();return}
  const add=Array.isArray(inc)?{program:inc}:inc.program?inc:inc.pertemuan?{program:[inc]}:null;
- if(!add){toast("Format tidak dikenali. Harus berisi daftar program.");return}
+ if(!add){S.impMsg={ok:false,t:"Format tidak dikenali. Harus berisi daftar program."};toast("Format tidak dikenali");render();return}
  let n=0;(add.program||[]).forEach(p=>{if(!p||!p.id)return;const i=EDIT.program.findIndex(x=>x.id===p.id);if(i>=0)EDIT.program[i]=p;else EDIT.program.push(p);n++});
  ["pengumuman","jadwal"].forEach(k=>{if(Array.isArray(add[k])){EDIT[k]=EDIT[k]||[];add[k].forEach(x=>{const i=EDIT[k].findIndex(y=>y.id===x.id);if(i>=0)EDIT[k][i]=x;else EDIT[k].push(x)})}});
- markDirty();toast(n+" program diimpor. Periksa lalu ketuk Terbitkan.");render();
+ markDirty();const nm=(add.program||[]).map(p=>p.nama+" ("+((p.pertemuan||[]).length)+" pertemuan)").join(", ");S.impMsg={ok:true,t:`Berhasil diimpor: ${nm}. Belum tampil untuk peserta sampai antum ketuk Terbitkan.`};toast(n+" program diimpor");render();
 }
 function viewRekap(){
  const ps=LIVE.rekap, open=LIVE.tanya.filter(q=>!q.jawaban);
@@ -489,7 +489,8 @@ function viewRekap(){
  <section class="card stack"><div class="sec-h"><h2>Impor materi</h2></div>
   <div class="small muted">Tempel data program (JSON) yang disiapkan Claude, atau pilih berkas .json. Program dengan id yang sama akan diganti.</div>
   <div class="field"><label for="imp-txt">Data JSON</label><textarea id="imp-txt" rows="4" placeholder='{"program":[…]}'></textarea></div>
-  <div class="row"><button class="btn sm pri" data-act="a-import">Impor</button><label class="btn sm">Pilih berkas .json<input type="file" id="imp-file" accept=".json,application/json" hidden></label></div>
+  <div class="row"><button class="btn sm pri" data-act="a-import">Impor</button><label class="btn sm">Pilih berkas .json<input type="file" id="imp-file" hidden></label></div>
+  ${S.impMsg?`<div class="card flat small" style="background:${S.impMsg.ok?"var(--good-bg)":"var(--bad-bg)"};border-color:${S.impMsg.ok?"var(--good)":"var(--bad)"}"><b>${esc(S.impMsg.t)}</b>${S.impMsg.ok?`<div style="margin-top:8px"><button class="btn sm pri" data-act="a-publish">Terbitkan sekarang</button></div>`:""}</div>`:""}
  </section>`}
 async function uploadFile(e){const f=e.target.files&&e.target.files[0];if(!f)return;const lbl=$("#up-lbl");if(lbl)lbl.firstChild.textContent="Mengunggah…";
  if(f.size>50*1024*1024){toast("Berkas terlalu besar (maks 50 MB). Simpan di Drive lalu tempel tautannya.");render();return}
@@ -589,7 +590,7 @@ document.addEventListener("input",e=>{const t=e.target;
  if(t.dataset.bind&&EDIT){let v=t.value;if(t.dataset.type==="num")v=+v;if(t.dataset.type==="bool")v=v==="true";if(t.dataset.type==="check")v=t.checked;if(t.type==="number")v=v===""?0:+v;setPath(EDIT,t.dataset.bind,v);markDirty();if(t.tagName==="SELECT")render()}
 });
 document.addEventListener("change",e=>{const t=e.target;
- if(t.id==="imp-file"&&t.files[0]){t.files[0].text().then(importData);return}
+ if(t.id==="imp-file"&&t.files[0]){const f=t.files[0];t.value="";f.text().then(importData,()=>toast("Berkas tidak bisa dibaca"));return}
  if(t.dataset.qs){S.qs[t.dataset.qs]=t.value;if(t.dataset.qs==="prog")S.qs.bab="all";render();return}
  if(t.dataset.actChange==="a-tipe"){const s=getPath(EDIT,t.dataset.path);s.tipe=t.value;if(s.tipe==="bs"){s.jawab=true;delete s.opsi}else{s.opsi=s.opsi||["","","",""];s.jawab=0}markDirty();render()}
 });
