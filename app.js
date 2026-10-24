@@ -212,6 +212,7 @@ function viewMateri(){
   ${p.deskripsi?`<p class="muted" style="margin:6px 0 0">${rich(p.deskripsi)}</p>`:""}
   <div class="stack small" style="margin-top:12px;gap:4px">
    ${p.kitab?`<div><span class="muted">Kitab:</span> ${rich(p.kitab)}</div>`:""}
+   ${p.kitabPdf?`<div style="margin-top:8px"><a class="btn sm" href="${esc(p.kitabPdf)}" target="_blank" rel="noopener">${svg("file").replace('<svg','<svg width="16" height="16"')} Buka kitab (PDF)</a></div>`:""}
    ${p.pengajar?`<div><span class="muted">Pengajar:</span> ${esc(p.pengajar)}</div>`:""}
   </div>
   <div class="bar"><i style="width:${d.pct}%"></i></div><div class="small muted" style="margin-top:4px">${d.n} dari ${d.t} pertemuan selesai</div>
@@ -219,7 +220,7 @@ function viewMateri(){
  </section>
  <input class="search" id="in-cari" type="search" placeholder="Cari materi…" value="${esc(S.q)}" aria-label="Cari materi">
  <section class="stack">
-  ${list.map(({m,i})=>`<div class="card tap meet ${done[m.id]?"done":""}" data-act="open" data-p="${p.id}" data-m="${m.id}" tabindex="0"><div class="no">${done[m.id]?svg("check","#fff").replace('<svg','<svg width="16" height="16"'):i+1}</div><div class="t"><h3>${rich(m.judul)}</h3>${m.arab?`<div class="ar" dir="rtl" style="color:var(--muted);font-size:1.1em">${esc(m.arab)}</div>`:""}<div class="row small muted" style="gap:6px;margin-top:4px">${m.youtube?`<span class="pill">Video</span>`:""}${m.drive?`<span class="pill">Drive</span>`:""}${(m.berkas||[]).length?`<span class="pill">${m.berkas.length} berkas</span>`:""}${(m.kartu||[]).length?`<span class="pill">${m.kartu.length} kartu</span>`:""}${(m.soal||[]).length?`<span class="pill">${m.soal.length} soal</span>`:""}</div></div></div>`).join("")||`<div class="empty">Tidak ada materi yang cocok.</div>`}
+  ${list.map(({m,i})=>`<div class="card tap meet ${done[m.id]?"done":""}" data-act="open" data-p="${p.id}" data-m="${m.id}" tabindex="0"><div class="no">${done[m.id]?svg("check","#fff").replace('<svg','<svg width="16" height="16"'):i+1}</div><div class="t"><h3>${rich(m.judul)}</h3>${m.arab?`<div class="ar" dir="rtl" style="color:var(--muted);font-size:1.1em">${esc(m.arab)}</div>`:""}<div class="row small muted" style="gap:6px;margin-top:4px">${m.hal?`<span class="pill gold">Hal. ${esc(String(m.hal).replace(/\s*\(.*\)/,""))}</span>`:""}${m.youtube?`<span class="pill">Video</span>`:""}${m.drive?`<span class="pill">Drive</span>`:""}${(m.berkas||[]).length?`<span class="pill">${m.berkas.length} berkas</span>`:""}${(m.kartu||[]).length?`<span class="pill">${m.kartu.length} kartu</span>`:""}${(m.soal||[]).length?`<span class="pill">${m.soal.length} soal</span>`:""}</div></div></div>`).join("")||`<div class="empty">Tidak ada materi yang cocok.</div>`}
  </section>`;
 }
 function viewMeet(){
@@ -229,13 +230,14 @@ function viewMeet(){
  return `
  <button class="back" data-act="back">← ${esc(p.nama)}</button>
  <section class="phead fade">
-  <div class="eyebrow">Pertemuan ${i+1}</div>
+  <div class="eyebrow">Pertemuan ${i+1}${m.hal?" · Hal. "+esc(m.hal):""}</div>
   ${m.arab?`<div class="arbig">${esc(m.arab)}</div>`:""}
   <h1>${rich(m.judul)}</h1>
  </section>
  <section class="linkrow">
   <a class="lcard ${m.youtube?"":"off"}" href="${esc(m.youtube||"#")}" target="_blank" rel="noopener"><span class="ic" style="background:#FDE3E0;color:#C4302B">${svg("yt")}</span><span style="min-width:0">Tonton video<small>${m.youtube?"YouTube":"Belum ada tautan"}</small></span></a>
   <a class="lcard ${m.drive?"":"off"}" href="${esc(m.drive||"#")}" target="_blank" rel="noopener"><span class="ic" style="background:#E3EEFB;color:#1E64C8">${svg("drive")}</span><span style="min-width:0">Buka materi<small>${m.drive?"Google Drive":"Belum ada tautan"}</small></span></a>
+  ${p.kitabPdf?`<a class="lcard" href="${esc(p.kitabPdf)}${m.hal&&parseInt(m.hal)?"#page="+(parseInt(m.hal)+(+p.kitabOffset||0)):""}" target="_blank" rel="noopener"><span class="ic" style="background:var(--warn-bg);color:var(--orange)">${svg("book")}</span><span style="min-width:0">Buka kitab<small>${m.hal?"Hal. "+esc(String(m.hal).replace(/\s*\(.*\)/,"")):"PDF"}</small></span></a>`:""}
   ${(m.berkas||[]).map(b=>`<a class="lcard" href="${esc(b.url)}" target="_blank" rel="noopener"><span class="ic" style="background:var(--surface-2);color:var(--forest)">${svg("file")}</span><span style="min-width:0">${esc(b.nama)}<small>Berkas materi</small></span></a>`).join("")}
  </section>
  ${m.ringkasan?`<section class="card"><div class="eyebrow" style="margin-bottom:10px">Ringkasan materi</div><div class="prose">${para(m.ringkasan)}</div></section>`:""}
@@ -372,6 +374,8 @@ function viewKelola(){
    <div class="grid2">${fIn(`program.${pi}.nama`,"Nama program")}${fIn(`program.${pi}.arab`,"Nama Arab",{ph:"أصول الفقه"})}</div>
    <div class="grid2">${fIn(`program.${pi}.pengajar`,"Pengajar")}${fIn(`program.${pi}.warna`,"Warna",{type:"color"})}</div>
    ${fIn(`program.${pi}.kitab`,"Kitab rujukan")}
+   <div class="grid2">${fIn(`program.${pi}.kitabPdf`,"Tautan PDF kitab",{type:"url",ph:"https://"})}${fIn(`program.${pi}.kitabOffset`,"Selisih halaman PDF (hal. PDF − hal. kitab)",{type:"number",ph:"0"})}</div>
+   ${SB?`<div><label class="btn sm">Unggah PDF kitab<input type="file" class="up-kitab" data-p="${pi}" accept="application/pdf" hidden></label></div>`:""}
    ${fIn(`program.${pi}.deskripsi`,"Deskripsi",{area:1})}
    <div class="eyebrow" style="margin-top:6px">Pertemuan</div>
    ${(p.pertemuan||[]).map((m,mi)=>`<div class="aitem" style="flex-direction:row;align-items:center"><span class="pill">${mi+1}</span><b style="flex:1;min-width:0">${esc(m.judul||"Tanpa judul")}</b><span class="small muted">${(m.kartu||[]).length}k · ${(m.soal||[]).length}s</span><button class="btn sm" data-act="a-edit-meet" data-p="${pi}" data-m="${mi}">Edit</button></div>`).join("")}
@@ -393,7 +397,7 @@ function viewEditMeet(){
  return `
  <button class="back" data-act="a-close">← ${esc(p.nama)}</button>
  <section class="card stack"><div class="eyebrow">Pertemuan ${mi+1}</div>
-  ${fIn(base+".judul","Judul")}${fIn(base+".arab","Judul Arab (opsional)")}
+  ${fIn(base+".judul","Judul")}<div class="grid2">${fIn(base+".arab","Judul Arab (opsional)")}${fIn(base+".hal","Halaman kitab",{ph:"15–17"})}</div>
   <div class="grid2">${fIn(base+".youtube","Tautan YouTube",{type:"url",ph:"https://youtu.be/…"})}${fIn(base+".drive","Tautan Google Drive",{type:"url",ph:"https://drive.google.com/…"})}</div>
   ${fIn(base+".ringkasan","Ringkasan materi (tampil untuk peserta)",{area:1,rows:8})}
   ${fIn(base+".transkrip","Transkrip kajian (hanya untuk AI, tidak ditampilkan)",{area:1,rows:5,ph:"Di YouTube: ketuk ⋯ di bawah video → Tampilkan transkrip → salin dan tempel di sini."})}
@@ -494,6 +498,13 @@ async function uploadFile(e){const f=e.target.files&&e.target.files[0];if(!f)ret
  if(error){toast("Gagal mengunggah: "+error.message);render();return}
  const url=SB.storage.from("materi").getPublicUrl(path).data.publicUrl;
  const m=EDIT.program[S.adm.pi].pertemuan[S.adm.mi];m.berkas.push({nama:f.name,url});markDirty();toast("Berkas diunggah");render()}
+async function uploadKitab(e){const f=e.target.files&&e.target.files[0];if(!f)return;const pi=+e.target.dataset.p;
+ if(f.size>50*1024*1024){toast("PDF terlalu besar (maks 50 MB). Simpan di Drive lalu tempel tautannya.");return}
+ toast("Mengunggah PDF kitab… mohon tunggu");
+ const path=`kitab/${Date.now()}-${f.name.replace(/[^\w.\-]+/g,"_")}`;
+ const {error}=await SB.storage.from("materi").upload(path,f,{contentType:"application/pdf",upsert:false});
+ if(error){toast("Gagal mengunggah: "+error.message);return}
+ EDIT.program[pi].kitabPdf=SB.storage.from("materi").getPublicUrl(path).data.publicUrl;markDirty();toast("PDF kitab diunggah. Ketuk Terbitkan.");render()}
 async function downloadCert(){const p=findProg(S.cert);if(!S.certUrl)return;const a=document.createElement("a");a.href=S.certUrl;a.download=`Sertifikat ${p.nama} - ${LS.get("nama","")}.png`;document.body.appendChild(a);a.click();a.remove()}
 
 /* ---------- render ---------- */
@@ -507,6 +518,7 @@ function render(top){
  if(aid){const el=document.getElementById(aid);if(el&&el.tagName!=="BUTTON"){el.focus();try{if(pos!=null)el.setSelectionRange(pos,pos)}catch(e){}}}
  if(S.quiz&&!S.quiz.finished&&S.quiz.end)startTimer();
  const up=$("#up-file");if(up)up.onchange=uploadFile;
+ document.querySelectorAll(".up-kitab").forEach(el=>el.onchange=uploadKitab);
  if(S.tab==="materi"&&S.cert&&!S.certUrl&&!S.certBusy&&LS.get("nama","")){S.certBusy=true;buildCert().finally(()=>S.certBusy=false)}
 }
 /* ---------- events ---------- */
@@ -574,7 +586,7 @@ document.addEventListener("input",e=>{const t=e.target;
  if(t.id==="g-model"){LS.set("gmodel",t.value.trim());return}
  if(t.dataset.jw){S.jw[t.dataset.jw]=t.value;return}
  if(t.id==="in-note"){clearTimeout(noteT);noteT=setTimeout(()=>{const n=LS.get("notes",{});n[t.dataset.mid]=t.value;LS.set("notes",n)},400);return}
- if(t.dataset.bind&&EDIT){let v=t.value;if(t.dataset.type==="num")v=+v;if(t.dataset.type==="bool")v=v==="true";if(t.dataset.type==="check")v=t.checked;setPath(EDIT,t.dataset.bind,v);markDirty();if(t.tagName==="SELECT")render()}
+ if(t.dataset.bind&&EDIT){let v=t.value;if(t.dataset.type==="num")v=+v;if(t.dataset.type==="bool")v=v==="true";if(t.dataset.type==="check")v=t.checked;if(t.type==="number")v=v===""?0:+v;setPath(EDIT,t.dataset.bind,v);markDirty();if(t.tagName==="SELECT")render()}
 });
 document.addEventListener("change",e=>{const t=e.target;
  if(t.id==="imp-file"&&t.files[0]){t.files[0].text().then(importData);return}

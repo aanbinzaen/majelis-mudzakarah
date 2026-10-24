@@ -1,99 +1,957 @@
 {
-  "versi": 1,
-  "diperbarui": "2026-10-24",
-  "pengumuman": [
+ "versi": 1,
+ "diperbarui": "2026-10-24",
+ "pengumuman": [
+  {
+   "id": "p1",
+   "judul": "Kajian Qawa'id al-Ushul sudah tersedia",
+   "isi": "Rekaman pertemuan 1–9 kajian Syarh Qawa'id al-Ushul wa Ma'aqid al-Fushul bersama Dr. (HC). Kholiful Hadi hafizhahullah kini bisa ditonton di menu Materi, lengkap dengan ringkasan, kartu murojaah, dan latihan soal.\n\nSemoga Allah ﷻ memberkahi majelis ilmu ini, meluruskan niat kita, dan memberikan taufik untuk mengamalkan ilmu yang telah dipelajari. آمين",
+   "tanggal": "2026-10-24"
+  }
+ ],
+ "jadwal": [],
+ "program": [
+  {
+   "id": "ushul-fiqh",
+   "nama": "Ushul Fiqh: Qawa'id al-Ushul",
+   "arab": "شرح قواعد الأصول ومعاقد الفصول",
+   "kitab": "Qawa'id al-Ushul wa Ma'aqid al-Fushul — Shafiyyuddin 'Abdul Mu'min al-Baghdadi al-Hanbali; syarah Syaikh Muhammad bin Shalih al-'Utsaimin رحمه الله",
+   "pengajar": "Dr. (HC). Kholiful Hadi, S.E., M.M., Ph.D. حفظه الله",
+   "deskripsi": "Kajian kitab ringkas tentang kaidah-kaidah ushul fiqh: dalil-dalil fiqh secara global, cara mengambil hukum darinya, dan keadaan mujtahid, dengan syarah Syaikh Ibnu 'Utsaimin.",
+   "warna": "#006F3C",
+   "kitabPdf": "",
+   "kitabOffset": 1,
+   "pertemuan": [
     {
-      "id": "p1",
-      "judul": "Selamat datang di Majelis Mudzakaroh",
-      "isi": "Semua materi kajian, murojaah, dan latihan soal kini terkumpul di satu tempat. Simpan halaman ini di layar utama HP antum agar mudah dibuka kembali.",
-      "tanggal": "2026-10-24"
-    }
-  ],
-  "jadwal": [
+     "id": "qa-01",
+     "judul": "Muqaddimah: Basmalah dan Hamdalah",
+     "arab": "مقدمة المؤلف: البسملة والحمدلة",
+     "hal": "15–17",
+     "youtube": "https://youtu.be/STZ1PEDi0Mw",
+     "drive": "",
+     "berkas": [],
+     "ringkasan": "Syaikh Ibnu 'Utsaimin membuka syarah dengan menyebut bahwa kitab Qawa'id al-Ushul wa Ma'aqid al-Fushul adalah kitab ringkas (mukhtashar) yang bermanfaat bagi penuntut ilmu, antara tingkat pemula (mubtadi') dan tingkat lanjut (muntahi).\n\nPenulis memulai kitabnya dengan basmalah, meneladani Kitabullah. Basmalah mengandung jar-majrur, sifat, dan maushuf: huruf jar-nya adalah (الباء), majrur-nya (اسم), sifatnya (الرحمن الرحيم), dan maushuf-nya (الله).\n\nSetiap jar-majrur harus memiliki muta'allaq (kata yang dikaitkan), kecuali bila huruf jar-nya za'id (tambahan). Pendapat yang paling shahih: basmalah berkaitan dengan fi'il (kata kerja) yang diakhirkan dan sesuai dengan keadaan. Misalnya ketika hendak membaca kitab, taqdirnya: بسم الله أقرأ.\n\nMengapa ditaqdirkan fi'il? Karena asal dalam beramal (al-'amal secara nahwu) adalah fi'il; fi'il beramal tanpa syarat, sedangkan isim fa'il, isim maf'ul, dan sifat musyabbahah beramal dengan syarat.\n\nMengapa diakhirkan? Ada dua faedah: (1) al-hashr (pembatasan), karena mengakhirkan sesuatu yang semestinya didahulukan memberi faedah pembatasan; (2) at-tayammun dan tabarruk dengan mendahulukan nama Allah. Mengapa disesuaikan dengan keadaan? Karena lebih menunjukkan maksud. Syaikhul Islam berdalil dengan sabda Nabi ﷺ: «ومن لم يكن ذبح فليذبح بسم الله» (HR. Bukhari 985, Muslim 1960).\n\nTaqdir «ابتدائي بسم الله» keluar dari yang lebih baik karena: hilangnya faedah hashr, memakai isim padahal asal beramal adalah fi'il, hilangnya tabarruk dengan mendahulukan nama Allah, dan tidak sesuai keadaan (memulai apa?).\n\nSetelah basmalah penulis memuji Allah, meneladani Al-Qur'an yang Al-Fatihah-nya dimulai dengan hamdalah. Ucapan «أحمد الله» memakai fi'il yang menunjukkan tajaddud (pembaruan) dan huduts. Kebanyakan ulama memakai isim (الحمد لله) karena sesuai Kitabullah dan jumlah ismiyyah menunjukkan tsubut (tetap) dan istimrar (terus-menerus). Ini masalah keutamaan saja: «الحمد لله» lebih baik, namun «أحمد الله» tidak mengapa.\n\nAl-ihsan dan al-ifdhal maknanya berdekatan; bisa dikatakan ihsan adalah sekadar memberi kebaikan, sedangkan ifdhal adalah tambahan atas itu. «كما ينبغي لكرم وجهه وعز جلاله»: pujian yang layak bagi kemuliaan wajah-Nya dan keagungan-Nya; Allah adalah Akramul Akramin, sebagaimana firman-Nya: ﴿ويبقى وجه ربك ذو الجلال والإكرام﴾ (Ar-Rahman: 27).",
+     "transkrip": "",
+     "kartu": [
+      {
+       "id": "k-qa01-1",
+       "depan": "قواعد الأصول ومعاقد الفصول — sifat kitab",
+       "belakang": "Kitab ringkas (mukhtashar) yang bermanfaat bagi penuntut ilmu antara tingkat pemula dan lanjut."
+      },
+      {
+       "id": "k-qa01-2",
+       "depan": "Unsur basmalah",
+       "belakang": "Jar: الباء · Majrur: اسم · Sifat: الرحمن الرحيم · Maushuf: الله."
+      },
+      {
+       "id": "k-qa01-3",
+       "depan": "Muta'allaq basmalah (pendapat paling shahih)",
+       "belakang": "Fi'il yang diakhirkan dan sesuai keadaan, misalnya بسم الله أقرأ."
+      },
+      {
+       "id": "k-qa01-4",
+       "depan": "Dua faedah mengakhirkan muta'allaq",
+       "belakang": "1) Al-hashr (pembatasan). 2) Tabarruk dengan mendahulukan nama Allah."
+      },
+      {
+       "id": "k-qa01-5",
+       "depan": "الحمد لله vs أحمد الله",
+       "belakang": "Jumlah ismiyyah (الحمد لله) menunjukkan tsubut dan istimrar, sesuai Kitabullah — lebih utama. Jumlah fi'liyyah (أحمد الله) menunjukkan tajaddud; tidak mengapa."
+      }
+     ],
+     "soal": [
+      {
+       "tipe": "pg",
+       "tanya": "Menurut pendapat yang paling shahih, basmalah berkaitan dengan…",
+       "opsi": [
+        "Isim yang didahulukan",
+        "Fi'il yang diakhirkan dan sesuai keadaan",
+        "Fi'il umum yang didahulukan",
+        "Tidak memiliki muta'allaq"
+       ],
+       "jawab": 1,
+       "bahas": "Pendapat yang paling shahih: berkaitan dengan fi'il yang diakhirkan dan sesuai keadaan, seperti بسم الله أقرأ.",
+       "id": "s-qa01-1"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Dalam basmalah, kata (الله) berkedudukan sebagai…",
+       "opsi": [
+        "Majrur",
+        "Sifat",
+        "Maushuf",
+        "Huruf jar"
+       ],
+       "jawab": 2,
+       "bahas": "Majrur-nya (اسم), sifatnya (الرحمن الرحيم), dan maushuf-nya (الله).",
+       "id": "s-qa01-2"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Salah satu faedah mengakhirkan muta'allaq basmalah adalah…",
+       "opsi": [
+        "Al-hashr (pembatasan)",
+        "Menunjukkan tajaddud",
+        "Memperpanjang kalimat",
+        "Menyelisihi Al-Qur'an"
+       ],
+       "jawab": 0,
+       "bahas": "Dua faedahnya: al-hashr dan tabarruk dengan mendahulukan nama Allah.",
+       "id": "s-qa01-3"
+      },
+      {
+       "tipe": "bs",
+       "tanya": "Jar-majrur selalu membutuhkan muta'allaq tanpa pengecualian.",
+       "jawab": false,
+       "bahas": "Salah. Dikecualikan bila huruf jar-nya za'id (tambahan).",
+       "id": "s-qa01-4"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Mengapa kebanyakan ulama memilih «الحمد لله» daripada «أحمد الله»?",
+       "opsi": [
+        "Karena fi'il lebih kuat",
+        "Karena sesuai Kitabullah dan jumlah ismiyyah menunjukkan tsubut dan istimrar",
+        "Karena «أحمد الله» haram",
+        "Karena lebih pendek"
+       ],
+       "jawab": 1,
+       "bahas": "Isim sesuai Kitabullah dan menunjukkan tsubut serta istimrar; namun «أحمد الله» tetap tidak mengapa.",
+       "id": "s-qa01-5"
+      },
+      {
+       "tipe": "bs",
+       "tanya": "Taqdir «ابتدائي بسم الله» lebih baik daripada «بسم الله أقرأ».",
+       "jawab": false,
+       "bahas": "Salah. Taqdir itu kehilangan faedah hashr, memakai isim, kehilangan tabarruk mendahulukan nama Allah, dan kurang sesuai keadaan.",
+       "id": "s-qa01-6"
+      }
+     ]
+    },
     {
-      "id": "j1",
-      "judul": "Kajian Ushul Fiqh — Pertemuan 4",
-      "program": "ushul-fiqh",
-      "waktu": "2026-10-28T19:30",
-      "tempat": "Rumah Dakwah Malang & siaran online",
-      "link": ""
-    }
-  ],
-  "program": [
+     "id": "qa-02",
+     "judul": "Shalawat atas Nabi ﷺ dan Kemaksuman Para Nabi",
+     "arab": "الصلاة على النبي ﷺ وعصمة الأنبياء",
+     "hal": "18–19",
+     "youtube": "https://youtu.be/s9oYMIYExfg",
+     "drive": "",
+     "berkas": [],
+     "ringkasan": "«وأصلي وأسلم على نبيه المكمل برسالته»: Nabi yang dimaksud adalah Muhammad ﷺ. Kata «المكمل» menunjukkan bahwa beliau sempurna, dan risalah menambah kesempurnaan beliau.\n\nApakah risalah dimuliakan dengan beliau, atau beliau dimuliakan dengan risalah? Jawabannya: keduanya. Beliau dimuliakan dengan risalah, dan beliau adalah ahlinya, sebagaimana firman Allah: ﴿الله أعلم حيث يجعل رسالته﴾ (Al-An'am: 124). Dari sini jelas bahwa bangsa Arab adalah jenis manusia yang paling utama, karena Allah memilih rasul-Nya dari mereka.\n\n«المؤيد في أقواله وأفعاله»: yang dikuatkan dan ditolong oleh Allah, sebagaimana firman-Nya: ﴿هو الذي أيدك بنصره وبالمؤمنين﴾ (Al-Anfal: 62). Seluruh ucapan beliau benar dan seluruh perbuatan beliau dipersaksikan kebenarannya.\n\nZhahir ucapan penulis menunjukkan bahwa seluruh perbuatan Rasul ﷺ ma'shum dari ketergelinciran. Namun pendapat yang rajih: perbuatan beliau yang dibangun di atas ijtihad bisa saja terjadi kekeliruan, seperti firman Allah: ﴿عفا الله عنك لم أذنت لهم﴾ (At-Taubah: 43). Di sini terdapat faedah halus: Allah mendahulukan pemaafan sebelum menyebut kekeliruan. Contoh lain: ﴿يا أيها النبي لم تحرم ما أحل الله لك﴾ (At-Tahrim: 1) dan ﴿وتخفي في نفسك ما الله مبديه﴾ (Al-Ahzab: 37). Kekeliruan ijtihad ini diampuni.\n\nPerbedaan para nabi dengan selainnya: para nabi tidak mungkin berdusta, berkhianat, atau melakukan khianatul a'yun (isyarat mata yang menipu). Mereka ma'shum dari dusta, khianat, dan akhlak rendah seperti minum khamr dan zina. Adapun maksiat lain yang bisa terjadi pada manusia, mungkin terjadi pada mereka, tetapi bedanya: pasti diampuni dan mereka tidak terus-menerus di atasnya. Adapun kita, tidak ma'shum dari terus-menerus dalam maksiat.\n\n«وعلى جميع صحبه وآله»: ash-shahb adalah orang yang berkumpul dengan Nabi ﷺ dalam keadaan beriman kepada beliau dan wafat di atas keimanan itu. Al-al di sini maksudnya para pengikut beliau di atas agamanya.",
+     "transkrip": "",
+     "kartu": [
+      {
+       "id": "k-qa02-1",
+       "depan": "المكمل برسالته",
+       "belakang": "Nabi ﷺ sempurna dan risalah menambah kesempurnaan beliau; beliau dimuliakan dengan risalah dan beliau ahlinya (Al-An'am: 124)."
+      },
+      {
+       "id": "k-qa02-2",
+       "depan": "المؤيد في أقواله وأفعاله",
+       "belakang": "Dikuatkan dan ditolong Allah dalam ucapan dan perbuatan (Al-Anfal: 62)."
+      },
+      {
+       "id": "k-qa02-3",
+       "depan": "Kesalahan ijtihad Nabi ﷺ",
+       "belakang": "Pendapat rajih: perbuatan beliau yang berdasar ijtihad bisa keliru, lalu diampuni — ﴿عفا الله عنك لم أذنت لهم﴾ (At-Taubah: 43)."
+      },
+      {
+       "id": "k-qa02-4",
+       "depan": "Kemaksuman para nabi",
+       "belakang": "Ma'shum dari dusta, khianat, khianatul a'yun, dan akhlak rendah (khamr, zina). Maksiat lain mungkin terjadi, tetapi diampuni dan tidak terus-menerus."
+      },
+      {
+       "id": "k-qa02-5",
+       "depan": "الصحابي",
+       "belakang": "Orang yang berkumpul dengan Nabi ﷺ dalam keadaan beriman kepada beliau dan wafat di atasnya."
+      }
+     ],
+     "soal": [
+      {
+       "tipe": "pg",
+       "tanya": "Menurut pendapat yang rajih, perbuatan Nabi ﷺ yang dibangun di atas ijtihad…",
+       "opsi": [
+        "Mustahil keliru sama sekali",
+        "Bisa keliru, dan kekeliruan itu diampuni",
+        "Tidak boleh diikuti",
+        "Selalu dibatalkan wahyu"
+       ],
+       "jawab": 1,
+       "bahas": "Pendapat rajih: bisa terjadi kekeliruan dalam ijtihad, dan itu diampuni, seperti dalam At-Taubah: 43.",
+       "id": "s-qa02-1"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Faedah halus pada ayat ﴿عفا الله عنك لم أذنت لهم﴾ adalah…",
+       "opsi": [
+        "Allah mendahulukan pemaafan sebelum menyebut kekeliruan",
+        "Allah mencela Nabi dengan keras",
+        "Ayat ini dimansukh",
+        "Nabi tidak melakukan apa pun"
+       ],
+       "jawab": 0,
+       "bahas": "Allah mendahulukan pemaafan sebelum menyebut kekeliruan, sebagai isyarat bahwa kekeliruan itu tidak membahayakan beliau.",
+       "id": "s-qa02-2"
+      },
+      {
+       "tipe": "bs",
+       "tanya": "Para nabi ma'shum dari dusta dan khianat.",
+       "jawab": true,
+       "bahas": "Benar. Para nabi tidak mungkin berdusta, berkhianat, atau melakukan khianatul a'yun.",
+       "id": "s-qa02-3"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Definisi ash-shahabi menurut syarah ini adalah…",
+       "opsi": [
+        "Setiap orang yang hidup di zaman Nabi",
+        "Orang yang berkumpul dengan Nabi ﷺ dalam keadaan beriman dan wafat di atasnya",
+        "Kerabat Nabi saja",
+        "Orang yang meriwayatkan hadits"
+       ],
+       "jawab": 1,
+       "bahas": "Ash-shahb: yang berkumpul dengan Nabi ﷺ beriman kepada beliau dan wafat di atas iman.",
+       "id": "s-qa02-4"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Makna «الآل» pada ucapan «وعلى جميع صحبه وآله» di sini adalah…",
+       "opsi": [
+        "Istri-istri Nabi saja",
+        "Bani Hasyim saja",
+        "Para pengikut beliau di atas agamanya",
+        "Penduduk Makkah"
+       ],
+       "jawab": 2,
+       "bahas": "Syaikh menjelaskan: al-al di sini adalah para pengikut beliau di atas agamanya.",
+       "id": "s-qa02-5"
+      }
+     ]
+    },
     {
-      "id": "ushul-fiqh",
-      "nama": "Ushul Fiqh",
-      "arab": "أصول الفقه",
-      "kitab": "Contoh: Al-Ushul min 'Ilmil Ushul — Syaikh Muhammad bin Shalih Al-'Utsaimin",
-      "pengajar": "Ustadz pengampu (silakan diisi)",
-      "deskripsi": "Mempelajari kaidah-kaidah yang menjadi jalan untuk memahami dan menggali hukum syar'i dari dalil-dalilnya.",
-      "warna": "#6A9E2F",
-      "pertemuan": [
-        {
-          "id": "uf-1",
-          "judul": "Pengertian Ushul Fiqh",
-          "arab": "تعريف أصول الفقه",
-          "youtube": "",
-          "drive": "",
-          "berkas": [],
-          "ringkasan": "Secara bahasa, ushul (أصول) adalah bentuk jamak dari ashl, yaitu sesuatu yang di atasnya dibangun hal lain. Fiqh (الفقه) secara bahasa berarti pemahaman (الفهم).\n\nSecara istilah, fiqh adalah mengetahui hukum-hukum syar'i yang bersifat amaliyah dengan dalil-dalilnya yang terperinci (معرفة الأحكام الشرعية العملية بأدلتها التفصيلية).\n\nUshul fiqh sebagai sebuah ilmu adalah ilmu yang membahas dalil-dalil fiqh yang bersifat global (ijmali), cara mengambil faedah hukum darinya, dan keadaan orang yang mengambil faedah tersebut, yaitu mujtahid.\n\nJadi ada tiga pokok bahasan ushul fiqh: (1) dalil-dalil yang global seperti kaidah 'perintah menunjukkan wajib', (2) cara mengambil hukum dari dalil, seperti membawa yang mutlak kepada yang muqayyad, dan (3) syarat dan keadaan seorang mujtahid.\n\nFaedah mempelajarinya: mampu menggali hukum syar'i dari dalilnya di atas landasan yang benar.",
-          "transkrip": "",
-          "kartu": [
-            { "id": "k-uf1-1", "depan": "أصول — arti secara bahasa", "belakang": "Jamak dari ashl (أصل): sesuatu yang di atasnya dibangun hal lain." },
-            { "id": "k-uf1-2", "depan": "الفقه — arti secara bahasa", "belakang": "Al-fahm (الفهم), yaitu pemahaman." },
-            { "id": "k-uf1-3", "depan": "Definisi fiqh secara istilah", "belakang": "معرفة الأحكام الشرعية العملية بأدلتها التفصيلية — mengetahui hukum syar'i yang amaliyah dengan dalil-dalilnya yang terperinci." },
-            { "id": "k-uf1-4", "depan": "Tiga pokok bahasan ushul fiqh", "belakang": "1) Dalil fiqh yang global (ijmali), 2) cara mengambil faedah hukum darinya, 3) keadaan orang yang mengambil faedah (mujtahid)." }
-          ],
-          "soal": [
-            { "id": "s-uf1-1", "tipe": "pg", "tanya": "Secara bahasa, kata الفقه bermakna…", "opsi": ["Pemahaman", "Pondasi", "Hukum", "Dalil"], "jawab": 0, "bahas": "Fiqh secara bahasa adalah al-fahm (الفهم), yaitu pemahaman." },
-            { "id": "s-uf1-2", "tipe": "pg", "tanya": "Dalil yang menjadi pembahasan ushul fiqh adalah dalil yang bersifat…", "opsi": ["Terperinci (tafshili)", "Global (ijmali)", "Lemah (dha'if)", "Akal semata"], "jawab": 1, "bahas": "Ushul fiqh membahas dalil-dalil global, seperti kaidah 'perintah menunjukkan wajib'. Dalil terperinci adalah wilayah ilmu fiqh." },
-            { "id": "s-uf1-3", "tipe": "bs", "tanya": "Pembahasan tentang syarat seorang mujtahid termasuk bagian dari ushul fiqh.", "jawab": true, "bahas": "Benar. Keadaan orang yang mengambil faedah hukum (mujtahid) adalah salah satu dari tiga pokok bahasan ushul fiqh." }
-          ]
-        },
-        {
-          "id": "uf-2",
-          "judul": "Hukum Taklifi",
-          "arab": "الأحكام التكليفية",
-          "youtube": "",
-          "drive": "",
-          "berkas": [],
-          "ringkasan": "Hukum taklifi ada lima: wajib, mandub (sunnah), mubah, makruh, dan haram.\n\n1. Wajib (الواجب): apa yang diperintahkan syariat secara mengharuskan. Pelakunya diberi pahala bila melakukannya dalam rangka taat, dan yang meninggalkannya berhak mendapat hukuman.\n\n2. Mandub/Sunnah (المندوب): apa yang diperintahkan syariat tidak secara mengharuskan. Pelakunya diberi pahala bila dalam rangka taat, dan yang meninggalkannya tidak dihukum.\n\n3. Mubah (المباح): apa yang tidak berkaitan dengan perintah maupun larangan secara dzatnya. Asalnya tidak berpahala dan tidak berdosa.\n\n4. Makruh (المكروه): apa yang dilarang syariat tidak secara mengharuskan untuk ditinggalkan. Yang meninggalkannya dalam rangka taat diberi pahala, dan pelakunya tidak dihukum.\n\n5. Haram (المحرم): apa yang dilarang syariat secara mengharuskan untuk ditinggalkan. Yang meninggalkannya dalam rangka taat diberi pahala, dan pelakunya berhak mendapat hukuman.",
-          "transkrip": "",
-          "kartu": [
-            { "id": "k-uf2-1", "depan": "الواجب", "belakang": "Wajib: yang diperintahkan syariat secara mengharuskan. Pelaku diberi pahala (bila dalam rangka taat), peninggalnya berhak dihukum." },
-            { "id": "k-uf2-2", "depan": "المندوب", "belakang": "Mandub/sunnah: yang diperintahkan tidak secara mengharuskan. Pelaku diberi pahala, peninggalnya tidak dihukum." },
-            { "id": "k-uf2-3", "depan": "المباح", "belakang": "Mubah: yang tidak berkaitan dengan perintah maupun larangan secara dzatnya." },
-            { "id": "k-uf2-4", "depan": "المكروه", "belakang": "Makruh: yang dilarang tidak secara mengharuskan. Peninggalnya (dalam rangka taat) diberi pahala, pelakunya tidak dihukum." },
-            { "id": "k-uf2-5", "depan": "المحرم", "belakang": "Haram: yang dilarang secara mengharuskan. Peninggalnya (dalam rangka taat) diberi pahala, pelakunya berhak dihukum." }
-          ],
-          "soal": [
-            { "id": "s-uf2-1", "tipe": "pg", "tanya": "Ada berapa macam hukum taklifi?", "opsi": ["Tiga", "Empat", "Lima", "Enam"], "jawab": 2, "bahas": "Lima: wajib, mandub, mubah, makruh, dan haram." },
-            { "id": "s-uf2-2", "tipe": "pg", "tanya": "Perkara yang diperintahkan syariat tidak secara mengharuskan disebut…", "opsi": ["Wajib", "Mandub", "Mubah", "Makruh"], "jawab": 1, "bahas": "Mandub (sunnah): diperintahkan, tetapi tidak secara mengharuskan." },
-            { "id": "s-uf2-3", "tipe": "bs", "tanya": "Orang yang meninggalkan perkara makruh dalam rangka taat kepada Allah mendapat pahala.", "jawab": true, "bahas": "Benar. Meninggalkan makruh karena taat diberi pahala, sedangkan pelakunya tidak dihukum." },
-            { "id": "s-uf2-4", "tipe": "pg", "tanya": "Perkara yang tidak berkaitan dengan perintah maupun larangan secara dzatnya adalah…", "opsi": ["Haram", "Mubah", "Wajib", "Mandub"], "jawab": 1, "bahas": "Itulah definisi mubah (المباح)." }
-          ]
-        },
-        {
-          "id": "uf-3",
-          "judul": "Al-Amr wan Nahy (Perintah dan Larangan)",
-          "arab": "الأمر والنهي",
-          "youtube": "",
-          "drive": "",
-          "berkas": [],
-          "ringkasan": "Al-Amr (الأمر) adalah ucapan yang mengandung tuntutan untuk melakukan sesuatu dari pihak yang lebih tinggi.\n\nBentuk-bentuk (shighah) perintah: (1) fi'il amr, seperti أقيموا الصلاة; (2) fi'il mudhari' yang disertai lam amr, seperti فليؤمنوا بي; (3) isim fi'il amr, seperti حي على الصلاة; (4) masdar pengganti fi'il amr, seperti فضرب الرقاب.\n\nKaidah: الأصل في الأمر الوجوب — hukum asal perintah adalah wajib, kecuali ada dalil yang memalingkannya. Di antara dalilnya: فليحذر الذين يخالفون عن أمره (An-Nur: 63).\n\nAn-Nahy (النهي) adalah ucapan yang mengandung tuntutan untuk menahan diri dari sesuatu dari pihak yang lebih tinggi, dengan bentuk fi'il mudhari' yang disertai la nahiyah, seperti ولا تقربوا الزنى.\n\nKaidah: الأصل في النهي التحريم — hukum asal larangan adalah haram, kecuali ada dalil yang memalingkannya. Dalilnya: وما نهاكم عنه فانتهوا (Al-Hasyr: 7).",
-          "transkrip": "",
-          "kartu": [
-            { "id": "k-uf3-1", "depan": "الأصل في الأمر الوجوب", "belakang": "Hukum asal perintah adalah wajib, kecuali ada dalil yang memalingkannya. Dalil: فليحذر الذين يخالفون عن أمره (An-Nur: 63)." },
-            { "id": "k-uf3-2", "depan": "الأصل في النهي التحريم", "belakang": "Hukum asal larangan adalah haram, kecuali ada dalil yang memalingkannya. Dalil: وما نهاكم عنه فانتهوا (Al-Hasyr: 7)." },
-            { "id": "k-uf3-3", "depan": "Empat bentuk (shighah) perintah", "belakang": "Fi'il amr; mudhari' + lam amr; isim fi'il amr; masdar pengganti fi'il amr." }
-          ],
-          "soal": [
-            { "id": "s-uf3-1", "tipe": "pg", "tanya": "Kaidah الأصل في الأمر الوجوب bermakna…", "opsi": ["Hukum asal perintah adalah sunnah", "Hukum asal perintah adalah wajib", "Perintah selalu mubah", "Perintah hanya berlaku bagi ulama"], "jawab": 1, "bahas": "Hukum asal perintah adalah wajib, kecuali ada dalil yang memalingkannya." },
-            { "id": "s-uf3-2", "tipe": "pg", "tanya": "حي على الصلاة adalah contoh perintah dengan bentuk…", "opsi": ["Fi'il amr", "Mudhari' + lam amr", "Isim fi'il amr", "Masdar"], "jawab": 2, "bahas": "حيّ adalah isim fi'il amr yang bermakna 'marilah'." },
-            { "id": "s-uf3-3", "tipe": "bs", "tanya": "Hukum asal larangan adalah makruh.", "jawab": false, "bahas": "Salah. Hukum asal larangan adalah haram (الأصل في النهي التحريم), kecuali ada dalil yang memalingkannya." }
-          ]
-        }
-      ]
+     "id": "qa-03",
+     "judul": "Makna Qawa'id dan Ma'aqid al-Fushul",
+     "arab": "هذه قواعد الأصول ومعاقد الفصول",
+     "hal": "19–20",
+     "youtube": "https://youtu.be/m-6c-3Qtw4M",
+     "drive": "",
+     "berkas": [],
+     "ringkasan": "«فهذه قواعد»: dalam satu naskah tertulis «وبعد فهذه», dan yang penting adalah ucapan «وبعد». Namun menyebut atau membuangnya tidak mengapa; membuangnya termasuk sangat ringkasnya penulis.\n\nIsyarat «هذه» kepada apa? Apakah yang diisyaratkan ada secara hissi (nyata) atau dzihni (dalam pikiran)? Para ulama berkata: jika penulis menulis muqaddimah sebelum menulis kitab, maka yang diisyaratkan ada secara dzihni. Jika ia menulis muqaddimah setelah kitab selesai, maka ada secara hissi. Isyarat menuntut sesuatu yang ditunjuk itu tertentu, dan yang tertentu pasti ada, karena tidak mungkin menunjuk sesuatu yang tidak ada sama sekali.\n\n«قواعد» adalah jamak dari qa'idah, yaitu asas (dasar) yang dibangun di atasnya sesuatu, seperti pondasi tembok atau tiang. Adapun firman Allah ﴿والقواعد من النساء اللاتي لا يرجون نكاحا﴾ (An-Nur: 60) bukan dari bab ini; maknanya para wanita tua yang sudah tidak diharapkan menikah.\n\n«ومعاقد الفصول»: ma'aqid jamak ma'qid, dan al-fushul jamak fashl. Maksudnya penulis membagi dan memilah kitabnya. Memilah kitab memiliki dua faedah:\n1. Membedakan sebagian pembahasan dari sebagian lainnya.\n2. Menghilangkan rasa bosan dan jenuh, karena berbeda antara membaca pasal-pasal pendek yang berpindah dari satu pasal ke pasal lain dengan membaca pasal yang panjang.\n\nPerumpamaannya: orang yang mendaki gunung tanpa anak tangga akan sangat kesulitan, mungkin hanya bisa naik dengan tangan dan kakinya. Namun bila ada anak tangga, ia naik setahap demi setahap sehingga lebih mudah.",
+     "transkrip": "",
+     "kartu": [
+      {
+       "id": "k-qa03-1",
+       "depan": "قاعدة",
+       "belakang": "Asas yang dibangun di atasnya sesuatu, seperti pondasi tembok dan tiang."
+      },
+      {
+       "id": "k-qa03-2",
+       "depan": "والقواعد من النساء",
+       "belakang": "Bukan dari bab ini; maknanya wanita tua yang tidak lagi diharapkan menikah (An-Nur: 60)."
+      },
+      {
+       "id": "k-qa03-3",
+       "depan": "Isyarat «هذه» dalam muqaddimah",
+       "belakang": "Jika muqaddimah ditulis sebelum kitab: wujud dzihni. Jika ditulis sesudahnya: wujud hissi."
+      },
+      {
+       "id": "k-qa03-4",
+       "depan": "Dua faedah memilah kitab menjadi fushul",
+       "belakang": "1) Membedakan pembahasan satu sama lain. 2) Menghilangkan kebosanan, seperti naik gunung dengan anak tangga."
+      }
+     ],
+     "soal": [
+      {
+       "tipe": "pg",
+       "tanya": "Jika penulis menulis muqaddimah setelah kitab selesai, maka yang diisyaratkan dengan «هذه» ada secara…",
+       "opsi": [
+        "Dzihni",
+        "Hissi",
+        "Tidak ada",
+        "Majazi"
+       ],
+       "jawab": 1,
+       "bahas": "Jika muqaddimah ditulis setelah kitab, yang diisyaratkan sudah ada secara hissi.",
+       "id": "s-qa03-1"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Makna «قواعد» dalam judul kitab adalah…",
+       "opsi": [
+        "Wanita-wanita tua",
+        "Asas yang dibangun di atasnya sesuatu",
+        "Bab-bab kitab",
+        "Dalil-dalil terperinci"
+       ],
+       "jawab": 1,
+       "bahas": "Qawa'id jamak qa'idah: asas yang dibangun di atasnya sesuatu.",
+       "id": "s-qa03-2"
+      },
+      {
+       "tipe": "bs",
+       "tanya": "Lafazh «القواعد» dalam An-Nur: 60 bermakna sama dengan qawa'id dalam judul kitab.",
+       "jawab": false,
+       "bahas": "Salah. Dalam ayat itu maknanya para wanita tua yang tidak lagi diharapkan menikah.",
+       "id": "s-qa03-3"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Perumpamaan yang dipakai Syaikh untuk faedah memilah kitab menjadi pasal-pasal adalah…",
+       "opsi": [
+        "Berenang di laut",
+        "Mendaki gunung dengan anak tangga",
+        "Membangun rumah",
+        "Berjalan di padang pasir"
+       ],
+       "jawab": 1,
+       "bahas": "Naik gunung dengan anak tangga setahap demi setahap lebih mudah daripada tanpa tangga.",
+       "id": "s-qa03-4"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Salah satu faedah memilah kitab menjadi pasal-pasal adalah…",
+       "opsi": [
+        "Memperbanyak halaman",
+        "Menghilangkan rasa bosan dan jenuh",
+        "Menyembunyikan dalil",
+        "Menyulitkan pemula"
+       ],
+       "jawab": 1,
+       "bahas": "Dua faedahnya: membedakan pembahasan dan menghilangkan kebosanan.",
+       "id": "s-qa03-5"
+      }
+     ]
+    },
+    {
+     "id": "qa-04",
+     "judul": "Kitab, Bab, Fashl dan Isti'anah",
+     "arab": "الكتاب والباب والفصل، وبالله أستعين",
+     "hal": "21–22",
+     "youtube": "https://youtu.be/fBDSlhWWpH8",
+     "drive": "",
+     "berkas": [],
+     "ringkasan": "Para ulama memberi judul dengan kitab, bab, dan fashl. Kitab untuk jenis (jins), bab untuk macam (nau'), dan fashl untuk satuan masalah. Misalnya Kitab Thaharah adalah jenis yang mencakup bab istinja', wudhu, mandi, tayammum, menghilangkan najis, dan haid. Kitab Shalat mencakup adzan, syarat shalat, rukun, wajib, shalat orang sakit, shalat ahli udzur, jenazah, dan seterusnya. Fashl dipakai bila masalah-masalah dalam satu bab panjang atau tidak seragam.\n\n«من كتابي المسمى: بتحقيق الأمل»: penulis memiliki kitab berjudul Tahqiq al-Amal. Syaikh berkata beliau tidak mengenal kitab itu, namun tampaknya kitab itu panjang dan memuat dalil-dalil.\n\n«مجردة من الدلائل، من غير إخلال بشيء من المسائل»: kitab ini diringkas dari Tahqiq al-Amal tanpa dalil, tetapi tanpa mengurangi satu masalah pun. Jadi Tahqiq al-Amal adalah asalnya, dan kitab ini cabangnya.\n\n«تذكرة للطالب المستبين، وتبصرة للراغب المستعين»: tadzkirah (pengingat) bagi penuntut ilmu yang sudah jelas ilmunya dan memiliki bagian yang banyak; dan tabshirah (penerang) bagi pemula yang berminat dan membutuhkan pertolongan.\n\n«وبالله أستعين»: mendahulukan «بالله» memberi makna bahwa ia hanya memohon pertolongan kepada Allah, tidak kepada selain-Nya, seperti ﴿إياك نستعين﴾ (Al-Fatihah: 5). Isti'anah adalah meminta pertolongan. Hendaknya seseorang memohon pertolongan kepada Allah dalam segala hal, sebagaimana sabda Nabi ﷺ: «احرص على ما ينفعك واستعن بالله» (HR. Muslim 2664). Bila kita menghadirkan isti'anah kepada Allah, hal itu menjadi sebab datangnya pertolongan dan menjadi ketaatan yang mendekatkan kepada Allah.\n\n«وعليه أتوكل»: aku bersandar kepada-Nya. Perbedaan tawakkal dan isti'anah, walaupun maknanya berdekatan: isti'anah menyertai perbuatan, sedangkan tawakkal mendahuluinya, yaitu menyerahkan urusan kepada Allah lalu berbuat. Bila keduanya disebut bersamaan, maknanya berbeda; bila disebut sendiri-sendiri, maknanya satu. Contoh penyebutan bersama: ﴿فاعبده وتوكل عليه﴾ (Hud: 123) dan ﴿إياك نعبد وإياك نستعين﴾ (Al-Fatihah: 5).",
+     "transkrip": "",
+     "kartu": [
+      {
+       "id": "k-qa04-1",
+       "depan": "كتاب · باب · فصل",
+       "belakang": "Kitab untuk jenis, bab untuk macam, fashl untuk satuan masalah."
+      },
+      {
+       "id": "k-qa04-2",
+       "depan": "تحقيق الأمل",
+       "belakang": "Kitab penulis yang lebih panjang dan memuat dalil; Qawa'id al-Ushul adalah ringkasannya tanpa dalil."
+      },
+      {
+       "id": "k-qa04-3",
+       "depan": "تذكرة للطالب المستبين وتبصرة للراغب المستعين",
+       "belakang": "Pengingat bagi penuntut ilmu senior dan penerang bagi pemula yang berminat."
+      },
+      {
+       "id": "k-qa04-4",
+       "depan": "وبالله أستعين",
+       "belakang": "Mendahulukan «بالله» berarti hanya memohon pertolongan kepada Allah (Al-Fatihah: 5)."
+      },
+      {
+       "id": "k-qa04-5",
+       "depan": "Beda tawakkal dan isti'anah",
+       "belakang": "Isti'anah menyertai perbuatan; tawakkal mendahuluinya. Disebut bersama: berbeda; disebut sendiri: satu makna."
+      }
+     ],
+     "soal": [
+      {
+       "tipe": "pg",
+       "tanya": "Dalam istilah para penulis, «باب» dipakai untuk…",
+       "opsi": [
+        "Jenis (jins)",
+        "Macam (nau')",
+        "Satuan masalah",
+        "Dalil"
+       ],
+       "jawab": 1,
+       "bahas": "Kitab untuk jenis, bab untuk macam, fashl untuk satuan masalah.",
+       "id": "s-qa04-1"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Hubungan kitab Qawa'id al-Ushul dengan Tahqiq al-Amal adalah…",
+       "opsi": [
+        "Qawa'id adalah syarahnya",
+        "Qawa'id adalah ringkasannya tanpa dalil",
+        "Keduanya tidak berhubungan",
+        "Tahqiq al-Amal adalah ringkasan Qawa'id"
+       ],
+       "jawab": 1,
+       "bahas": "Qawa'id diringkas dari Tahqiq al-Amal tanpa dalil, tanpa mengurangi masalah.",
+       "id": "s-qa04-2"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Perbedaan tawakkal dan isti'anah menurut Syaikh adalah…",
+       "opsi": [
+        "Tawakkal menyertai perbuatan, isti'anah sesudahnya",
+        "Isti'anah menyertai perbuatan, tawakkal mendahuluinya",
+        "Keduanya selalu sama dalam semua keadaan",
+        "Tawakkal khusus untuk ibadah"
+       ],
+       "jawab": 1,
+       "bahas": "Isti'anah menyertai perbuatan; tawakkal mendahului, menyerahkan urusan kepada Allah lalu berbuat.",
+       "id": "s-qa04-3"
+      },
+      {
+       "tipe": "bs",
+       "tanya": "Bila tawakkal dan isti'anah disebut sendiri-sendiri, keduanya bermakna satu.",
+       "jawab": true,
+       "bahas": "Benar. Bila digabung maknanya berbeda; bila disebut sendiri maknanya satu.",
+       "id": "s-qa04-4"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Hadits «احرص على ما ينفعك واستعن بالله» diriwayatkan oleh…",
+       "opsi": [
+        "Bukhari",
+        "Muslim",
+        "Abu Dawud",
+        "An-Nasa'i"
+       ],
+       "jawab": 1,
+       "bahas": "HR. Muslim no. 2664, sebagaimana disebut dalam syarah.",
+       "id": "s-qa04-5"
+      }
+     ]
+    },
+    {
+     "id": "qa-05",
+     "judul": "Hasbiyallah, Tawakkal, dan Definisi Ushul Fiqh",
+     "arab": "وهو حسبي ونعم المعين — تعريف علم الأصول",
+     "hal": "22–24",
+     "youtube": "https://youtu.be/5D0Jc2_tg5A",
+     "drive": "",
+     "berkas": [],
+     "ringkasan": "«وهو حسبي ونعم المعين»: Allah adalah yang mencukupiku. Hasb bermakna al-kafi (yang mencukupi).\n\nApakah hasb khusus bagi Allah, atau boleh dikatakan makhluk adalah hasb-mu? Jawabannya: khusus bagi Allah. Bila ada yang bertanya tentang firman Allah ﴿يا أيها النبي حسبك الله ومن اتبعك من المؤمنين﴾ (Al-Anfal: 64), maka maksudnya: cukuplah bagimu Allah, dan cukuplah bagi orang-orang yang mengikutimu Allah. Jadi «ومن اتبعك» di-'athaf-kan kepada kaf (huruf ganti «kamu»), bukan kepada lafazh jalalah. Keliru orang yang mengatakan ia di-'athaf-kan kepada lafazh jalalah, karena akan bermakna orang-orang yang mengikuti beliau ikut mencukupi beliau, dan itu tidak lurus. Ibnul Qayyim mengingatkan hal ini di awal Zad al-Ma'ad.\n\nApakah tawakkal hanya amalan hati? Tawakkal memang amalan hati, tetapi harus disertai melakukan sebab. Tawakkal tanpa mengambil sebab dianggap tawaakul (sikap pasrah yang tercela). Seperti orang yang berkata, \"Aku bertawakkal kepada Allah agar diberi anak shalih,\" lalu dikatakan kepadanya, \"Menikahlah,\" tetapi ia menjawab, \"Aku bersandar kepada Allah saja.\" Tawakkal seperti ini tidak benar.\n\nDefinisi ilmu ushul: «أصول الفقه: معرفة دلائل الفقه إجمالا». Penulis sangat meringkas sehingga ada kekurangan dalam definisi. Ushul fiqh tersusun dari mudhaf (أصول) dan mudhaf ilaih (الفقه).\n\nAl-ushul jamak ashl, yaitu sesuatu yang dibangun di atasnya selainnya. Pondasi tembok disebut ashl, ayah dan ibu disebut ashl, dan dalil disebut ashl, karena dibangun di atasnya selainnya.\n\n«معرفة دلائل الفقه إجمالا»: ushul fiqh membahas dalil-dalil fiqh secara global (ijmali): Al-Qur'an, As-Sunnah, Ijma', dan Qiyas. Menurut pendapat yang rajih, dalil-dalil fiqh ada empat: Al-Kitab, As-Sunnah, Al-Ijma', dan Al-Qiyas ash-shahih. Masing-masing akan dibahas, insya Allah.",
+     "transkrip": "",
+     "kartu": [
+      {
+       "id": "k-qa05-1",
+       "depan": "حسبي",
+       "belakang": "Hasb bermakna al-kafi (yang mencukupi) dan khusus bagi Allah."
+      },
+      {
+       "id": "k-qa05-2",
+       "depan": "حسبك الله ومن اتبعك",
+       "belakang": "«ومن اتبعك» di-'athaf-kan kepada kaf: cukuplah Allah bagimu dan bagi pengikutmu (Al-Anfal: 64)."
+      },
+      {
+       "id": "k-qa05-3",
+       "depan": "Tawakkal tanpa sebab",
+       "belakang": "Tawakkal adalah amalan hati yang harus disertai mengambil sebab; tanpa sebab menjadi tawaakul."
+      },
+      {
+       "id": "k-qa05-4",
+       "depan": "أصول الفقه (definisi penulis)",
+       "belakang": "معرفة دلائل الفقه إجمالا — mengetahui dalil-dalil fiqh secara global."
+      },
+      {
+       "id": "k-qa05-5",
+       "depan": "Dalil fiqh yang disepakati (rajih)",
+       "belakang": "Empat: Al-Kitab, As-Sunnah, Al-Ijma', dan Al-Qiyas ash-shahih."
+      }
+     ],
+     "soal": [
+      {
+       "tipe": "pg",
+       "tanya": "Dalam Al-Anfal: 64, kata «ومن اتبعك» di-'athaf-kan kepada…",
+       "opsi": [
+        "Lafazh jalalah (الله)",
+        "Kaf pada «حسبك»",
+        "Kata «النبي»",
+        "Kata «المؤمنين»"
+       ],
+       "jawab": 1,
+       "bahas": "Di-'athaf-kan kepada kaf: cukuplah Allah bagimu dan bagi pengikutmu.",
+       "id": "s-qa05-1"
+      },
+      {
+       "tipe": "bs",
+       "tanya": "Boleh dikatakan bahwa makhluk adalah hasb (yang mencukupi) bagi seseorang, sebagaimana Allah.",
+       "jawab": false,
+       "bahas": "Salah. Hasb dengan makna al-kafi khusus bagi Allah.",
+       "id": "s-qa05-2"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Tawakkal yang benar adalah…",
+       "opsi": [
+        "Amalan hati tanpa perlu sebab",
+        "Amalan hati yang disertai mengambil sebab",
+        "Mengambil sebab tanpa bersandar kepada Allah",
+        "Meninggalkan usaha sepenuhnya"
+       ],
+       "jawab": 1,
+       "bahas": "Tawakkal amalan hati yang harus disertai melakukan sebab.",
+       "id": "s-qa05-3"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Berapa jumlah dalil fiqh menurut pendapat yang rajih dalam syarah ini?",
+       "opsi": [
+        "Dua",
+        "Tiga",
+        "Empat",
+        "Lima"
+       ],
+       "jawab": 2,
+       "bahas": "Empat: Al-Kitab, As-Sunnah, Al-Ijma', dan Al-Qiyas ash-shahih.",
+       "id": "s-qa05-4"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Makna «الأصول» secara bahasa menurut penulis adalah…",
+       "opsi": [
+        "Pemahaman",
+        "Sesuatu yang dibangun di atasnya selainnya",
+        "Hukum syar'i",
+        "Kesepakatan ulama"
+       ],
+       "jawab": 1,
+       "bahas": "Ashl adalah sesuatu yang dibangun di atasnya selainnya.",
+       "id": "s-qa05-5"
+      }
+     ]
+    },
+    {
+     "id": "qa-06",
+     "judul": "Cara Berdalil dan Keadaan Mujtahid",
+     "arab": "كيفية الاستفادة منها وحال المستفيد",
+     "hal": "25–26 (perkiraan, mohon disesuaikan)",
+     "youtube": "https://youtu.be/6Z-3-fb_qRU",
+     "drive": "",
+     "berkas": [],
+     "ringkasan": "«وكيفية الاستفادة منها»: yaitu bagaimana cara berdalil. Hal ini diketahui dengan mengenal mujmal dan mubayyan, 'amm dan khash, muthlaq dan muqayyad, jalan-jalan takhshish, dan semisalnya. Seseorang tidak tahu cara berdalil kecuali bila mengenal bab-bab ini, dan bab-bab inilah yang membentuk ushul fiqh.\n\nContoh: bila seseorang bertanya, \"Apakah membaca Al-Fatihah wajib di setiap shalat?\" Jawabannya: ya. \"Dari mana engkau tahu?\" Ia menjawab: dari kaidah bahwa lafazh umum mencakup seluruh satuannya; Nabi ﷺ bersabda: «لا صلاة لمن لم يقرأ بأم الكتاب» (HR. Bukhari 756, Muslim 394). Kata «لا صلاة» bersifat umum, mencakup shalat fardhu dan sunnah.\n\nBila engkau mengetahui ushul fiqh, engkau tahu cara berdalil. Bila tidak, engkau akan rancu. Kalau engkau punya bekal bahasa Arab, engkau tahu apa yang ditunjukkan bahasa Arab, tetapi tidak sampai pada pengetahuan yang selamat ini.\n\n«وحال المستفيد، وهو المجتهد»: al-mustafid adalah mustadill (orang yang berdalil), karena tidak bisa mengambil faedah dari dalil kecuali orang yang tahu cara berdalil. Maka ushul fiqh mencakup tiga hal: (1) mengetahui dalil-dalil fiqh secara global, (2) cara mengambil faedah darinya, (3) keadaan orang yang mengambil faedah.\n\nDari ucapan «وهو المجتهد» kita pahami bahwa muqallid (orang yang taklid) bukan termasuk ahli fiqh, karena ia bukan mujtahid. Ibnu Abdil Barr menukil bahwa para ulama bersepakat muqallid bukan termasuk ulama, karena ia hanya menceritakan pendapat orang lain.\n\nWajib bagi penuntut ilmu bersemangat penuh untuk memahami hukum dari dalil-dalilnya. Namun ia tidak boleh merasa mandiri lalu berkata, \"Aku alim, aku mujtahid,\" seperti sebagian orang hari ini yang mengambil satu nash umum padahal telah dikhususkan dengan dalil lain, atau melihat satu nash saja tanpa nash lainnya. Mujtahid adalah yang diperhitungkan sebagai ulama dan fuqaha.\n\n«والفقه لغة: الفهم»: fiqh secara bahasa adalah pemahaman, seperti firman Allah: ﴿ولكن لا تفقهون تسبيحهم﴾ (Al-Isra': 44).",
+     "transkrip": "",
+     "kartu": [
+      {
+       "id": "k-qa06-1",
+       "depan": "كيفية الاستفادة من الأدلة",
+       "belakang": "Diketahui dengan mengenal mujmal-mubayyan, 'amm-khash, muthlaq-muqayyad, dan jalan takhshish."
+      },
+      {
+       "id": "k-qa06-2",
+       "depan": "لا صلاة لمن لم يقرأ بأم الكتاب",
+       "belakang": "Lafazh umum: mencakup shalat fardhu dan sunnah (HR. Bukhari 756, Muslim 394)."
+      },
+      {
+       "id": "k-qa06-3",
+       "depan": "حال المستفيد",
+       "belakang": "Al-mustafid adalah mujtahid, yaitu orang yang tahu cara berdalil."
+      },
+      {
+       "id": "k-qa06-4",
+       "depan": "Tiga cakupan ushul fiqh",
+       "belakang": "1) Dalil fiqh secara global. 2) Cara mengambil faedah darinya. 3) Keadaan mujtahid."
+      },
+      {
+       "id": "k-qa06-5",
+       "depan": "Muqallid dan fiqh",
+       "belakang": "Muqallid bukan ahli fiqh; Ibnu Abdil Barr menukil ijma' bahwa muqallid bukan termasuk ulama."
+      },
+      {
+       "id": "k-qa06-6",
+       "depan": "الفقه لغة",
+       "belakang": "Al-fahm (pemahaman) — ﴿ولكن لا تفقهون تسبيحهم﴾ (Al-Isra': 44)."
+      }
+     ],
+     "soal": [
+      {
+       "tipe": "pg",
+       "tanya": "Yang dimaksud «حال المستفيد» dalam definisi ushul fiqh adalah…",
+       "opsi": [
+        "Keadaan muqallid",
+        "Keadaan mujtahid",
+        "Keadaan penanya",
+        "Keadaan hakim"
+       ],
+       "jawab": 1,
+       "bahas": "Al-mustafid adalah mujtahid, orang yang tahu cara berdalil.",
+       "id": "s-qa06-1"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Dalil wajibnya Al-Fatihah di setiap shalat menurut contoh dalam syarah dibangun di atas kaidah…",
+       "opsi": [
+        "Muthlaq dibawa kepada muqayyad",
+        "Lafazh umum mencakup seluruh satuannya",
+        "Qiyas aulawi",
+        "Mafhum mukhalafah"
+       ],
+       "jawab": 1,
+       "bahas": "«لا صلاة» umum mencakup fardhu dan sunnah.",
+       "id": "s-qa06-2"
+      },
+      {
+       "tipe": "bs",
+       "tanya": "Menurut nukilan Ibnu Abdil Barr, para ulama bersepakat bahwa muqallid bukan termasuk ulama.",
+       "jawab": true,
+       "bahas": "Benar, karena muqallid hanya menceritakan pendapat orang lain.",
+       "id": "s-qa06-3"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Fiqh secara bahasa bermakna…",
+       "opsi": [
+        "Hukum",
+        "Pemahaman",
+        "Ilmu pasti",
+        "Dalil"
+       ],
+       "jawab": 1,
+       "bahas": "Al-fiqh lughatan: al-fahm, seperti Al-Isra': 44.",
+       "id": "s-qa06-4"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Sikap penuntut ilmu yang benar terhadap dalil menurut Syaikh adalah…",
+       "opsi": [
+        "Mengambil satu nash umum tanpa melihat takhshish",
+        "Bersemangat memahami hukum dari dalil tanpa merasa mandiri sebagai mujtahid",
+        "Taklid buta tanpa melihat dalil",
+        "Menolak semua pendapat ulama"
+       ],
+       "jawab": 1,
+       "bahas": "Wajib bersemangat memahami dalil, tetapi tidak merasa mandiri dan mengabaikan nash lain.",
+       "id": "s-qa06-5"
+      }
+     ]
+    },
+    {
+     "id": "qa-07",
+     "judul": "Definisi Fiqh secara Istilah: Ilmu dan Zhann",
+     "arab": "الفقه اصطلاحا: معرفة أحكام الشرع المتعلقة بأفعال العباد",
+     "hal": "27–28 (perkiraan, mohon disesuaikan)",
+     "youtube": "https://youtu.be/Q53xdOIPub0",
+     "drive": "",
+     "berkas": [],
+     "ringkasan": "«واصطلاحا: معرفة أحكام الشرع المتعلقة بأفعال العباد»: fiqh secara istilah adalah mengetahui hukum-hukum syariat yang berkaitan dengan perbuatan para hamba.\n\nKata «معرفة» mencakup ilmu dan zhann (dugaan kuat), karena ilmu fiqh kadang berupa ilmu yang qath'i (pasti) dan kadang berupa zhann.\n\nZhann terjadi karena salah satu dari tiga sebab:\n1. Tidak pastinya tsubut (keabsahan) dalil, seperti hadits yang diperselisihkan ulama tentang keshahihannya.\n2. Tidak pastinya dalalah (penunjukan) dalil terhadap hukum. Dalilnya shahih, tetapi apakah hukum ini masuk dalam dalil itu atau tidak? Di sinilah keraguan pada dalalah.\n3. Tidak pastinya penerapan hukum pada keadaan tertentu. Dalil dan hukumnya tetap, tetapi masih samar apakah hukum itu berlaku pada kasus yang ditanyakan.\n\nBila ada yang bertanya, \"Bagaimana kalian membangun hukum di atas zhann, padahal Allah melarang mengikuti zhann?\" Jawabannya: kami berhukum demikian karena firman Allah ﴿فاتقوا الله ما استطعتم﴾ (At-Taghabun: 16) dan ﴿لا يكلف الله نفسا إلا وسعها﴾ (Al-Baqarah: 286).\n\nKedua, Nabi ﷺ juga menetapkan hukum dengan zhann. Seorang lelaki berkata, «والله ما بين لابتيها أهل بيت أفقر مني». Ia bersumpah bahwa tidak ada di Madinah yang lebih fakir darinya, dan Rasul ﷺ membenarkannya, tidak berkata, \"Engkau dusta,\" padahal kita tahu orang ini tidak mungkin memeriksa setiap rumah. Beliau membenarkannya berdasarkan zhann (HR. Bukhari dan Muslim).\n\nDemikian pula hukum dengan kesaksian dua orang saksi yang zhahirnya adil adalah zhanni, karena mungkin keduanya salah sangka, sengaja keliru, atau lupa.",
+     "transkrip": "",
+     "kartu": [
+      {
+       "id": "k-qa07-1",
+       "depan": "الفقه اصطلاحا",
+       "belakang": "معرفة أحكام الشرع المتعلقة بأفعال العباد — mengetahui hukum syariat yang berkaitan dengan perbuatan hamba."
+      },
+      {
+       "id": "k-qa07-2",
+       "depan": "Kata «معرفة» dalam definisi fiqh",
+       "belakang": "Mencakup ilmu (qath'i) dan zhann."
+      },
+      {
+       "id": "k-qa07-3",
+       "depan": "Tiga sebab hukum menjadi zhanni",
+       "belakang": "1) Tsubut dalil tidak pasti. 2) Dalalah tidak pasti. 3) Penerapan pada kasus tidak pasti."
+      },
+      {
+       "id": "k-qa07-4",
+       "depan": "Dalil bolehnya berhukum dengan zhann",
+       "belakang": "﴿فاتقوا الله ما استطعتم﴾ (At-Taghabun: 16), ﴿لا يكلف الله نفسا إلا وسعها﴾ (Al-Baqarah: 286), dan taqrir Nabi ﷺ."
+      }
+     ],
+     "soal": [
+      {
+       "tipe": "pg",
+       "tanya": "Kata «معرفة» dalam definisi fiqh secara istilah mencakup…",
+       "opsi": [
+        "Ilmu saja",
+        "Zhann saja",
+        "Ilmu dan zhann",
+        "Syakk dan wahm"
+       ],
+       "jawab": 2,
+       "bahas": "Ilmu fiqh kadang qath'i (ilmu) dan kadang zhann.",
+       "id": "s-qa07-1"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Hadits yang diperselisihkan keshahihannya menyebabkan zhann dari sisi…",
+       "opsi": [
+        "Tsubut dalil",
+        "Dalalah dalil",
+        "Penerapan hukum",
+        "Bahasa Arab"
+       ],
+       "jawab": 0,
+       "bahas": "Itu sebab pertama: tidak pastinya tsubut dalil.",
+       "id": "s-qa07-2"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Dalil Al-Qur'an yang dipakai untuk membolehkan berhukum dengan zhann adalah…",
+       "opsi": [
+        "﴿إن الظن لا يغني من الحق شيئا﴾",
+        "﴿فاتقوا الله ما استطعتم﴾",
+        "﴿وما نهاكم عنه فانتهوا﴾",
+        "﴿إن الحكم إلا لله﴾"
+       ],
+       "jawab": 1,
+       "bahas": "At-Taghabun: 16 dan Al-Baqarah: 286.",
+       "id": "s-qa07-3"
+      },
+      {
+       "tipe": "bs",
+       "tanya": "Hukum berdasarkan kesaksian dua saksi yang zhahirnya adil adalah hukum yang qath'i (pasti).",
+       "jawab": false,
+       "bahas": "Salah. Ia zhanni, karena mungkin keduanya salah sangka, keliru, atau lupa.",
+       "id": "s-qa07-4"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Dalam kisah lelaki yang bersumpah tidak ada keluarga lebih fakir darinya di Madinah, sikap Nabi ﷺ adalah…",
+       "opsi": [
+        "Mendustakannya",
+        "Membenarkannya berdasarkan zhann",
+        "Memerintahkan memeriksa setiap rumah",
+        "Diam tanpa sikap"
+       ],
+       "jawab": 1,
+       "bahas": "Rasul ﷺ membenarkannya, padahal ia tidak mungkin memeriksa setiap rumah; ini hukum dengan zhann.",
+       "id": "s-qa07-5"
+      }
+     ]
+    },
+    {
+     "id": "qa-08",
+     "judul": "Batasan Definisi Fiqh dan Tujuan Ushul Fiqh",
+     "arab": "أحكام الشرع، المتعلقة بأفعال العباد، والأصل ما يبنى عليه غيره",
+     "hal": "28–30",
+     "youtube": "https://youtu.be/xrALhQ5122s",
+     "drive": "",
+     "berkas": [],
+     "ringkasan": "Zhann dalam definisi adalah merajihkan salah satu dari dua kemungkinan, bukan syakk (ragu seimbang). Bila seseorang ragu, ia tidak boleh berfatwa. Namun bila ia sudah mengerahkan kesungguhan dan hanya sampai pada zhann, ia berhukum dengannya. Jadi hukum-hukum fiqh sebagiannya ilmu dan sebagiannya zhann.\n\n«أحكام الشرع»: mengeluarkan tashawwur (sekadar menggambarkan), karena sekadar tashawwur tidak disebut fiqh. Ada perbedaan antara tashawwur dan hukum; tashawwur lebih dahulu. Karena itu dikatakan: «الحكم على الشيء فرع عن تصوره» (menghukumi sesuatu adalah cabang dari menggambarkannya). Fiqh harus berupa hukum, baik dalam pikiran maupun ucapan.\n\n«أحكام الشرع» juga mengeluarkan hukum selain syariat, seperti hukum akal. Seandainya seseorang paling cerdas dalam menggambarkan perkara, ilmu ukur, dan hitungan, apakah ia disebut faqih? Tidak, karena ia faqih dalam selain hukum syariat. Demikian pula hukum adat dan indera tidak termasuk.\n\n«المتعلقة بأفعال العباد»: mengeluarkan hal yang berkaitan dengan i'tiqad (keyakinan) hamba. Masalah keyakinan tidak dinamakan fiqh secara istilah. Maka yang berkaitan dengan nama dan sifat Allah serta iman kepada perkara ghaib bukan termasuk fiqh secara istilah. Namun dari sisi hakikat syar'i, yang paling pertama masuk dalam fiqh adalah mengenal Allah 'azza wa jalla, dan karena itu disebut al-fiqh al-akbar. Contoh hukum yang berkaitan dengan perbuatan mukallaf: niat wajib dalam wudhu, ruku' adalah rukun shalat, zakat fitrah wajib, umrah wajib, dan seterusnya.\n\n«والأصل: ما يبنى عليه غيره»: ushul fiqh adalah dalil-dalilnya. Mengetahui tujuan (gharadh) ushul fiqh itu penting agar seseorang tahu ia berjalan menuju tujuan yang terpuji; tanpa mengetahui tujuan, ia tidak bersemangat menuntutnya. Tujuannya: «معرفة كيفية اقتباس الأحكام من الأدلة».\n\nDalil ada empat: Al-Kitab, As-Sunnah, Al-Ijma', dan Al-Qiyas ash-shahih. Iqtibas artinya mengambil, seperti mengambil api: ﴿لعلي آتيكم منها بقبس﴾ (Thaha: 10). Iqtibas al-ahkam adalah mengambil hukum dari dalil, dan al-muqtabis adalah al-mustadill (orang yang berdalil).\n\nPenulis menutup: «فأصول الفقه: أدلته، والغرض منه: معرفة كيفية اقتباس الأحكام من الأدلة، وحال المقتبس، وذلك ثلاثة أبواب».",
+     "transkrip": "",
+     "kartu": [
+      {
+       "id": "k-qa08-1",
+       "depan": "الحكم على الشيء فرع عن تصوره",
+       "belakang": "Menghukumi sesuatu adalah cabang dari menggambarkannya; sekadar tashawwur bukan fiqh."
+      },
+      {
+       "id": "k-qa08-2",
+       "depan": "Yang dikeluarkan oleh «أحكام الشرع»",
+       "belakang": "Tashawwur semata, serta hukum akal, hitungan, adat, dan indera."
+      },
+      {
+       "id": "k-qa08-3",
+       "depan": "Yang dikeluarkan oleh «المتعلقة بأفعال العباد»",
+       "belakang": "Masalah i'tiqad (nama dan sifat Allah, iman kepada yang ghaib) — tidak disebut fiqh secara istilah."
+      },
+      {
+       "id": "k-qa08-4",
+       "depan": "الفقه الأكبر",
+       "belakang": "Mengenal Allah 'azza wa jalla; secara hakikat syar'i, itulah yang pertama masuk dalam fiqh."
+      },
+      {
+       "id": "k-qa08-5",
+       "depan": "غرض أصول الفقه",
+       "belakang": "معرفة كيفية اقتباس الأحكام من الأدلة — mengetahui cara mengambil hukum dari dalil."
+      },
+      {
+       "id": "k-qa08-6",
+       "depan": "اقتباس",
+       "belakang": "Mengambil, seperti mengambil api — ﴿لعلي آتيكم منها بقبس﴾ (Thaha: 10)."
+      }
+     ],
+     "soal": [
+      {
+       "tipe": "pg",
+       "tanya": "Mengapa sekadar tashawwur (gambaran) tidak disebut fiqh?",
+       "opsi": [
+        "Karena fiqh harus berupa hukum",
+        "Karena tashawwur haram",
+        "Karena tashawwur hanya untuk ulama",
+        "Karena tashawwur termasuk akidah"
+       ],
+       "jawab": 0,
+       "bahas": "Kata «أحكام» mengeluarkan tashawwur; fiqh harus berupa hukum. Menghukumi adalah cabang dari tashawwur.",
+       "id": "s-qa08-1"
+      },
+      {
+       "tipe": "bs",
+       "tanya": "Orang yang paling ahli dalam ilmu ukur dan hitungan disebut faqih secara istilah.",
+       "jawab": false,
+       "bahas": "Salah. Ia faqih dalam selain hukum syariat; kata «أحكام الشرع» mengeluarkan hal itu.",
+       "id": "s-qa08-2"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Ilmu tentang nama dan sifat Allah, secara istilah…",
+       "opsi": [
+        "Termasuk fiqh",
+        "Bukan termasuk fiqh secara istilah, tetapi disebut al-fiqh al-akbar",
+        "Termasuk ushul fiqh",
+        "Termasuk hukum adat"
+       ],
+       "jawab": 1,
+       "bahas": "Ia berkaitan dengan i'tiqad, bukan perbuatan; namun disebut al-fiqh al-akbar dari sisi hakikat syar'i.",
+       "id": "s-qa08-3"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Tujuan (gharadh) ushul fiqh menurut penulis adalah…",
+       "opsi": [
+        "Menghafal semua hadits",
+        "Mengetahui cara mengambil hukum dari dalil",
+        "Mengetahui sejarah para imam",
+        "Membantah ahli bid'ah"
+       ],
+       "jawab": 1,
+       "bahas": "«معرفة كيفية اقتباس الأحكام من الأدلة».",
+       "id": "s-qa08-4"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Zhann yang dimaksud dalam fiqh adalah…",
+       "opsi": [
+        "Ragu yang seimbang",
+        "Merajihkan salah satu dari dua kemungkinan",
+        "Yakin seratus persen",
+        "Sangkaan tanpa dasar"
+       ],
+       "jawab": 1,
+       "bahas": "Zhann adalah merajihkan salah satu dari dua sisi; dengan syakk tidak boleh berfatwa.",
+       "id": "s-qa08-5"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Penulis membagi pembahasan ushul fiqh dalam kitab ini menjadi…",
+       "opsi": [
+        "Dua bab",
+        "Tiga bab",
+        "Empat bab",
+        "Lima bab"
+       ],
+       "jawab": 1,
+       "bahas": "«وذلك ثلاثة أبواب»: dalil, cara mengambil hukum, dan keadaan muqtabis.",
+       "id": "s-qa08-6"
+      }
+     ]
+    },
+    {
+     "id": "qa-09",
+     "judul": "Bab I: Definisi Hukum, Al-Hakim, dan Al-Mahkum 'Alaih",
+     "arab": "الباب الأول: في الحكم ولوازمه",
+     "hal": "31–32",
+     "youtube": "https://youtu.be/6YVxMfjv0m4",
+     "drive": "",
+     "berkas": [],
+     "ringkasan": "«في الحكم ولوازمه»: kita perlu mengetahui apa itu hukum. Ini termasuk ushul fiqh karena telah lewat bahwa fiqh adalah mengetahui hukum-hukum syariat yang berkaitan dengan perbuatan mukallaf. Maka apa itu hukum?\n\n«الحكم قيل فيه حدود، أسلمها من النقض والاضطراب: أنه قضاء الشارع على المعلوم بأمر ما إما نطقا أو استنباطا». Hukum didefinisikan dengan beberapa definisi; yang paling selamat dari bantahan dan kerancuan adalah: ketetapan Asy-Syari' atas sesuatu yang diketahui dengan suatu perkara, baik secara nuthq (lafazh nash) maupun istinbath.\n\nYang dimaksud Asy-Syari' adalah Allah, Rabb 'azza wa jalla, berdasarkan firman-Nya ﴿شرع لكم من الدين ما وصى به نوحا﴾ (Asy-Syura: 13). Apakah Asy-Syari' termasuk nama Allah? Tidak, tetapi ia adalah khabar (pemberitaan) tentang Allah. Kata Asy-Syari' juga dipakai untuk Rasul ﷺ, karena beliau mengabarkan dari Allah.\n\n«على المعلوم»: atas sesuatu yang diketahui, baik ada maupun tidak ada. «بأمر ما»: dengan perkara apa pun, karena ketetapan syariat bisa berupa perintah (ijab) atau larangan. «إما نطقا أو استنباطا»: hukum dipahami dari nash, baik dari lafazhnya langsung maupun dengan istinbath. Wajib adalah hukum karena Asy-Syari' menghendakinya, dan haram juga hukum; setiap yang ditetapkan syariat, baik berupa ijab maupun salb, secara nuthq maupun istinbath, itulah hukum.\n\n«والحاكم: هو الله سبحانه وتعالى لا حاكم سواه»: tidak ada hakim selain Allah: ﴿إن الحكم إلا لله﴾ (Yusuf: 40). Ayat ini menunjukkan hukum hanya milik Allah. Undang-undang buatan manusia, bila sesuai syariat, maka ia hukum Allah; bila menyelisihinya, maka batil.\n\nBila ditanya, \"Bukankah Rasul mewajibkan dan mengharamkan?\" Jawabannya: benar, tetapi Rasul ﷺ adalah muballigh (penyampai) dan mubayyin (penjelas) hukum Allah. Yang shahih, Rasul kadang berhukum lebih dahulu lalu Allah menetapkannya; kadang beliau ditanya lalu menjawab, kemudian Jibril datang menambahkan jawaban. Contohnya, seorang lelaki bertanya tentang mati syahid, apakah menghapus semua dosa. Beliau menjawab, \"Ya,\" lalu memanggilnya kembali dan bersabda: «إلا الدين، أخبرني بذلك جبريل آنفا» (HR. An-Nasa'i 3155). Maka hukum Rasul ﷺ mengikuti hukum Allah.\n\n«والرسول ﷺ مبلغ ومبين لما حكم به، والمحكوم عليه هو الإنسان المكلف»: yang dikenai hukum adalah manusia mukallaf.",
+     "transkrip": "",
+     "kartu": [
+      {
+       "id": "k-qa09-1",
+       "depan": "تعريف الحكم (أسلم الحدود)",
+       "belakang": "قضاء الشارع على المعلوم بأمر ما إما نطقا أو استنباطا."
+      },
+      {
+       "id": "k-qa09-2",
+       "depan": "الشارع",
+       "belakang": "Allah 'azza wa jalla (Asy-Syura: 13); bukan nama Allah, tetapi khabar tentang-Nya. Juga dipakai untuk Rasul ﷺ karena beliau mengabarkan dari Allah."
+      },
+      {
+       "id": "k-qa09-3",
+       "depan": "على المعلوم",
+       "belakang": "Atas sesuatu yang diketahui, baik ada maupun tidak ada."
+      },
+      {
+       "id": "k-qa09-4",
+       "depan": "إما نطقا أو استنباطا",
+       "belakang": "Hukum dipahami dari nash, baik langsung dari lafazhnya maupun dengan istinbath."
+      },
+      {
+       "id": "k-qa09-5",
+       "depan": "الحاكم",
+       "belakang": "Allah semata, tidak ada hakim selain-Nya — ﴿إن الحكم إلا لله﴾ (Yusuf: 40)."
+      },
+      {
+       "id": "k-qa09-6",
+       "depan": "Kedudukan Rasul ﷺ dan المحكوم عليه",
+       "belakang": "Rasul ﷺ: muballigh dan mubayyin hukum Allah. Al-mahkum 'alaih: manusia mukallaf."
+      }
+     ],
+     "soal": [
+      {
+       "tipe": "pg",
+       "tanya": "Definisi hukum yang paling selamat dari bantahan menurut penulis adalah…",
+       "opsi": [
+        "Khithab Allah yang berkaitan dengan perbuatan mukallaf",
+        "قضاء الشارع على المعلوم بأمر ما إما نطقا أو استنباطا",
+        "Apa yang disepakati ulama",
+        "Apa yang dipahami akal"
+       ],
+       "jawab": 1,
+       "bahas": "Penulis memilih: قضاء الشارع على المعلوم بأمر ما إما نطقا أو استنباطا.",
+       "id": "s-qa09-1"
+      },
+      {
+       "tipe": "bs",
+       "tanya": "Asy-Syari' adalah salah satu nama Allah (al-asma' al-husna).",
+       "jawab": false,
+       "bahas": "Salah. Ia bukan nama Allah, tetapi khabar yang diberitakan tentang Allah.",
+       "id": "s-qa09-2"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Siapakah Al-Hakim menurut penulis?",
+       "opsi": [
+        "Rasul ﷺ",
+        "Para ulama",
+        "Allah subhanahu wa ta'ala, tidak ada hakim selain-Nya",
+        "Penguasa"
+       ],
+       "jawab": 2,
+       "bahas": "«والحاكم: هو الله سبحانه وتعالى لا حاكم سواه», dalilnya Yusuf: 40.",
+       "id": "s-qa09-3"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Kedudukan Rasul ﷺ terhadap hukum Allah adalah…",
+       "opsi": [
+        "Pembuat hukum secara mandiri",
+        "Muballigh dan mubayyin bagi hukum Allah",
+        "Hanya perawi",
+        "Tidak berkaitan dengan hukum"
+       ],
+       "jawab": 1,
+       "bahas": "Rasul ﷺ menyampaikan dan menjelaskan hukum Allah; hukum beliau mengikuti hukum Allah.",
+       "id": "s-qa09-4"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Dalam hadits tentang mati syahid, Nabi ﷺ mengecualikan…",
+       "opsi": [
+        "Shalat",
+        "Utang (الدين)",
+        "Puasa",
+        "Haji"
+       ],
+       "jawab": 1,
+       "bahas": "«إلا الدين، أخبرني بذلك جبريل آنفا» (HR. An-Nasa'i 3155).",
+       "id": "s-qa09-5"
+      },
+      {
+       "tipe": "pg",
+       "tanya": "Al-mahkum 'alaih (yang dikenai hukum) adalah…",
+       "opsi": [
+        "Semua makhluk",
+        "Manusia mukallaf",
+        "Malaikat",
+        "Hewan"
+       ],
+       "jawab": 1,
+       "bahas": "«والمحكوم عليه هو الإنسان المكلف».",
+       "id": "s-qa09-6"
+      }
+     ]
     }
-  ]
+   ]
+  }
+ ]
 }
