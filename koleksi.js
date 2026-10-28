@@ -7,16 +7,21 @@
 const KATEGORI=["Tafsir","Fiqih","Aqidah","Tazkiyatun Nafs","Hadits","Sirah","Bahasa Arab","Lainnya"];
 const JENIS={teks:{l:"Teks",i:"text"},pdf:{l:"Buku PDF",i:"file"},audio:{l:"Audio",i:"mic"},youtube:{l:"YouTube",i:"yt"}};
 const KOL={items:[],loaded:false,busy:{},teks:{},url:{}};
+const BAHASA={otomatis:{l:"Ikuti materi",d:"Kitab berbahasa Arab → hasil berbahasa Arab; materi Indonesia → bahasa Indonesia."},arab:{l:"العربية",d:"Seluruh ringkasan, kartu, dan soal dalam bahasa Arab dengan ibarat asli kitab."},dua:{l:"Arab + Indonesia",d:"Ibarat Arab asli disertai terjemah dan penjelasan bahasa Indonesia."},indonesia:{l:"Indonesia",d:"Penjelasan bahasa Indonesia; dalil dan kaidah tetap dikutip lafazh Arabnya."}};
+const kolBhs=x=>(x&&x.bahasa)||(LS.get("kolbhs",{})[x&&x.id])||"otomatis";
+let KOL_HAS_BHS=true;
 S.kFilter="Semua";S.kSel=null;S.kForm=null;S.kNew={depan:"",belakang:""};S.kSoal={tipe:"pg",tanya:"",opsi:["","","",""],jawab:0,bahas:""};S.kEditRing=null;
 
 function kolProg(){if(!KOL.items.length)return[];return[{id:"koleksi",nama:"Koleksiku",pertemuan:KOL.items.map(x=>({id:x.id,judul:x.judul,kartu:x.kartu||[],soal:x.soal||[]}))}]}
 const kolGet=id=>KOL.items.find(x=>x.id===id);
-const KOLS="id,judul,kategori,jenis,sumber_url,sumber_path,mime,ukuran,ringkasan,kartu,soal,status,galat,created_at,updated_at";
+const KOLS0="id,judul,kategori,jenis,sumber_url,sumber_path,mime,ukuran,ringkasan,kartu,soal,status,galat,created_at,updated_at";
+const kolCols=()=>KOL_HAS_BHS?KOLS0+",bahasa":KOLS0;
 
 async function loadKol(){
  if(!SB||!ME)return;
  if(!KOL.loaded){const c=LS.get("kol_"+ME,null);if(c){KOL.items=c;}}
- const {data,error}=await SB.from("materi_pribadi").select(KOLS).order("created_at",{ascending:false});
+ let {data,error}=await SB.from("materi_pribadi").select(kolCols()).order("created_at",{ascending:false});
+ if(error&&/bahasa/.test(error.message||"")){KOL_HAS_BHS=false;({data,error}=await SB.from("materi_pribadi").select(kolCols()).order("created_at",{ascending:false}))}
  if(error){KOL.err=error.message;if(S.tab==="koleksi")render();return}
  KOL.items=data||[];KOL.loaded=true;KOL.err=null;LS.set("kol_"+ME,KOL.items);
  if(["koleksi","beranda","murojaah","latihan"].includes(S.tab))render();
@@ -89,14 +94,15 @@ function viewKolForm(){
  <section class="phead"><div class="eyebrow">Materi baru</div><h1>Tambah ke koleksi</h1></section>
  <section class="card stack" style="gap:16px">
   <div class="field"><label>Jenis materi</label><div class="kseg">${Object.entries(JENIS).map(([k,v])=>`<button data-act="k-jenis" data-v="${k}" class="${j===k?"on":""}">${svg(v.i)}<span>${v.l}</span></button>`).join("")}</div></div>
-  <div class="field"><label for="kf-judul">Judul</label><input id="kf-judul" data-kf="judul" value="${esc(F.judul)}" placeholder="${j==="youtube"?"Boleh dikosongkan, AI akan menyarankan judul":"Contoh: Tafsir Surat Al-Fatihah ayat 1–4"}"></div>
+  <div class="field"><label for="kf-judul">Judul</label><input dir="auto" id="kf-judul" data-kf="judul" value="${esc(F.judul)}" placeholder="${j==="youtube"?"Boleh dikosongkan, AI akan menyarankan judul":"Contoh: Tafsir Surat Al-Fatihah ayat 1–4"}"></div>
   <div class="field"><label>Kategori</label><div class="chips wrap">${KATEGORI.map(c=>`<button class="chip ${F.kategori===c?"on":""}" data-act="k-kat" data-v="${esc(c)}">${esc(c)}</button>`).join("")}</div>
    <input id="kf-kat" data-kf="kategori" value="${isPreset?"":esc(F.kategori)}" placeholder="Atau tulis kategori sendiri, misalnya Ushul Fiqh" style="margin-top:6px"></div>
-  ${j==="teks"?`<div class="field"><label for="kf-teks">Isi materi</label><textarea id="kf-teks" data-kf="teks" rows="10" placeholder="Tempel catatan kajian, terjemahan kitab, atau tulisan antum di sini. Panjang tidak dibatasi.">${esc(F.teks)}</textarea><span class="small muted">${F.teks.length.toLocaleString("id-ID")} karakter</span></div>`:""}
+  ${j==="teks"?`<div class="field"><label for="kf-teks">Isi materi</label><textarea dir="auto" id="kf-teks" data-kf="teks" rows="10" placeholder="Tempel catatan kajian, terjemahan kitab, atau tulisan antum di sini. Panjang tidak dibatasi.">${esc(F.teks)}</textarea><span class="small muted">${F.teks.length.toLocaleString("id-ID")} karakter</span></div>`:""}
   ${j==="youtube"?`<div class="field"><label for="kf-yt">Tautan video YouTube</label><input id="kf-yt" data-kf="youtube" type="url" value="${esc(F.youtube)}" placeholder="https://youtu.be/…"><span class="small muted">AI menyimak isi video (video publik atau tidak publik).</span></div>`:""}
   ${j==="pdf"||j==="audio"?`<div class="field"><label>${j==="pdf"?"Berkas buku PDF":"Berkas audio (MP3, M4A, WAV, OGG)"}</label>
    <label class="kdrop" for="kf-file">${svg(j==="pdf"?"file":"mic")}<b>${F.file?esc(F.file.name):"Pilih berkas"}</b><span class="small muted">${F.file?(F.file.size/1048576).toFixed(1)+" MB":"Maksimal 50 MB per berkas"}</span></label>
    <input id="kf-file" type="file" hidden accept="${j==="pdf"?"application/pdf,.pdf":"audio/*,.mp3,.m4a,.wav,.ogg,.aac"}"></div>`:""}
+  <div class="field"><label>Bahasa ringkasan, kartu & soal</label><div class="kbhs">${Object.entries(BAHASA).map(([k,v])=>`<button data-act="k-bhs" data-v="${k}" class="${(F.bahasa||"otomatis")===k?"on":""}"><b ${k==="arab"?'class="ar"':""}>${v.l}</b></button>`).join("")}</div><span class="small muted">${BAHASA[F.bahasa||"otomatis"].d}</span></div>
   <label class="kai"><input type="checkbox" id="kf-ai" ${F.ai?"checked":""}><span><b>${svg("spark")} Ringkas otomatis dengan AI</b><span class="small muted">Membuat ringkasan, kartu kaidah, dan soal latihan. Bisa 1–3 menit untuk buku dan rekaman panjang.</span></span></label>
   <button class="btn pri block" data-act="k-submit">${F.ai?"Simpan & ringkas":"Simpan"}</button>
  </section>`;
@@ -109,9 +115,12 @@ async function kolSubmit(){
  if(F.file&&F.file.size>50*1048576){toast("Berkas lebih dari 50 MB. Perkecil dulu atau bagi menjadi beberapa bagian.");return}
  const b=document.querySelector('[data-act="k-submit"]');if(b){b.disabled=true;b.textContent="Menyimpan…"}
  const row={judul:F.judul.trim()||(F.file?F.file.name.replace(/\.[^.]+$/,""):"(tanpa judul)"),kategori:kat,jenis:F.jenis,status:F.ai?"diproses":"manual",kartu:[],soal:[]};
+ const bhs=F.bahasa||"otomatis";if(KOL_HAS_BHS)row.bahasa=bhs;
  if(F.jenis==="teks")row.teks=F.teks;
  if(F.jenis==="youtube")row.sumber_url=F.youtube.trim();
- const {data,error}=await SB.from("materi_pribadi").insert(row).select(KOLS).single();
+ let {data,error}=await SB.from("materi_pribadi").insert(row).select(kolCols()).single();
+ if(error&&/bahasa/.test(error.message||"")){KOL_HAS_BHS=false;delete row.bahasa;({data,error}=await SB.from("materi_pribadi").insert(row).select(kolCols()).single())}
+ if(data){const m=LS.get("kolbhs",{});m[data.id]=bhs;LS.set("kolbhs",m);data.bahasa=bhs}
  if(error){toast("Belum tersimpan: "+error.message);if(b){b.disabled=false;b.textContent="Simpan"}return}
  KOL.items.unshift(data);if(F.jenis==="teks")KOL.teks[data.id]=F.teks;
  const file=F.file,ai=F.ai;S.kForm=null;S.kSel=data.id;kolCache();render(true);
@@ -130,7 +139,7 @@ async function kolProses(id){
  const x=kolGet(id);if(!x||KOL.busy[id])return;
  KOL.busy[id]="Menyiapkan…";render();
  try{
-  const body={mode:"materi",jenis:x.jenis,judul:x.judul,kategori:x.kategori};
+  const body={mode:"materi",jenis:x.jenis,judul:x.judul,kategori:x.kategori,bahasa:kolBhs(x)};
   if(x.jenis==="teks"){let t=KOL.teks[id];if(t==null){const r=await SB.from("materi_pribadi").select("teks").eq("id",id).single();t=(r.data&&r.data.teks)||"";KOL.teks[id]=t}body.teks=t;}
   if(x.jenis==="youtube")body.youtube=x.sumber_url;
   if(x.jenis==="pdf"||x.jenis==="audio"){if(!x.sumber_path)throw new Error("Berkas belum terunggah");const s=await SB.storage.from("pribadi").createSignedUrl(x.sumber_path,1800);if(s.error)throw new Error(s.error.message);body.url=s.data.signedUrl;body.mime=x.mime}
@@ -176,28 +185,29 @@ function viewKolDetail(x){
   <button class="btn" data-act="k-latihan" data-v="${x.id}" ${(x.soal||[]).length?"":"disabled"}>${svg("quiz").replace('<svg','<svg width="18" height="18"')} Latihan (${(x.soal||[]).length})</button>
  </section>
  <section class="card ringkas"><div class="eyebrow" style="margin-bottom:12px">Ringkasan</div>
-  ${S.kEditRing===x.id?`<div class="field"><textarea id="k-ring" rows="10">${esc(x.ringkasan||"")}</textarea></div><div class="row" style="margin-top:8px"><button class="btn sm pri" data-act="k-ring-save" data-v="${x.id}">Simpan ringkasan</button><button class="btn sm" data-act="k-ring-cancel">Batal</button></div>`
+  ${S.kEditRing===x.id?`<div class="field"><textarea dir="auto" id="k-ring" rows="10">${esc(x.ringkasan||"")}</textarea></div><div class="row" style="margin-top:8px"><button class="btn sm pri" data-act="k-ring-save" data-v="${x.id}">Simpan ringkasan</button><button class="btn sm" data-act="k-ring-cancel">Batal</button></div>`
   :x.ringkasan?`<div class="prose">${para(x.ringkasan)}</div><div style="margin-top:10px"><button class="btn sm ghost" data-act="k-ring-edit" data-v="${x.id}">Ubah ringkasan</button></div>`
   :`<div class="small muted">${busy?"Ringkasan sedang disiapkan…":"Belum ada ringkasan."}</div><div class="row" style="margin-top:10px">${!busy?`<button class="btn sm gold" data-act="k-proses" data-v="${x.id}">${svg("spark").replace('<svg','<svg width="16" height="16"')} Ringkas dengan AI</button>`:""}<button class="btn sm ghost" data-act="k-ring-edit" data-v="${x.id}">Tulis sendiri</button></div>`}
  </section>
  <section class="card stack"><div class="sec-h"><h2>Kaidah & kartu murojaah</h2><span class="pill">${(x.kartu||[]).length}</span></div>
   ${(x.kartu||[]).map(k=>`<div class="kitem"><div style="flex:1;min-width:0"><b>${rich(k.depan)}</b><div class="small muted just">${rich(k.belakang)}</div></div>${k.ai?`<span class="pill gold" title="Dibuat AI">AI</span>`:`<span class="pill good">Saya</span>`}<button class="kdel" data-act="k-del-kartu" data-v="${k.id}" aria-label="Hapus kartu">${svg("trash")}</button></div>`).join("")||`<div class="small muted">Belum ada kartu.</div>`}
   <div class="kadd"><div class="eyebrow">Tambah kaidah sendiri</div>
-   <div class="field"><label for="kn-depan">Kaidah / istilah</label><input id="kn-depan" data-kn="depan" value="${esc(N.depan)}" placeholder="Contoh: الأصل في الأشياء الإباحة"></div>
-   <div class="field"><label for="kn-belakang">Makna / penjelasan</label><textarea id="kn-belakang" data-kn="belakang" rows="3" placeholder="Hukum asal segala sesuatu adalah mubah…">${esc(N.belakang)}</textarea></div>
+   <div class="field"><label for="kn-depan">Kaidah / istilah</label><input dir="auto" id="kn-depan" data-kn="depan" value="${esc(N.depan)}" placeholder="Contoh: الأصل في الأشياء الإباحة"></div>
+   <div class="field"><label for="kn-belakang">Makna / penjelasan</label><textarea dir="auto" id="kn-belakang" data-kn="belakang" rows="3" placeholder="Hukum asal segala sesuatu adalah mubah…">${esc(N.belakang)}</textarea></div>
    <div><button class="btn sm pri" data-act="k-add-kartu" data-v="${x.id}">＋ Tambah kaidah</button></div></div>
  </section>
  <section class="card stack"><div class="sec-h"><h2>Soal latihan</h2><span class="pill">${(x.soal||[]).length}</span></div>
   ${(x.soal||[]).map((s,n)=>`<div class="kitem"><div style="flex:1;min-width:0"><b>${n+1}. ${rich(s.tanya)}</b><div class="small muted">Jawaban: ${rich(s.tipe==="bs"?(s.jawab?"Benar":"Salah"):(s.opsi||[])[s.jawab]||"")}</div></div>${s.ai?`<span class="pill gold">AI</span>`:`<span class="pill good">Saya</span>`}<button class="kdel" data-act="k-del-soal" data-v="${s.id}" aria-label="Hapus soal">${svg("trash")}</button></div>`).join("")||`<div class="small muted">Belum ada soal.</div>`}
   <div class="kadd"><div class="eyebrow">Tambah soal sendiri</div>
    <div class="seg"><button data-act="k-soal-tipe" data-v="pg" class="${Q.tipe==="pg"?"on":""}">Pilihan ganda</button><button data-act="k-soal-tipe" data-v="bs" class="${Q.tipe==="bs"?"on":""}">Benar / Salah</button></div>
-   <div class="field"><label for="ks-tanya">Pertanyaan</label><textarea id="ks-tanya" data-ks="tanya" rows="2">${esc(Q.tanya)}</textarea></div>
-   ${Q.tipe==="pg"?`<div class="grid2">${Q.opsi.map((o,i)=>`<div class="field"><label for="ks-o${i}">Opsi ${"ABCD"[i]}</label><input id="ks-o${i}" data-ks="opsi.${i}" value="${esc(o)}"></div>`).join("")}</div>
+   <div class="field"><label for="ks-tanya">Pertanyaan</label><textarea dir="auto" id="ks-tanya" data-ks="tanya" rows="2">${esc(Q.tanya)}</textarea></div>
+   ${Q.tipe==="pg"?`<div class="grid2">${Q.opsi.map((o,i)=>`<div class="field"><label for="ks-o${i}">Opsi ${"ABCD"[i]}</label><input dir="auto" id="ks-o${i}" data-ks="opsi.${i}" value="${esc(o)}"></div>`).join("")}</div>
     <div class="field"><label for="ks-jawab">Jawaban benar</label><select id="ks-jawab" data-ks="jawab">${[0,1,2,3].map(i=>`<option value="${i}" ${Q.jawab===i?"selected":""}>Opsi ${"ABCD"[i]}</option>`).join("")}</select></div>`
    :`<div class="field"><label for="ks-jawab">Jawaban benar</label><select id="ks-jawab" data-ks="jawab"><option value="true" ${Q.jawab===true?"selected":""}>Benar</option><option value="false" ${Q.jawab===false?"selected":""}>Salah</option></select></div>`}
-   <div class="field"><label for="ks-bahas">Pembahasan (opsional)</label><textarea id="ks-bahas" data-ks="bahas" rows="2">${esc(Q.bahas)}</textarea></div>
+   <div class="field"><label for="ks-bahas">Pembahasan (opsional)</label><textarea dir="auto" id="ks-bahas" data-ks="bahas" rows="2">${esc(Q.bahas)}</textarea></div>
    <div><button class="btn sm pri" data-act="k-add-soal" data-v="${x.id}">＋ Tambah soal</button></div></div>
  </section>
+ <section class="card stack"><div class="eyebrow">Bahasa hasil AI</div><div class="kbhs">${Object.entries(BAHASA).map(([k,v])=>`<button data-act="k-bhs-ubah" data-v="${k}" class="${kolBhs(x)===k?"on":""}"><b ${k==="arab"?'class="ar"':""}>${v.l}</b></button>`).join("")}</div><span class="small muted">Pilih bahasa lalu ketuk “Proses ulang dengan AI”. Kaidah dan soal buatan antum sendiri tidak terhapus.</span></section>
  <section class="row" style="justify-content:space-between">
   ${!busy&&(x.jenis!=="teks"||true)?`<button class="btn sm" data-act="k-proses" data-v="${x.id}">${svg("spark").replace('<svg','<svg width="16" height="16"')} Proses ulang dengan AI</button>`:"<span></span>"}
   <button class="btn sm danger" data-act="k-hapus" data-v="${x.id}">Hapus materi</button>
@@ -210,9 +220,11 @@ document.addEventListener("click",async e=>{
  if(!a.startsWith("k-"))return;
  const x=S.kSel&&kolGet(S.kSel);
  switch(a){
-  case "k-new": S.kForm={jenis:"teks",judul:"",kategori:S.kFilter!=="Semua"?S.kFilter:"Tafsir",teks:"",youtube:"",file:null,ai:true};render(true);break;
+  case "k-new": S.kForm={jenis:"teks",judul:"",kategori:S.kFilter!=="Semua"?S.kFilter:"Tafsir",teks:"",youtube:"",file:null,ai:true,bahasa:"otomatis"};render(true);break;
   case "k-cancel": S.kForm=null;render(true);break;
   case "k-jenis": S.kForm.jenis=v;S.kForm.file=null;render();break;
+  case "k-bhs": S.kForm.bahasa=v;render();break;
+  case "k-bhs-ubah":{const it=kolGet(S.kSel);const m=LS.get("kolbhs",{});m[it.id]=v;LS.set("kolbhs",m);it.bahasa=v;if(KOL_HAS_BHS)await kolSave(it.id,{bahasa:v});else render();render();break}
   case "k-kat": S.kForm.kategori=v;render();break;
   case "k-submit": kolSubmit();break;
   case "k-filter": S.kFilter=v;render();break;

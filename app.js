@@ -3,11 +3,18 @@ const LOGO_PO="img/logo-pesantren-online.png";
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const ARX=/[؀-ۿݐ-ݿﭐ-﷿ﹰ-﻿]+(?:[\s،؛؟ـ()«»:]*[؀-ۿݐ-ݿﭐ-﷿ﹰ-﻿]+)*/g;
-const rich=s=>esc(s).replace(ARX,m=>`<span class="ar" dir="rtl">${m}</span>`).replace(/﴿[^﴾]{1,600}﴾/g,m=>`<span class="ayat">${m}</span>`).replace(/«[^»]{1,600}»/g,m=>`<span class="kutip">${m}</span>`);
-const para=s=>String(s||"").split(/\n{2,}/).map(p=>p.trim()).filter(Boolean).map(p=>{const ls=p.split("\n");
- if(ls.length>1&&ls.slice(1).every(l=>/^\d+[.)]\s/.test(l.trim()))){return `<p>${rich(ls[0])}</p><ol class="pts">${ls.slice(1).map(l=>`<li>${rich(l.trim().replace(/^\d+[.)]\s/,""))}</li>`).join("")}</ol>`}
- if(ls.every(l=>/^\d+[.)]\s/.test(l.trim()))){return `<ol class="pts">${ls.map(l=>`<li>${rich(l.trim().replace(/^\d+[.)]\s/,""))}</li>`).join("")}</ol>`}
- return `<p>${rich(p).replace(/\n/g,"<br>")}</p>`}).join("");
+const AR1=/[؀-ۿݐ-ݿﭐ-﷿ﹰ-﻿]/g, LAT1=/[A-Za-z]/g;
+const isAr=s=>{s=String(s||"");const a=(s.match(AR1)||[]).length,l=(s.match(LAT1)||[]).length;return a>=2&&(l===0||a>=l*3)};
+const deco=h=>h.replace(/﴿[^﴾]{1,600}﴾/g,m=>`<span class="ayat">${m}</span>`).replace(/«[^»]{1,600}»/g,m=>`<span class="kutip">${m}</span>`);
+const rich=s=>isAr(s)?`<span class="ar-all" dir="rtl">${deco(esc(s))}</span>`:deco(esc(s).replace(ARX,m=>`<span class="ar" dir="rtl">${m}</span>`));
+const NUM=/^[\d٠-٩]+\s*[.)\-]\s*/;
+const para=s=>String(s||"").split(/\n{2,}/).map(p=>p.trim()).filter(Boolean).map(p=>{const ls=p.split("\n").map(l=>l.trim()).filter(Boolean);
+ const li=l=>{const t=l.replace(NUM,"");return isAr(t)?`<li dir="rtl" class="ar-li">${deco(esc(t))}</li>`:`<li>${rich(t)}</li>`};
+ const pp=t=>isAr(t)?`<p dir="rtl" class="ar-p">${deco(esc(t))}</p>`:`<p>${rich(t)}</p>`;
+ if(ls.length>1&&ls.slice(1).every(l=>NUM.test(l))){return pp(ls[0])+`<ol class="pts"${isAr(ls.slice(1).join(" "))?' dir="rtl"':""}>${ls.slice(1).map(li).join("")}</ol>`}
+ if(ls.length>1&&ls.every(l=>NUM.test(l))){return `<ol class="pts"${isAr(ls.join(" "))?' dir="rtl"':""}>${ls.map(li).join("")}</ol>`}
+ if(ls.length>1&&ls.some(isAr)&&!ls.every(isAr))return ls.map(pp).join("");
+ return isAr(p)?`<p dir="rtl" class="ar-p">${deco(esc(p)).replace(/\n/g,"<br>")}</p>`:`<p>${rich(p).replace(/\n/g,"<br>")}</p>`}).join("");
 const LS={get(k,d){try{const v=localStorage.getItem("mm_"+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem("mm_"+k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem("mm_"+k)}catch(e){}}};
 const clone=o=>JSON.parse(JSON.stringify(o));
 const uid=p=>p+"-"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
@@ -345,7 +352,7 @@ const correctOf=s=>s.tipe==="bs"?(s.jawab?0:1):s.jawab;
 function finishQuiz(){const q=S.quiz;clearInterval(startTimer.t);q.finished=true;const b=q.items.filter(it=>it.ans===correctOf(it.s)).length;q.b=b;
  const h=LS.get("scores",[]);h.unshift({d:dayKey(),l:q.label,b,t:q.items.length,m:q.mode});LS.set("scores",h.slice(0,40));
  const w=LS.get("wrong",{});q.items.forEach(it=>{if(it.ans===correctOf(it.s))delete w[it.s.id];else w[it.s.id]=(w[it.s.id]||0)+1});LS.set("wrong",w);bumpStreak();syncMe();render(true)}
-function optHtml(it,reveal){const s=it.s;const labels=s.tipe==="bs"?["Benar","Salah"]:s.opsi;const keys="ABCDEF";return it.order.map((oi,k)=>{let cls="";if(reveal){if(oi===correctOf(s))cls="ok";else if(it.ans===oi)cls="no"}else if(it.ans===oi)cls="sel";return `<button class="opt ${cls}" data-act="ans" data-v="${oi}" ${reveal?"disabled":""}><span class="k">${keys[k]}</span><span>${rich(labels[oi])}</span></button>`}).join("")}
+function optHtml(it,reveal){const s=it.s;const rtl=isAr(s.tanya)&&s.tipe!=="bs";const labels=s.tipe==="bs"?(isAr(s.tanya)?["صحيح","خطأ"]:["Benar","Salah"]):s.opsi;const keys=rtl?"أبجدهو":"ABCDEF";return it.order.map((oi,k)=>{let cls="";if(reveal){if(oi===correctOf(s))cls="ok";else if(it.ans===oi)cls="no"}else if(it.ans===oi)cls="sel";return `<button class="opt ${cls}" ${rtl?'dir="rtl"':""} data-act="ans" data-v="${oi}" ${reveal?"disabled":""}><span class="k">${keys[k]}</span><span>${rich(labels[oi])}</span></button>`}).join("")}
 function viewLatihan(){
  const q=S.quiz;
  if(q&&!q.finished){const it=q.items[q.i], reveal=q.mode==="latihan"&&it.ans!=null;return `
@@ -384,8 +391,8 @@ function getPath(o,p){return p.split(".").reduce((a,k)=>a==null?a:a[k],o)}
 function setPath(o,p,v){const ks=p.split(".");const last=ks.pop();const t=ks.reduce((a,k)=>a[k],o);t[last]=v}
 function markDirty(){dirty=true;LS.set("draft",{at:Date.now(),data:EDIT});const b=$("#abar-t");if(b)b.textContent="Ada perubahan yang belum diterbitkan"}
 function fIn(path,label,opt={}){const v=getPath(EDIT,path)??"";const id="f-"+path.replace(/\./g,"-");
- if(opt.area)return `<div class="field"><label for="${id}">${label}</label><textarea id="${id}" data-bind="${path}" ${opt.rows?`rows="${opt.rows}"`:""} placeholder="${esc(opt.ph||"")}">${esc(v)}</textarea></div>`;
- return `<div class="field"><label for="${id}">${label}</label><input id="${id}" data-bind="${path}" type="${opt.type||"text"}" value="${esc(v)}" placeholder="${esc(opt.ph||"")}"></div>`}
+ if(opt.area)return `<div class="field"><label for="${id}">${label}</label><textarea dir="auto" id="${id}" data-bind="${path}" ${opt.rows?`rows="${opt.rows}"`:""} placeholder="${esc(opt.ph||"")}">${esc(v)}</textarea></div>`;
+ return `<div class="field"><label for="${id}">${label}</label><input dir="auto" id="${id}" data-bind="${path}" type="${opt.type||"text"}" value="${esc(v)}" placeholder="${esc(opt.ph||"")}"></div>`}
 function viewKelola(){
  if(!isAdmin)return `<div class="empty">Halaman ini khusus pengelola.</div>`;
  if(!EDIT){const dr=LS.get("draft",null);EDIT=clone(DATA);dirty=false;if(dr&&JSON.stringify(dr.data)!==JSON.stringify(DATA))S.draftOffer=dr}

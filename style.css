@@ -296,3 +296,24 @@ details.adm[open]>summary::after{content:"–"}
 .kaudio{width:100%}
 .ksrc summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;list-style:none}
 .ksrc summary::-webkit-details-marker{display:none}
+
+/* ---------- teks Arab penuh ---------- */
+.ar-all{font-family:var(--f-ar);font-size:1.22em;line-height:1.8;direction:rtl;unicode-bidi:isolate;display:inline-block;max-width:100%}
+.ar-p{font-family:var(--f-ar);font-size:1.3em;line-height:2;text-align:justify;direction:rtl;margin:0 0 12px}
+.prose .ar-p{font-size:1.3em}
+.prose ol.pts[dir="rtl"] li{padding:10px 44px 10px 12px;font-family:var(--f-ar);font-size:1.22em;line-height:1.9;text-align:justify}
+.prose ol.pts[dir="rtl"] li::before{left:auto;right:10px;font-family:var(--f-ui);font-size:12.5px}
+.prose ol.pts:not([dir="rtl"]) li.ar-li{direction:rtl;font-family:var(--f-ar);font-size:1.2em;padding:10px 44px 10px 12px}
+.prose ol.pts:not([dir="rtl"]) li.ar-li::before{left:auto;right:10px}
+.qtext .ar-all,.opt .ar-all{font-size:1.25em}
+.opt .ar-all{flex:1;text-align:right}
+.flash .front .q .ar-all{font-size:1.5em}
+.kitem b .ar-all{display:block;text-align:right}
+.kitem .small .ar-all{display:block;text-align:justify;font-size:1.2em}
+.kbhs{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.kbhs button{padding:10px 8px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;font-size:13.5px;color:var(--muted)}
+.kbhs button b.ar{font-size:1.25em;font-weight:700}
+.kbhs button.on{border-color:var(--forest);color:var(--forest);background:var(--good-bg)}
+.opt[dir="rtl"]{text-align:right}
+.opt[dir="rtl"] .ar-all{text-align:right}
+.qtext .ar-all{display:block;text-align:right}
