@@ -317,3 +317,6 @@ details.adm[open]>summary::after{content:"–"}
 .opt[dir="rtl"]{text-align:right}
 .opt[dir="rtl"] .ar-all{text-align:right}
 .qtext .ar-all{display:block;text-align:right}
+.ksusun{display:flex;flex-direction:column;gap:10px;margin-top:6px;padding:14px;border-radius:14px;background:linear-gradient(135deg,var(--warn-bg),var(--good-bg));border:1px solid var(--gold)}
+.ksusun .eyebrow{display:flex;align-items:center;gap:6px;color:var(--orange)}
+.ksusun .chip{font-size:12px;padding:5px 10px}

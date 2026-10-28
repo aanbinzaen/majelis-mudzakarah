@@ -155,7 +155,7 @@ async function kolProses(id){
    if(s.tipe==="bs"&&typeof s.jawab==="boolean")soal.push({id:uid("ks"),tipe:"bs",tanya:String(s.tanya),jawab:s.jawab,bahas:String(s.bahas||""),ai:true});
    else if(Array.isArray(s.opsi)&&s.opsi.length>=2&&Number.isInteger(s.jawab)&&s.jawab>=0&&s.jawab<s.opsi.length)soal.push({id:uid("ks"),tipe:"pg",tanya:String(s.tanya),opsi:s.opsi.slice(0,4).map(String),jawab:Math.min(s.jawab,3),bahas:String(s.bahas||""),ai:true})});
   const cur=kolGet(id);
-  const patch={ringkasan:String(h.ringkasan||"").trim()||cur.ringkasan||"",kartu:(cur.kartu||[]).filter(k=>!k.ai).concat(kartu),soal:(cur.soal||[]).filter(s=>!s.ai).concat(soal),status:"siap",galat:null};
+  const patch={ringkasan:String(h.ringkasan||"").trim()||cur.ringkasan||"",kartu:(cur.kartu||[]).filter(k=>!k.ai||k.minta).concat(kartu),soal:(cur.soal||[]).filter(s=>!s.ai||s.minta).concat(soal),status:"siap",galat:null};
   if((!cur.judul||cur.judul==="(tanpa judul)"||cur.jenis==="youtube"&&/^https?:/.test(cur.judul))&&h.judul_saran)patch.judul=String(h.judul_saran).slice(0,140);
   delete KOL.busy[id];await kolSave(id,patch);toast(`Selesai: ${kartu.length} kartu dan ${soal.length} soal disiapkan`+(j.sisa!=null?` · sisa ${j.sisa} proses hari ini`:""));
  }catch(e){delete KOL.busy[id];await kolSave(id,{status:"gagal",galat:String(e.message||e).slice(0,300)});toast("AI belum berhasil memproses materi ini")}
@@ -176,7 +176,9 @@ function viewKolDetail(x){
   ${x.jenis==="pdf"?`<a class="lcard ${url?"":"off"}" href="${esc(url||"#")}" target="_blank" rel="noopener"><span class="ic" style="background:var(--warn-bg);color:var(--orange)">${svg("file")}</span><span style="min-width:0">Buka buku<small>PDF</small></span></a>`:""}
  ${x.jenis==="youtube"||x.jenis==="pdf"?`</section>`:""}
  ${x.jenis==="audio"&&url?`<audio class="kaudio" controls preload="none" src="${esc(url)}"></audio>`:""}
- ${x.jenis==="teks"?`<details class="card ksrc" data-v="${x.id}" ${S.kTeksOpen===x.id?"open":""}><summary><b>Teks sumber</b><span class="small muted">ketuk untuk membuka</span></summary><div class="prose" style="margin-top:10px">${KOL.teks[x.id]!=null?para(KOL.teks[x.id]):"Memuat…"}</div></details>`:""}
+ ${x.jenis==="teks"?`<details class="card ksrc" data-v="${x.id}" ${S.kTeksOpen===x.id?"open":""}><summary><b>Teks sumber</b><span class="small muted">ketuk untuk membuka</span></summary>
+  <div class="row" style="margin-top:10px;gap:8px"><button class="btn sm pri" data-act="k-salin" data-v="${x.id}">${svg("copy").replace('<svg','<svg width="16" height="16"')} Salin seluruh teks</button>${KOL.teks[x.id]!=null?`<span class="small muted">${KOL.teks[x.id].length.toLocaleString("id-ID")} karakter</span>`:""}</div>
+  <div class="prose" style="margin-top:10px">${KOL.teks[x.id]!=null?para(KOL.teks[x.id]):"Memuat…"}</div></details>`:""}
  ${busy?`<section class="card kbusy"><div class="kb-dots"><i></i><i></i><i></i></div><b>${esc(busy)}</b><div class="small muted">Biarkan halaman ini terbuka. Untuk buku dan rekaman panjang bisa 1–3 menit.</div></section>`:""}
  ${!busy&&x.status==="gagal"?`<section class="card flat stack" style="background:var(--bad-bg);border-color:var(--bad)"><b>AI belum berhasil memproses materi ini</b><div class="small">${esc(x.galat||"")}</div><div><button class="btn sm pri" data-act="k-proses" data-v="${x.id}">Coba lagi</button></div></section>`:""}
  ${!busy&&x.status==="diproses"?`<section class="card flat stack" style="background:var(--warn-bg);border-color:var(--gold)"><b>Proses AI terhenti sebelum selesai</b><div><button class="btn sm pri" data-act="k-proses" data-v="${x.id}">Lanjutkan proses</button></div></section>`:""}
@@ -186,18 +188,20 @@ function viewKolDetail(x){
  </section>
  <section class="card ringkas"><div class="eyebrow" style="margin-bottom:12px">Ringkasan</div>
   ${S.kEditRing===x.id?`<div class="field"><textarea dir="auto" id="k-ring" rows="10">${esc(x.ringkasan||"")}</textarea></div><div class="row" style="margin-top:8px"><button class="btn sm pri" data-act="k-ring-save" data-v="${x.id}">Simpan ringkasan</button><button class="btn sm" data-act="k-ring-cancel">Batal</button></div>`
-  :x.ringkasan?`<div class="prose">${para(x.ringkasan)}</div><div style="margin-top:10px"><button class="btn sm ghost" data-act="k-ring-edit" data-v="${x.id}">Ubah ringkasan</button></div>`
+  :x.ringkasan?`<div class="prose">${para(x.ringkasan)}</div><div class="row" style="margin-top:10px;gap:8px"><button class="btn sm ghost" data-act="k-ring-edit" data-v="${x.id}">Ubah ringkasan</button><button class="btn sm ghost" data-act="k-salin-ring" data-v="${x.id}">Salin ringkasan</button></div>`
   :`<div class="small muted">${busy?"Ringkasan sedang disiapkan…":"Belum ada ringkasan."}</div><div class="row" style="margin-top:10px">${!busy?`<button class="btn sm gold" data-act="k-proses" data-v="${x.id}">${svg("spark").replace('<svg','<svg width="16" height="16"')} Ringkas dengan AI</button>`:""}<button class="btn sm ghost" data-act="k-ring-edit" data-v="${x.id}">Tulis sendiri</button></div>`}
  </section>
  <section class="card stack"><div class="sec-h"><h2>Kaidah & kartu murojaah</h2><span class="pill">${(x.kartu||[]).length}</span></div>
-  ${(x.kartu||[]).map(k=>`<div class="kitem"><div style="flex:1;min-width:0"><b>${rich(k.depan)}</b><div class="small muted just">${rich(k.belakang)}</div></div>${k.ai?`<span class="pill gold" title="Dibuat AI">AI</span>`:`<span class="pill good">Saya</span>`}<button class="kdel" data-act="k-del-kartu" data-v="${k.id}" aria-label="Hapus kartu">${svg("trash")}</button></div>`).join("")||`<div class="small muted">Belum ada kartu.</div>`}
+  ${(x.kartu||[]).map(k=>`<div class="kitem"><div style="flex:1;min-width:0"><b>${rich(k.depan)}</b><div class="small muted just">${rich(k.belakang)}</div></div>${k.minta?`<span class="pill good" title="Disusun AI dari teks antum">AI·Saya</span>`:k.ai?`<span class="pill gold" title="Dibuat AI">AI</span>`:`<span class="pill good">Saya</span>`}<button class="kdel" data-act="k-del-kartu" data-v="${k.id}" aria-label="Hapus kartu">${svg("trash")}</button></div>`).join("")||`<div class="small muted">Belum ada kartu.</div>`}
+  ${kolSusunBox(x,"kartu")}
   <div class="kadd"><div class="eyebrow">Tambah kaidah sendiri</div>
    <div class="field"><label for="kn-depan">Kaidah / istilah</label><input dir="auto" id="kn-depan" data-kn="depan" value="${esc(N.depan)}" placeholder="Contoh: الأصل في الأشياء الإباحة"></div>
    <div class="field"><label for="kn-belakang">Makna / penjelasan</label><textarea dir="auto" id="kn-belakang" data-kn="belakang" rows="3" placeholder="Hukum asal segala sesuatu adalah mubah…">${esc(N.belakang)}</textarea></div>
    <div><button class="btn sm pri" data-act="k-add-kartu" data-v="${x.id}">＋ Tambah kaidah</button></div></div>
  </section>
  <section class="card stack"><div class="sec-h"><h2>Soal latihan</h2><span class="pill">${(x.soal||[]).length}</span></div>
-  ${(x.soal||[]).map((s,n)=>`<div class="kitem"><div style="flex:1;min-width:0"><b>${n+1}. ${rich(s.tanya)}</b><div class="small muted">Jawaban: ${rich(s.tipe==="bs"?(s.jawab?"Benar":"Salah"):(s.opsi||[])[s.jawab]||"")}</div></div>${s.ai?`<span class="pill gold">AI</span>`:`<span class="pill good">Saya</span>`}<button class="kdel" data-act="k-del-soal" data-v="${s.id}" aria-label="Hapus soal">${svg("trash")}</button></div>`).join("")||`<div class="small muted">Belum ada soal.</div>`}
+  ${(x.soal||[]).map((s,n)=>`<div class="kitem"><div style="flex:1;min-width:0"><b>${n+1}. ${rich(s.tanya)}</b><div class="small muted">Jawaban: ${rich(s.tipe==="bs"?(s.jawab?"Benar":"Salah"):(s.opsi||[])[s.jawab]||"")}</div></div>${s.minta?`<span class="pill good">AI·Saya</span>`:s.ai?`<span class="pill gold">AI</span>`:`<span class="pill good">Saya</span>`}<button class="kdel" data-act="k-del-soal" data-v="${s.id}" aria-label="Hapus soal">${svg("trash")}</button></div>`).join("")||`<div class="small muted">Belum ada soal.</div>`}
+  ${kolSusunBox(x,"soal")}
   <div class="kadd"><div class="eyebrow">Tambah soal sendiri</div>
    <div class="seg"><button data-act="k-soal-tipe" data-v="pg" class="${Q.tipe==="pg"?"on":""}">Pilihan ganda</button><button data-act="k-soal-tipe" data-v="bs" class="${Q.tipe==="bs"?"on":""}">Benar / Salah</button></div>
    <div class="field"><label for="ks-tanya">Pertanyaan</label><textarea dir="auto" id="ks-tanya" data-ks="tanya" rows="2">${esc(Q.tanya)}</textarea></div>
@@ -213,6 +217,31 @@ function viewKolDetail(x){
   <button class="btn sm danger" data-act="k-hapus" data-v="${x.id}">Hapus materi</button>
  </section>`;
 }
+
+/* ---------- salin & susun dengan AI ---------- */
+function kolCopy(t,ok){if(!t){toast("Teks masih kosong");return}
+ const fb=()=>{const ta=document.createElement("textarea");ta.value=t;ta.setAttribute("readonly","");ta.style.cssText="position:fixed;top:0;left:0;opacity:0";document.body.appendChild(ta);ta.select();let done=false;try{done=document.execCommand("copy")}catch(e){}ta.remove();toast(done?ok:"Tidak bisa menyalin otomatis. Tekan lama teks lalu pilih Salin.")};
+ try{navigator.clipboard.writeText(t).then(()=>toast(ok),fb)}catch(e){fb()}}
+S.kSusun={kartu:{teks:"",instruksi:""},soal:{teks:"",instruksi:""}};
+function kolSusunBox(x,h){const D=S.kSusun[h],busy=KOL.busy["susun-"+h+x.id];
+ return `<div class="ksusun"><div class="eyebrow">${svg("spark").replace('<svg','<svg width="14" height="14"')} ${h==="kartu"?"Susun kaidah dengan AI":"Susun soal dengan AI"}</div>
+  <div class="small muted just">${h==="kartu"?"Tempel atau ketik teks (satu kaidah, satu paragraf, atau satu bab). AI merapikannya menjadi kartu kaidah sesuai permintaan antum.":"Tempel teks materi, lalu AI membuatkan soal latihan sesuai permintaan antum."}</div>
+  <div class="field"><label for="ksu-${h}">Teks</label><textarea dir="auto" id="ksu-${h}" data-ksu="${h}.teks" rows="4" placeholder="${h==="kartu"?"Contoh: الأمر بعد النهي يفيد الإباحة …":"Tempel paragraf atau bab dari kitab…"}">${esc(D.teks)}</textarea></div>
+  <div class="field"><label for="ksi-${h}">Permintaan (opsional)</label><input dir="auto" id="ksi-${h}" data-ksu="${h}.instruksi" value="${esc(D.instruksi)}" placeholder="${h==="kartu"?"Misal: jadikan 3 kartu, depan kaidah Arab, belakang makna dan contoh":"Misal: 5 soal pilihan ganda tentang definisi"}"></div>
+  <div class="chips wrap">${(h==="kartu"?["1 kartu per kaidah","Depan Arab, belakang terjemah","Tambahkan contoh dari teks","Pecah per poin"]:["5 soal pilihan ganda","Benar/salah saja","Soal tentang definisi","Soal tentang dalil"]).map(c=>`<button class="chip" data-act="k-susun-chip" data-h="${h}" data-v="${esc(c)}">${esc(c)}</button>`).join("")}</div>
+  <div><button class="btn sm gold" data-act="k-susun" data-v="${x.id}" data-h="${h}" ${busy?"disabled":""}>${busy?`<span class="spin"></span> AI sedang menyusun…`:(h==="kartu"?"Jadikan kartu kaidah":"Jadikan soal latihan")}</button></div></div>`}
+async function kolSusun(id,h){const x=kolGet(id),D=S.kSusun[h];if(!x)return;
+ if(D.teks.trim().length<5){toast("Tulis atau tempel teksnya dulu");return}
+ const key="susun-"+h+id;if(KOL.busy[key])return;KOL.busy[key]=1;render();
+ try{const {data:{session}}=await SB.auth.getSession();
+  const r=await fetch("/api/ai",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+(session&&session.access_token)},body:JSON.stringify({mode:"susun",hasil:h,teks:D.teks,instruksi:D.instruksi,bahasa:kolBhs(x)})});
+  const j=await r.json().catch(()=>({error:"Layanan AI tidak menjawab ("+r.status+")"}));if(!r.ok||!j.ok)throw new Error(j.error||("Kode "+r.status));
+  const hs=j.hasil||{};let n=0;const cur=kolGet(id);
+  if(h==="kartu"){const add=(Array.isArray(hs.kartu)?hs.kartu:Array.isArray(hs)?hs:[]).filter(k=>k&&k.depan&&k.belakang).map(k=>({id:uid("kk"),depan:String(k.depan),belakang:String(k.belakang),ai:true,minta:true}));n=add.length;if(n)await kolSave(id,{kartu:(cur.kartu||[]).concat(add)})}
+  else{const add=[];(Array.isArray(hs.soal)?hs.soal:Array.isArray(hs)?hs:[]).forEach(s=>{if(!s||!s.tanya)return;if(s.tipe==="bs"&&typeof s.jawab==="boolean")add.push({id:uid("ks"),tipe:"bs",tanya:String(s.tanya),jawab:s.jawab,bahas:String(s.bahas||""),ai:true,minta:true});else if(Array.isArray(s.opsi)&&s.opsi.length>=2&&Number.isInteger(s.jawab)&&s.jawab>=0&&s.jawab<s.opsi.length)add.push({id:uid("ks"),tipe:"pg",tanya:String(s.tanya),opsi:s.opsi.slice(0,4).map(String),jawab:Math.min(s.jawab,3),bahas:String(s.bahas||""),ai:true,minta:true})});n=add.length;if(n)await kolSave(id,{soal:(cur.soal||[]).concat(add)})}
+  if(n){S.kSusun[h]={teks:"",instruksi:""};toast(`${n} ${h==="kartu"?"kartu kaidah":"soal"} ditambahkan`)}else toast("AI belum menghasilkan "+(h==="kartu"?"kartu":"soal")+". Coba perjelas teksnya.");
+ }catch(e){toast("Belum berhasil: "+String(e.message||e).slice(0,140))}
+ delete KOL.busy[key];render();}
 
 /* ---------- events ---------- */
 document.addEventListener("click",async e=>{
@@ -245,6 +274,11 @@ document.addEventListener("click",async e=>{
    else s={id:uid("ks"),tipe:"bs",tanya:Q.tanya.trim(),jawab:Q.jawab===true,bahas:Q.bahas.trim()};
    S.kSoal={tipe:Q.tipe,tanya:"",opsi:["","","",""],jawab:Q.tipe==="bs"?true:0,bahas:""};await kolSave(x.id,{soal:(x.soal||[]).concat([s])});toast("Soal ditambahkan ke latihan");render();break}
   case "k-del-soal": if(!t.dataset.armed){t.dataset.armed=1;t.classList.add("armed");return}await kolSave(x.id,{soal:(x.soal||[]).filter(s=>s.id!==v)});render();break;
+  case "k-salin":{let t=KOL.teks[v];if(t==null){const r=await SB.from("materi_pribadi").select("teks").eq("id",v).single();t=(r.data&&r.data.teks)||"";KOL.teks[v]=t}
+   kolCopy(t,"Seluruh teks sumber disalin");break}
+  case "k-salin-ring": kolCopy((kolGet(v)||{}).ringkasan||"","Ringkasan disalin");break;
+  case "k-susun": kolSusun(v,t.dataset.h);break;
+  case "k-susun-chip":{const D=S.kSusun[t.dataset.h];D.instruksi=D.instruksi?D.instruksi+"; "+v:v;render();break}
   case "k-hapus": if(!t.dataset.armed){t.dataset.armed=1;t.textContent="Yakin hapus? Ketuk lagi";return}
    {const it=kolGet(v);if(it&&it.sumber_path)await SB.storage.from("pribadi").remove([it.sumber_path]);
     const {error}=await SB.from("materi_pribadi").delete().eq("id",v);if(error){toast("Gagal menghapus: "+error.message);return}
@@ -252,6 +286,7 @@ document.addEventListener("click",async e=>{
  }
 });
 document.addEventListener("input",e=>{const t=e.target;
+ if(t.dataset.ksu){const [h,k]=t.dataset.ksu.split(".");S.kSusun[h][k]=t.value;return}
  if(t.dataset.kf&&S.kForm){S.kForm[t.dataset.kf]=t.value;if(t.dataset.kf==="kategori"){document.querySelectorAll('[data-act="k-kat"]').forEach(c=>c.classList.toggle("on",c.dataset.v===t.value))}if(t.dataset.kf==="teks"){const s=t.parentElement.querySelector(".small");if(s)s.textContent=t.value.length.toLocaleString("id-ID")+" karakter"}return}
  if(t.dataset.kn){S.kNew[t.dataset.kn]=t.value;return}
  if(t.dataset.ks){const k=t.dataset.ks;if(k.startsWith("opsi.")){S.kSoal.opsi[+k.slice(5)]=t.value}else if(k==="jawab"){S.kSoal.jawab=S.kSoal.tipe==="bs"?t.value==="true":+t.value}else S.kSoal[k]=t.value}

@@ -125,7 +125,28 @@ module.exports = async (req, res) => {
     let prompt;
     const gen = { responseMimeType: "application/json", temperature: 0.3 };
 
-    if (body.mode === "prompt") {
+    if (body.mode === "susun") {
+      // peserta menempelkan teks sendiri -> AI menyusun kartu kaidah atau soal sesuai permintaan
+      const t = String(body.teks || "").slice(0, 200000);
+      if (t.trim().length < 5) return send(res, 400, { error: "Tulis atau tempel teksnya dulu" });
+      const jenisHasil = body.hasil === "soal" ? "soal" : "kartu";
+      const minta = String(body.instruksi || "").slice(0, 1000).trim();
+      parts.push({ text: "TEKS DARI PESERTA:\n" + t });
+      prompt = `Kamu membantu peserta kajian Islam di Majelis Mudzakaroh Rumah Dakwah Malang menyusun bahan murojaah dari teks yang ia kirim.
+${ATURAN_BAHASA[body.bahasa] || ATURAN_BAHASA.otomatis}
+
+${jenisHasil === "kartu"
+  ? `Susun KARTU KAIDAH/MUROJAAH dari teks itu. Setiap kartu: "depan" berisi kaidah, istilah, ta'rif, atau pertanyaan singkat; "belakang" berisi makna, penjelasan, dalil, atau contoh yang ada di teks.
+Bila teks berisi satu kaidah saja, buat satu kartu yang rapi. Bila teks panjang, pecah menjadi beberapa kartu (paling banyak 20).`
+  : `Susun SOAL LATIHAN dari teks itu: campuran pilihan ganda (4 opsi) dan benar/salah, masing-masing dengan pembahasan singkat. Acak posisi jawaban benar. Paling banyak 20 soal.`}
+${minta ? `Permintaan khusus peserta (utamakan): "${minta}"` : ""}
+
+Aturan amanah ilmiah: gunakan HANYA isi teks; jangan menambah ayat, hadits, nukilan, atau pendapat yang tidak ada di teks; pertahankan lafazh Arab apa adanya; rapikan ejaan tanpa mengubah makna.
+
+Kembalikan HANYA JSON: ${jenisHasil === "kartu"
+  ? `{"kartu":[{"depan":"...","belakang":"..."}]}`
+  : `{"soal":[{"tipe":"pg","tanya":"...","opsi":["...","...","...","..."],"jawab":0,"bahas":"..."},{"tipe":"bs","tanya":"...","jawab":true,"bahas":"..."}]}`}`;
+    } else if (body.mode === "prompt") {
       // dipakai pengelola di menu Kelola
       const adm = await sb("/rest/v1/rpc/is_admin", token, { method: "POST", body: "{}" });
       if (!adm.ok || (await adm.json()) !== true) return send(res, 403, { error: "Khusus pengelola" });
