@@ -89,3 +89,32 @@ Kunci *anon* ini memang boleh dipakai di website. Data tetap aman karena aturan 
 - **Proyek bisa dijeda:** proyek Supabase gratis otomatis dijeda bila tidak dipakai selama 7 hari. Selama peserta rutin membuka website, proyek tetap aktif. Bila terjeda, buka supabase.com lalu klik **Restore project**.
 - **Mengubah tampilan atau kode:** unggah ulang berkas yang diubah ke GitHub. Vercel akan menayangkan ulang secara otomatis dalam sekitar 1 menit.
 - **Peserta ganti HP:** cukup masuk lagi dengan nama dan nomor WA yang sama. Di rekap, peserta tersebut bisa muncul dua kali dengan nomor WA yang sama. Progres lamanya tetap tersimpan di HP sebelumnya.
+
+---
+
+## Mengaktifkan Koleksiku (materi pribadi peserta + AI)
+
+Koleksiku adalah ruang belajar pribadi tiap peserta. Di sana peserta bisa menambah materi sendiri (teks, buku PDF, audio, video YouTube), lalu AI meringkas dan membuat kartu murojaah serta soal latihan. Peserta juga bisa menambah kaidah dan soal sendiri.
+
+Lakukan sekali saja:
+
+1. **Database:** Supabase → **SQL Editor → New query** → tempel seluruh isi `supabase-koleksi.sql` → **Run**.
+2. **Kunci AI gratis:** buka **aistudio.google.com** → **Get API key** → **Create API key** → salin kuncinya.
+3. **Isi di Vercel:** project **majelis-mudzakarah** → **Settings → Environment Variables**. Tambahkan tiga baris berikut:
+   - `GEMINI_API_KEY` = kunci dari langkah 2
+   - `SUPABASE_URL` = sama dengan `supabaseUrl` di config.js
+   - `SUPABASE_ANON_KEY` = sama dengan `supabaseAnonKey` di config.js
+4. **Tayangkan ulang:** **Deployments** → titik tiga di deployment teratas → **Redeploy**. Variabel baru hanya terbaca setelah tayang ulang.
+
+Pengaturan tambahan (opsional):
+
+- `AI_LIMIT_HARIAN` mengatur batas proses AI per peserta per 24 jam. Bawaannya 30.
+- `GEMINI_MODEL` mengganti model AI. Bawaannya `gemini-2.5-flash`.
+
+Setelah kunci ini terpasang, tombol ✦ AI di menu Kelola juga ikut memakainya. Pengelola tidak perlu lagi mengisi kunci di perangkat.
+
+Batasan paket gratis:
+
+- **Berkas:** maksimal 50 MB per berkas PDF atau audio, dengan total ruang penyimpanan Supabase 1 GB untuk seluruh majelis.
+- **Teks dan YouTube:** tidak memakai ruang penyimpanan berkas, jadi bisa ditambahkan sebanyak-banyaknya.
+- **Kuota AI:** kunci Gemini gratis punya batas permintaan per menit dan per hari. Bila peserta sudah banyak, pertimbangkan mengaktifkan penagihan di Google AI Studio.

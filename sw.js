@@ -1,6 +1,6 @@
 // Menyimpan tampilan aplikasi agar tetap terbuka saat sinyal lemah.
-const CACHE = "mudzakaroh-v9";
-const SHELL = ["./", "index.html", "style.css", "app.js", "config.js", "data.json", "manifest.webmanifest",
+const CACHE = "mudzakaroh-v10";
+const SHELL = ["./", "index.html", "style.css", "app.js", "koleksi.js", "config.js", "data.json", "manifest.webmanifest",
   "img/logo-rumah-dakwah.png", "img/logo-rumah-dakwah-gelap.png", "img/logo-emblem.png", "img/logo-pesantren-online.png", "img/icon-192.png", "img/icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k))))); self.clients.claim(); });

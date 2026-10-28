@@ -43,7 +43,7 @@ h1,h2,h3{text-wrap:balance;margin:0;line-height:1.25}
 .mitra .m-po{height:32px;width:32px;display:block}
 .mitra-cap{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:14px}
 .top .sp{flex:1}
-.top .tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#CFE3BE;text-align:right;line-height:1.3}
+.top .tag{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#CFE3BE;text-align:right;line-height:1.3}
 .top .tag b{display:block;color:var(--gold);letter-spacing:.06em;font-size:12px}
 .kelola-btn{background:var(--gold);color:#2B2200;border:0;border-radius:999px;padding:7px 12px;font-weight:700;font-size:12.5px;cursor:pointer}
 
@@ -236,3 +236,63 @@ details.adm[open]>summary::after{content:"–"}
 .greet .dates{line-height:1.5}
 .prose .ar,.explain .ar,.qa .ar,.just .ar,.flash .backf .ar{display:inline-block;max-width:100%;text-align:right;text-align-last:auto;text-indent:0}
 .prose{font-size:15px}
+.me-btn{width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,.45);background:rgba(255,255,255,.12);color:#fff;font-weight:800;font-size:15px;display:grid;place-items:center;cursor:pointer;padding:0}
+.me-btn svg{width:20px;height:20px}
+.me-btn.on{background:var(--gold);color:#2B2200;border-color:var(--gold)}
+.nav .wrap button[data-v="koleksi"] .dot{background:linear-gradient(145deg,var(--forest),var(--leaf));color:#fff;border-radius:14px;padding:6px 14px;margin-top:-18px;box-shadow:0 4px 12px rgba(0,111,60,.35)}
+.nav .wrap button[data-v="koleksi"] .dot svg{stroke:#fff}
+.nav .wrap button[data-v="koleksi"].on .dot{background:linear-gradient(145deg,var(--gold),var(--orange))}
+
+/* ---------- Koleksiku ---------- */
+.kol-teaser{display:flex;align-items:center;gap:14px;padding:16px;border-radius:18px;background:linear-gradient(135deg,var(--surface),var(--good-bg));border:1px solid var(--line);box-shadow:var(--shadow);cursor:pointer}
+.kol-teaser b{display:block;font-size:15px;margin-top:2px}
+.kt-ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,var(--gold),var(--orange));color:#fff;flex:none;box-shadow:0 4px 12px rgba(224,134,0,.3)}
+.kt-ic svg{width:24px;height:24px}
+.kt-go{font-size:28px;color:var(--muted);line-height:1}
+.kol-hero{background:linear-gradient(135deg,#0C3A24,#006F3C 55%,#4C7A1C)}
+.chips.wrap{flex-wrap:wrap;overflow:visible}
+.chip .cnt{display:inline-block;min-width:18px;padding:0 5px;border-radius:9px;background:rgba(0,0,0,.08);font-size:11px;margin-left:2px}
+.chip.on .cnt{background:rgba(255,255,255,.25)}
+.kol-card{display:flex;gap:14px;align-items:flex-start}
+.kol-card .t{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.kol-card h3{font-size:16px;font-weight:800}
+.kc-ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex:none}
+.kc-ic svg{width:22px;height:22px}
+.k-teks{background:var(--good-bg);color:var(--forest)}
+.k-pdf{background:var(--warn-bg);color:var(--orange)}
+.k-audio{background:#E8E3FB;color:#5B3FC4}
+.k-youtube{background:#FDE3E0;color:#C4302B}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .k-audio{background:#2A2440;color:#B9A8FF}:root:not([data-theme="light"]) .k-youtube{background:#3A1A16;color:#FF8A7A}}
+:root[data-theme="dark"] .k-audio{background:#2A2440;color:#B9A8FF}
+:root[data-theme="dark"] .k-youtube{background:#3A1A16;color:#FF8A7A}
+.kol-step{display:flex;gap:12px;align-items:flex-start}
+.kol-step>span{width:30px;height:30px;border-radius:50%;background:var(--forest);color:#fff;font-weight:800;display:grid;place-items:center;flex:none}
+.kseg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.kseg button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;font-size:12px;font-weight:700;color:var(--muted)}
+.kseg button svg{width:22px;height:22px}
+.kseg button.on{border-color:var(--forest);color:var(--forest);background:var(--good-bg)}
+.kdrop{display:flex;flex-direction:column;align-items:center;gap:4px;padding:22px 12px;border:2px dashed var(--line);border-radius:14px;cursor:pointer;text-align:center;color:var(--forest)}
+.kdrop svg{width:30px;height:30px}
+.kdrop b{color:var(--ink);word-break:break-all}
+.kai{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:var(--warn-bg);border:1px solid var(--gold);cursor:pointer}
+.kai input{margin-top:4px;width:18px;height:18px;accent-color:var(--forest);flex:none}
+.kai b{display:flex;align-items:center;gap:6px}
+.kai b svg{width:16px;height:16px;color:var(--orange)}
+.kai .small{display:block;margin-top:2px}
+.kbusy{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:22px;background:linear-gradient(135deg,var(--surface),var(--good-bg))}
+.kb-dots{display:flex;gap:6px}
+.kb-dots i{width:10px;height:10px;border-radius:50%;background:var(--forest);animation:kdot 1.2s infinite ease-in-out}
+.kb-dots i:nth-child(2){animation-delay:.15s;background:var(--leaf)}
+.kb-dots i:nth-child(3){animation-delay:.3s;background:var(--gold)}
+@keyframes kdot{0%,80%,100%{transform:scale(.5);opacity:.5}40%{transform:scale(1);opacity:1}}
+.spin{display:inline-block;width:10px;height:10px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:kspin .8s linear infinite;vertical-align:-1px}
+@keyframes kspin{to{transform:rotate(360deg)}}
+.kitem{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.kitem:last-of-type{border-bottom:0}
+.kdel{border:0;background:none;color:var(--muted);cursor:pointer;padding:4px;border-radius:8px;flex:none}
+.kdel svg{width:18px;height:18px}
+.kdel.armed{background:var(--bad-bg);color:var(--bad)}
+.kadd{display:flex;flex-direction:column;gap:10px;margin-top:6px;padding:14px;border-radius:14px;background:var(--surface-2)}
+.kaudio{width:100%}
+.ksrc summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;list-style:none}
+.ksrc summary::-webkit-details-marker{display:none}

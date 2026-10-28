@@ -129,10 +129,11 @@ async function buildCert(){const p=findProg(S.cert);if(!p||!LS.get("nama",""))re
 
 /* ---------- data helpers ---------- */
 const progs=()=>(DATA&&DATA.program)||[];
-const findProg=id=>progs().find(p=>p.id===id);
+const srcProgs=()=>progs().concat(typeof kolProg==="function"?kolProg():[]);
+const findProg=id=>srcProgs().find(p=>p.id===id);
 const findMeet=(pid,mid)=>{const p=findProg(pid);return p&&(p.pertemuan||[]).find(m=>m.id===mid)};
-function allCards(filter){const out=[];progs().forEach(p=>(p.pertemuan||[]).forEach(m=>(m.kartu||[]).forEach(k=>{if(!filter||filter(p,m))out.push({...k,pid:p.id,mid:m.id,bab:m.judul,prog:p.nama})})));return out}
-function allSoal(filter){const out=[];progs().forEach(p=>(p.pertemuan||[]).forEach(m=>(m.soal||[]).forEach(s=>{if(!filter||filter(p,m))out.push({...s,pid:p.id,mid:m.id,bab:m.judul})})));return out}
+function allCards(filter){const out=[];srcProgs().forEach(p=>(p.pertemuan||[]).forEach(m=>(m.kartu||[]).forEach(k=>{if(!filter||filter(p,m))out.push({...k,pid:p.id,mid:m.id,bab:m.judul,prog:p.nama})})));return out}
+function allSoal(filter){const out=[];srcProgs().forEach(p=>(p.pertemuan||[]).forEach(m=>(m.soal||[]).forEach(s=>{if(!filter||filter(p,m))out.push({...s,pid:p.id,mid:m.id,bab:m.judul})})));return out}
 const srs=()=>LS.get("srs",{});
 const isDue=(id,st)=>{const r=st[id];return !r||r.due<=Date.now()};
 function dueCards(){const st=srs();return allCards().filter(c=>isDue(c.id,st))}
@@ -148,6 +149,11 @@ const IC={
  cards:'<rect x="3" y="6" width="13" height="15" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v13"/>',
  quiz:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><path d="M12 17h.01"/>',
  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+ plus:'<path d="M5 4h10a2 2 0 0 1 2 2v14l-4-2.5L9 20l-4-2.5z" transform="translate(1 0)"/><path d="M11 8v6M8 11h6"/>',
+ spark:'<path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
+ mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
+ text:'<path d="M4 6h16M4 12h16M4 18h10"/>',
+ trash:'<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>',
  yt:'<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor"/>',
  drive:'<path d="M8 3h8l6 10-4 7H6l-4-7z"/><path d="M8 3l6 10H2M16 3 10 13M22 13H10l-4 7"/>',
  file:'<path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5"/>',
@@ -157,9 +163,9 @@ const IC={
 const svg=(k,s="currentColor")=>`<svg viewBox="0 0 24 24" fill="none" stroke="${s}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
 
 /* ---------- nav ---------- */
-const TABS=[["beranda","Beranda","home"],["materi","Materi","book"],["murojaah","Murojaah","cards"],["latihan","Latihan","quiz"],["profil","Profil","user"]];
+const TABS=[["beranda","Beranda","home"],["materi","Materi","book"],["koleksi","Koleksiku","plus"],["murojaah","Murojaah","cards"],["latihan","Latihan","quiz"]];
 function renderNav(){$(".nav").hidden=S.tab==="masuk";const due=DATA?dueCards().length:0;$("#nav").innerHTML=TABS.map(([k,l,i])=>`<button data-act="tab" data-v="${k}" class="${S.tab===k?"on":""}" aria-current="${S.tab===k?"page":"false"}"><span class="dot" ${k==="murojaah"&&due?`data-n="${due>99?"99+":due}"`:""}>${svg(i)}</span>${l}</button>`).join("");
- $("#toptag").innerHTML=isAdmin&&S.tab!=="kelola"?`<button class="kelola-btn" data-act="tab" data-v="kelola">Kelola</button>`:``}
+ const nm=(LS.get("nama","")||"").trim();$("#toptag").innerHTML=S.tab==="masuk"?"":(isAdmin&&S.tab!=="kelola"?`<button class="kelola-btn" data-act="tab" data-v="kelola">Kelola</button>`:``)+`<button class="me-btn ${S.tab==="profil"?"on":""}" data-act="tab" data-v="profil" aria-label="Profil">${nm?esc(nm[0].toUpperCase()):svg("user")}</button>`}
 
 /* ---------- beranda ---------- */
 function salamWaktu(){const h=new Date().getHours();return h<11?"Selamat pagi":h<15?"Selamat siang":h<18?"Selamat sore":"Selamat malam"}
@@ -204,6 +210,7 @@ function viewBeranda(){
  ${due?`<section class="card flat" style="background:var(--warn-bg);border-color:var(--gold)"><div class="row" style="justify-content:space-between"><div><b>Murojaah hari ini</b><div class="small muted">${due} kartu menunggu diulang. Cukup 5 menit.</div></div><button class="btn gold sm" data-act="mur-start" data-v="quick">Mulai</button></div></section>`:""}
  ${up.length?`<section class="stack"><div class="sec-h"><h2>Jadwal kajian</h2></div>${up.slice(0,3).map(j=>`<div class="card flat row" style="flex-wrap:nowrap"><div class="lcard" style="border:0;padding:0;background:none"><span class="ic" style="background:var(--surface-2);color:var(--forest)">${svg("cal")}</span></div><div style="flex:1;min-width:0"><b>${rich(j.judul)}</b><div class="small muted">${esc(fmtWaktu(j.waktu))}${j.tempat?" · "+esc(j.tempat):""}</div>${j.link?`<a class="small" href="${esc(j.link)}" target="_blank" rel="noopener">Buka tautan kajian</a>`:""}</div></div>`).join("")}</section>`:""}
  ${(DATA.pengumuman||[]).length?`<section class="stack"><div class="sec-h"><h2>Pengumuman</h2></div>${DATA.pengumuman.slice(0,3).map(a=>`<div class="card flat"><div class="row" style="justify-content:space-between"><b>${rich(a.judul)}</b><span class="pill">${esc(a.tanggal||"")}</span></div><div class="small prose" style="margin-top:6px">${para(a.isi)}</div></div>`).join("")}</section>`:""}
+ ${typeof kolTeaser==="function"?kolTeaser():""}
  ${leaderboard(5)}
  <section class="stack"><div class="sec-h"><h2>Program kajian</h2><button class="lnk" data-act="tab" data-v="materi">Semua materi</button></div>
   ${progs().map(progCard).join("")||`<div class="empty">Belum ada program kajian.</div>`}
@@ -277,6 +284,7 @@ function viewMeet(){
 function startMur(scope){
  let cards;
  if(scope==="quick")cards=dueCards().slice(0,15);
+ else if(scope==="koleksi-all"){const st=srs();cards=allCards(p=>p.id==="koleksi").filter(c=>isDue(c.id,st))}
  else if(scope==="today")cards=dueCards();
  else if(scope==="all")cards=allCards();
  else{const [pid,mid]=scope.split(":");cards=allCards((p,m)=>p.id===pid&&m.id===mid)}
@@ -307,7 +315,7 @@ function viewMurojaah(){
   ${m.flip?`<div class="rate"><button class="r0" data-act="rate" data-v="0">Belum hafal<small>ulang sebentar lagi</small></button><button class="r1" data-act="rate" data-v="1">Ragu<small>besok</small></button><button class="r2" data-act="rate" data-v="2">Hafal<small>beberapa hari lagi</small></button></div>`:`<button class="btn pri block" data-act="flip">Lihat jawaban</button>`}`}
  if(m&&m.finished){return `<section class="card" style="text-align:center"><div class="ar" dir="rtl" style="font-size:30px;color:var(--forest)">بَارَكَ اللهُ فِيكُمْ</div><h2 style="margin-top:6px">Murojaah selesai</h2><p class="muted">${m.total} kartu diulang · ${m.res[2]} hafal · ${m.res[1]} ragu · ${m.res[0]}× belum hafal</p><p class="small">Beruntun: <b>${streak()} hari</b></p><button class="btn pri" data-act="mur-exit">Kembali</button></section>`}
  const st=srs(), due=dueCards().length;
- const babs=[];progs().forEach(p=>(p.pertemuan||[]).forEach(mm=>{const ks=mm.kartu||[];if(ks.length)babs.push({p,m:mm,n:ks.length,h:ks.filter(k=>st[k.id]&&st[k.id].box>=3).length})}));
+ const babs=[];srcProgs().forEach(p=>(p.pertemuan||[]).forEach(mm=>{const ks=mm.kartu||[];if(ks.length)babs.push({p,m:mm,n:ks.length,h:ks.filter(k=>st[k.id]&&st[k.id].box>=3).length})}));
  const glos=allCards(), q=(S.gq||"").toLowerCase();
  return `
  <section class="greet"><div class="eyebrow" style="color:#CFE3BE">Ruang murojaah</div><h1>${due?due+" kartu menunggu":"Semua kartu sudah diulang"}</h1><div class="dates">Kartu diulang kembali tepat sebelum terlupa: yang belum hafal muncul lebih sering.</div>
@@ -360,7 +368,7 @@ function viewLatihan(){
  <section class="greet"><div class="eyebrow" style="color:#CFE3BE">Ruang latihan</div><h1>Uji pemahaman antum</h1><div class="dates">Soal disusun dari materi setiap pertemuan, lengkap dengan pembahasan.</div></section>
  <section class="card stack" style="gap:14px">
   <div class="grid2">
-   <div class="field"><label for="q-prog">Program</label><select id="q-prog" data-qs="prog"><option value="">Semua program</option>${ps.map(x=>`<option value="${x.id}" ${x.id===qs.prog?"selected":""}>${esc(x.nama)}</option>`).join("")}</select></div>
+   <div class="field"><label for="q-prog">Program</label><select id="q-prog" data-qs="prog"><option value="">Semua program</option>${ps.concat(typeof kolProg==="function"?kolProg():[]).map(x=>`<option value="${x.id}" ${x.id===qs.prog?"selected":""}>${esc(x.nama)}</option>`).join("")}</select></div>
    <div class="field"><label for="q-bab">Bab</label><select id="q-bab" data-qs="bab"><option value="all">Semua bab</option>${babs.map(m=>`<option value="${m.id}" ${m.id===qs.bab?"selected":""}>${esc(m.judul)}</option>`).join("")}${wrongN?`<option value="wrong" ${qs.bab==="wrong"?"selected":""}>Soal yang pernah salah (${wrongN})</option>`:""}</select></div>
   </div>
   <div class="field"><label>Mode</label><div class="seg"><button data-act="qmode" data-v="latihan" class="${qs.mode==="latihan"?"on":""}">Latihan</button><button data-act="qmode" data-v="ujian" class="${qs.mode==="ujian"?"on":""}">Ujian · berwaktu</button></div><span class="small muted">${qs.mode==="latihan"?"Jawaban dan pembahasan langsung tampil setelah menjawab.":"45 detik per soal. Pembahasan tampil di akhir."}</span></div>
@@ -445,6 +453,7 @@ function viewEditMeet(){
  <button class="btn danger block" data-act="a-del" data-path="${base}">Hapus pertemuan ini</button>`;
 }
 async function gemini(prompt,yt){
+ if(!LS.get("gkey","")&&SB){const {data:{session}}=await SB.auth.getSession();const r=await fetch("/api/ai",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+(session&&session.access_token)},body:JSON.stringify({mode:"prompt",prompt,youtube:yt||""})});const j=await r.json().catch(()=>({}));if(!r.ok||!j.ok)throw new Error(j.error||("HTTP "+r.status));return j.hasil}
  const key=LS.get("gkey",""),model=LS.get("gmodel","")||"gemini-2.5-flash";
  const parts=[];if(yt)parts.push({file_data:{file_uri:yt}});parts.push({text:prompt});
  const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},body:JSON.stringify({contents:[{parts}],generationConfig:{responseMimeType:"application/json",temperature:.4}})});
@@ -455,7 +464,7 @@ async function gemini(prompt,yt){
 const isYT=u=>/youtu\.?be/.test(u||"");
 async function aiGen(kind){
  const {pi,mi}=S.adm, p=EDIT.program[pi], m=p.pertemuan[mi];
- if(!LS.get("gkey","")){toast("Isi kunci Gemini dulu di bagian Pengaturan AI");return}
+ if(!LS.get("gkey","")&&!SB){toast("Isi kunci Gemini dulu di bagian Pengaturan AI");return}
  const src=[m.ringkasan,m.transkrip].filter(Boolean).join("\n\n");const yt=isYT(m.youtube)?m.youtube:"";
  if(src.trim().length<80&&!yt){toast("Isi ringkasan, transkrip, atau link YouTube dulu");return}
  const btn=document.querySelector(`[data-act="a-ai"][data-v="${kind}"]`);if(btn){btn.disabled=true;btn.textContent="AI sedang menyusun…"}
@@ -530,7 +539,7 @@ async function downloadCert(){const p=findProg(S.cert);if(!S.certUrl)return;cons
 /* ---------- render ---------- */
 function render(top){
  if(!DATA)return;
- const v={beranda:viewBeranda,materi:viewMateri,murojaah:viewMurojaah,latihan:viewLatihan,profil:viewProfil,kelola:viewKelola,masuk:viewMasuk}[S.tab]||viewBeranda;
+ const v={beranda:viewBeranda,materi:viewMateri,murojaah:viewMurojaah,latihan:viewLatihan,profil:viewProfil,kelola:viewKelola,masuk:viewMasuk,koleksi:(typeof viewKoleksi==="function"?viewKoleksi:viewBeranda)}[S.tab]||viewBeranda;
  const ae=document.activeElement, aid=ae&&ae.id, pos=ae&&ae.selectionStart;
  $("#main").innerHTML=(S.dbErr&&isAdmin?`<div class="card flat small" style="background:var(--warn-bg);border-color:var(--gold)">Database belum siap: ${esc(S.dbErr)}. Pastikan supabase.sql sudah dijalankan.</div>`:"")+(offline?`<div class="card flat small" style="background:var(--warn-bg);border-color:var(--gold)">Sedang luring: menampilkan materi yang terakhir tersimpan.</div>`:"")+v();
  renderNav();
