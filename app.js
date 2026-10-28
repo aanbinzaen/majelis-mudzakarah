@@ -454,7 +454,7 @@ function viewEditMeet(){
 }
 async function gemini(prompt,yt){
  if(!LS.get("gkey","")&&SB){const {data:{session}}=await SB.auth.getSession();const r=await fetch("/api/ai",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+(session&&session.access_token)},body:JSON.stringify({mode:"prompt",prompt,youtube:yt||""})});const j=await r.json().catch(()=>({}));if(!r.ok||!j.ok)throw new Error(j.error||("HTTP "+r.status));return j.hasil}
- const key=LS.get("gkey",""),model=LS.get("gmodel","")||"gemini-2.5-flash";
+ const key=LS.get("gkey",""),model=LS.get("gmodel","")||"gemini-3.8-flash";
  const parts=[];if(yt)parts.push({file_data:{file_uri:yt}});parts.push({text:prompt});
  const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},body:JSON.stringify({contents:[{parts}],generationConfig:{responseMimeType:"application/json",temperature:.4}})});
  const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error((j.error&&j.error.message)||("HTTP "+r.status));
@@ -512,7 +512,7 @@ function viewRekap(){
  </section>
  <section class="card stack"><div class="sec-h"><h2>Pengaturan AI</h2><span class="pill ${LS.get("gkey","")?"good":""}">${LS.get("gkey","")?"aktif":"belum aktif"}</span></div>
   <div class="small muted">AI (Google Gemini) menyusun soal dan kartu dari ringkasan, transkrip, dan langsung dari video YouTube. Kunci gratis dibuat di aistudio.google.com → Get API key. Kunci hanya disimpan di perangkat ini.</div>
-  <div class="grid2"><div class="field"><label for="g-key">Kunci API Gemini</label><input id="g-key" type="password" value="${esc(LS.get("gkey",""))}" placeholder="AIza…"></div><div class="field"><label for="g-model">Model</label><input id="g-model" value="${esc(LS.get("gmodel","")||"gemini-2.5-flash")}"></div></div>
+  <div class="grid2"><div class="field"><label for="g-key">Kunci API Gemini</label><input id="g-key" type="password" value="${esc(LS.get("gkey",""))}" placeholder="AIza…"></div><div class="field"><label for="g-model">Model</label><input id="g-model" value="${esc(LS.get("gmodel","")||"gemini-3.8-flash")}"></div></div>
  </section>
  <section class="card stack"><div class="sec-h"><h2>Impor materi</h2></div>
   <div class="small muted">Tempel data program (JSON) yang disiapkan Claude, atau pilih berkas .json. Program dengan id yang sama akan diganti.</div>

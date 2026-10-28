@@ -4,7 +4,7 @@
 //   GEMINI_API_KEY      kunci dari aistudio.google.com
 //   SUPABASE_URL        sama dengan supabaseUrl di config.js
 //   SUPABASE_ANON_KEY   sama dengan supabaseAnonKey di config.js
-// Opsional: GEMINI_MODEL (bawaan gemini-2.5-flash), AI_LIMIT_HARIAN (bawaan 30 proses per peserta per hari)
+// Opsional: GEMINI_MODEL (bawaan gemini-3.8-flash), AI_LIMIT_HARIAN (bawaan 30 proses per peserta per hari)
 
 const GEM = "https://generativelanguage.googleapis.com";
 const INLINE_MAX = 15 * 1024 * 1024;
@@ -102,7 +102,7 @@ module.exports = async (req, res) => {
     if (used >= limit) return send(res, 429, { error: `Batas ${limit} proses AI per 24 jam sudah tercapai. Coba lagi besok, insya Allah.` });
     await sb("/rest/v1/ai_pakai", token, { method: "POST", body: JSON.stringify({ jenis: body.mode || "materi" }) });
 
-    const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+    const model = process.env.GEMINI_MODEL || "gemini-3.8-flash";
     const parts = [];
     let prompt;
     const gen = { responseMimeType: "application/json", temperature: 0.3 };
@@ -137,12 +137,16 @@ module.exports = async (req, res) => {
     }
     parts.push({ text: prompt });
 
-    const r = await fetch(`${GEM}/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
+    const call = m => fetch(`${GEM}/v1beta/models/${encodeURIComponent(m)}:generateContent`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-goog-api-key": KEY },
       body: JSON.stringify({ contents: [{ role: "user", parts }], generationConfig: gen })
     });
-    const j = await r.json().catch(() => ({}));
+    let r = await call(model);
+    let j = await r.json().catch(() => ({}));
+    // Bila model lama sudah dihentikan, pakai model pengganti yang disarankan Google
+    const saran = !r.ok && ((j.error && j.error.message) || "").match(/use (?:models\/)?(gemini-[\w.\-]+)/i);
+    if (saran && saran[1] !== model) { r = await call(saran[1]); j = await r.json().catch(() => ({})); }
     if (!r.ok) return send(res, 502, { error: "AI belum berhasil: " + ((j.error && j.error.message) || r.status) });
     const text = (((j.candidates || [])[0] || {}).content || {}).parts?.map(p => p.text || "").join("") || "";
     let out;
